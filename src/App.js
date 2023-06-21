@@ -1,14 +1,24 @@
 // create App.js file
-import React from 'react'
-import Login from './pages/Login/Login'
-import SignUp from "./pages/Sign Up/SignUp"
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import IndexPage from './pages/IndexPage/IndexPage.jsx'
+import Login from './pages/Login/Login.jsx'
+import SignUp from './pages/Sign Up/SignUp.jsx'
+import Footer from './components/Footer.jsx'
+import Header from './components/Header.jsx'
 function App() {
     return (
-        <div className="flex h-screen justify-center items-center">
-            <h1 className="text-red-500 text-3xl">Hello Team dd</h1>
-        </div>
-        // <Login></Login>
-        // <SignUp/>
+        <BrowserRouter>
+            <div className='main-content'>
+                <Header />
+                    <Routes>
+                        <Route path="/" element={<IndexPage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+                    </Routes>
+            </div>
+            <Footer/>
+        </BrowserRouter>
     )
 }
 
