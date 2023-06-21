@@ -1,5 +1,4 @@
 // create App.js file
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import IndexPage from './pages/IndexPage/IndexPage.jsx'
 import Login from './pages/Login/Login.jsx'
