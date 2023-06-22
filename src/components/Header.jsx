@@ -37,7 +37,7 @@ const Header = () => {
                     Sign Up
                 </a>
             </div>
-            <div className="flex gap-6 items-center ml-[148px]">
+            <div className="flex gap-16 items-center ml-[148px]">
                 <div className="flex gap-1 items-center relative">
                     <input
                         type="text"
