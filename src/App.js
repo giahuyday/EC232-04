@@ -7,6 +7,7 @@ import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Detail from './pages/Detail/Detail.jsx'
 import Cart from './pages/Cart/Cart';
+import CheckOut from './pages/CheckOut/CheckOut.jsx'
 function App() {
     return (
         <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/detail" element={<Detail />} />
                         <Route path="/cart" element={<Cart />} />
+                        <Route path="/checkout" element={<CheckOut />} />
                     </Routes>
             </div>
             <Footer/>
