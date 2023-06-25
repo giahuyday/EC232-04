@@ -8,6 +8,8 @@ import Header from './components/Header.jsx'
 import Detail from './pages/Detail/Detail.jsx'
 function App() {
     return (
+        // <SignUp/>
+        // <Login/>
         <BrowserRouter>
             <div className='main-content'>
                 <Header />
