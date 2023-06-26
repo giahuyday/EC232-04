@@ -6,6 +6,7 @@ import SignUp from './pages/Sign Up/SignUp.jsx'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Detail from './pages/Detail/Detail.jsx'
+import Cart from './pages/Cart/Cart.jsx'
 import CheckOut from './pages/CheckOut/CheckOut.jsx'
 function App() {
     return (
