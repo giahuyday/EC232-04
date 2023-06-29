@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-
+import {Link} from "react-router-dom"
 const Header = () => {
   return (
     <header className="">
@@ -20,7 +20,7 @@ const Header = () => {
               About
             </a>
             <a href="#" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
-              Sign Up
+              <Link to="/signup" path="/signup">Sign Up</Link>
             </a>
           </div>
           <div className="flex gap-2 items-center justify-between">

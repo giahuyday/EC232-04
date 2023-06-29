@@ -1,78 +1,113 @@
 
 import React, { useState }  from "react";
-const SignUp = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirm_password, setConfirm_Password] = useState("");
+import Axios from "axios"
+import { Link } from "react-router-dom";
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email, password, confirm_password);
-        fetch("http://localhost:5000/signup", {
-            method: "POST",
-            crossDomain: true,
-            headers: {
-                "Content-Type": "Application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify({
-                email,
-                password,
-                confirm_password
-            }),
-        }).then((res) => res.json())
-            .then((data) => {
-                console.log(data, "creatUser")
-            })
+const SignUp = () => {
+    const [userName, setUsername] = useState("");
+    const [Password, setPassword] = useState("");
+    const [Name, setName] = useState("")
+    const [Birth, setBirth] = useState("")
+    const [Money, setMoney] = useState(0)
+    const [Email, setEmail] = useState("");
+    const [Phone, setPhone] = useState(0)
+    const [Address, setAddress] = useState("")
+    const handleSubmit = () => {
+       Axios.post("http://localhost:3001/signup",{
+            userName: userName, 
+            Password: Password, 
+            Name: Name, 
+            Birth: Birth, 
+            Money: Money, 
+            Email: Email,
+            Phone: Phone, 
+            Address: Address
+       }).then((response) => {
+            console.log(response)
+       }) 
     }
 
     return (
-        <section class="bg-gray-50 dark:bg-white">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <section className="bg-gray-50 dark:bg-white">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
+            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-700 dark:border-gray-700 ">
+                <div className="p-6 space-y-4 md:space-y-6 sm:p-8 dark:text-black">
+                    <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Create an account
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form className="space-y-4 md:space-y-6" action="#">
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block
+                            <label for="userName" className="block mb-2 text-sm font-medium text-gray-900 ">Username</label>
+                            <input type="userName" name="userName" id="userName" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block
                              w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                            placeholder="name@company.com" required="" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            placeholder="name" required="" value={userName} onChange={(e) => setUsername(e.target.value)}/>
                         </div>
                         <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your Email</label>
+                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block
+                             w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                            placeholder="name@company.com" required="" value={Email} onChange={(e) => setEmail(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label for="Password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                            <input type="Password" name="Password" id="Password" placeholder="••••••••" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
                             block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                            required="" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            required="" value={Password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
                         <div>
-                            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                            <input type="confirm-password" name="confirm-password" id="confirm-password" placeholder="••••••••" 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
-                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={confirm_password}
-                            onChange={(e) => setConfirm_Password(e.target.value)}/>
+                            <label for="Name" className="block mb-2 text-sm font-medium text-gray-900 ">Your name</label>
+                            <input type="Name" name="Name" id="Name" placeholder="Your name" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Name}
+                            onChange={(e) => setName(e.target.value)}/>
                         </div>
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                              <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 
+                        <div>
+                            <label for="date" className="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
+                            <input type="date" name="date" id="date" placeholder="Date of Birth" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Birth}
+                            onChange={(e) => setBirth(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label for="Money" className="block mb-2 text-sm font-medium text-gray-900">Money</label>
+                            <input type="Money" name="Money" id="Money" placeholder="Money" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Money}
+                            onChange={(e) => setMoney(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label for="Phone" className="block mb-2 text-sm font-medium text-gray-900">Phone number</label>
+                            <input type="Phone" name="Phone" id="Phone" placeholder="Phone Number" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Phone}
+                            onChange={(e) => setPhone(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label for="Address" className="block mb-2 text-sm font-medium text-gray-900">Address</label>
+                            <input type="Address" name="Address" id="Address" placeholder="Address" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
+                            block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Address}
+                            onChange={(e) => setAddress(e.target.value)}/>
+                        </div>
+                        
+                        <div className="flex items-start">
+                            <div className="flex items-center h-5">
+                              <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 
                               dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required=""/>
                             </div>
-                            <div class="ml-3 text-sm">
-                              <label for="terms" class="font-light text-gray-100 dark:text-white">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-white" href="#">Terms and Conditions</a></label>
+                            <div className="ml-3 text-sm">
+                              <label for="terms" className="font-light text-black-100">I accept the <a className="font-medium text-primary-600 hover:underline" href="#">Terms and Conditions</a></label>
                             </div>
                         </div>
-                        <button type="submit" class="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium 
+                        <button type="submit" className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium 
                         rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 " id="sign-up-btn"
                         onClick={handleSubmit}>
                             Create an account
                             </button>
-                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline hover:text-white dark:text-primary-500">
-                               Login here</a>
+                        <p className="text-sm font-light text-black-100">
+                            Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline hover:text-black dark:text-primary-500">
+                               <Link to="/login" path="/login">Login here</Link></a>
                         </p>
                     </form>
                 </div>
