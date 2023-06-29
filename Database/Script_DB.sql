@@ -1,8 +1,6 @@
 -- Nhóm 4  
 -- file database
 
-
-
 create table Account(
 	AccountID varchar(50),
     UserName varchar(50),
@@ -78,7 +76,7 @@ FOREIGN KEY (ProducerID) REFERENCES Producer(ProducerID);
 create table Item_Picture(
 	PictureID varchar(50),
     Name nvarchar(50),
-    Content MEDIUMBLOB,
+    Content varchar(500),
     
     ItemID varchar(50),
     
@@ -144,3 +142,5 @@ FOREIGN KEY (AccountID ) REFERENCES Account(AccountID );
 ALTER TABLE Rate
 ADD CONSTRAINT fk_Rate_Item_1
 FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
+
+
