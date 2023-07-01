@@ -1,10 +1,21 @@
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import RowTableProductsManage from "../../../components/Admin/RowTableProductsManage";
-
+import Axios from "axios";
 
 const ProductsManage = () => {
-    const products = useState([])
+    const [products, SetProducts] = useState([])
+  
+    useEffect(() => {
+      getProducts();
+    },[])
+
+  const getProducts = () => {
+      Axios.get("http://localhost:3001/product").then((response) => {
+          SetProducts(response.data)
+          console.log(response.data)
+      })
+  }
     return (
         <section className="bg-gray-200 dbg-gray-900 py-3 sm:py-5">
             <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
@@ -106,15 +117,11 @@ const ProductsManage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-
-
-                                {products.map((item, index) => {
+                                {products?.map((item, index) => {
                                     return (
-                                        <RowTableProductsManage item={item} key={index} />
+                                        <RowTableProductsManage item={item} key={item.itemID} />
                                     );
                                 })}
-
-
                             </tbody>
                         </table>
                     </div>

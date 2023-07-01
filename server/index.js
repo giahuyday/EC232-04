@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 })
 
 app.get("/product", (req, res) => {
-    connection.query("SELECT item.itemID, item.Name, item.Price, item.Description, item_picture.Content FROM item, item_picture WHERE item.ItemID = item_picture.ItemID", (err, result)=>{
+    connection.query("SELECT * FROM item, item_picture WHERE item.ItemID = item_picture.ItemID", (err, result)=>{
       if(err){
         console.log("Fetch Failed !")
       }else{
@@ -24,6 +24,18 @@ app.get("/product", (req, res) => {
         res.send(result)
       }
     })
+})
+
+app.get("/users", (req, res) => {
+  connection.query("SELECT * FROM account", (err, result)=>{
+    if(err){
+      console.log("Fetch Failed !")
+    }else{
+      // console.log(rows[0])
+      console.log(result)
+      res.send(result)
+    }
+  })
 })
 
 app.post("/login", (req, res) => {
@@ -67,6 +79,24 @@ app.post("/signup", (req, res)=>{
 })
 
 
+app.post("/detail/:ItemID", (req, res) => {
+  console.log(req.body)
+  const ItemID = req.params.ItemID
+  connection.query("SELECT * FROM item, item_picture WHERE item.ItemID = item_picture.ItemID and item.ItemID = ?", [ItemID], (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Failed !");
+      } else {
+        if (result.length > 0) {
+          console.log(result);
+          res.send(result);
+        } else {
+          console.log(result);
+          res.send("Failed !");
+        }
+      }
+    }
+)})
 // connection.connect()
 
 // connection.query('SELECT * from account', (err, rows, fields) => {

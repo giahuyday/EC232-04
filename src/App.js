@@ -22,7 +22,7 @@ function App() {
                         <Route path="/*" element={<IndexPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />
-                        <Route path="/detail" element={<Detail />} />
+                        <Route path="/detail/:ItemID" element={<Detail />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/checkout" element={<CheckOut />} />
                         <Route path="/manage/products" element={<ProductsManage />} />

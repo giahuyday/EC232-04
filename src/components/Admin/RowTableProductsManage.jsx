@@ -6,16 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-const RowTableProductsManage = (props) => {
-    const item = {
-        ItemID: 'Item1',
-        Name: 'Laptop HP 15s-fq2712TU',
-        Price: 9999000,
-        Color: 'Silver',
-        Status: 'Available',
-        CateID: 'Cate1'
-    };
-
+const RowTableProductsManage = ({ item }) => {
     return (
         <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">
             <td className="w-4 px-4 py-3"></td>

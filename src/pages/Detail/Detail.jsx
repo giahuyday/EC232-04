@@ -1,12 +1,25 @@
-import { useState } from "react"
-
+import { useState, useEffect } from "react"
+import Axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Detail = () => {
-
-    const [imgMain, setImgMain] = useState('https://i.postimg.cc/6qcPhTQg/R-18.png');
+    const { ItemID } = useParams()
+    const [imgMain, setImgMain] = useState("");
     const [amount, setAmount] = useState(1);
     const [showMorePara, setShowMorePara] = useState(false);
     const [showMoreAbout, setShowMoreAbout] = useState(false);
+
+    const [Product, SetProduct] = useState([])
+
+    useEffect(() => {
+        Axios.post(`http://localhost:3001/detail/${ItemID}`,{
+            ItemID: ItemID, 
+       }).then((response) => {
+           console.log(response)
+            SetProduct(response.data)
+        })
+        setImgMain(Product[0]?.Content)
+    }, [])
 
     const handleMinus = () => {
         if (amount == 1) return 
@@ -15,8 +28,11 @@ const Detail = () => {
     const handleAdd = () => {
         setAmount(amount+1);
     }
+
+    // if (!Object.Product) return <div className="font-bold px-1 py-12">Cannot Find Product</div>
+    // else
     return (
-        <>
+        <>  
             <section className="overflow-hidden bg-white py-11 font-poppins  my-[40px]">
                 <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 rounded-[20px]">
                     <div className="flex flex-wrap -mx-4">
@@ -28,8 +44,8 @@ const Detail = () => {
                                 </div>
                                 <div className="flex-wrap hidden md:flex ">
                                     <div className="w-1/2 p-2 sm:w-1/4">
-                                        <button onClick={() => setImgMain("https://i.postimg.cc/6qcPhTQg/R-18.png")} href="#" className="block border border-blue-300 hover:border-blue-300">
-                                            <img src="https://i.postimg.cc/6qcPhTQg/R-18.png" alt=""
+                                        <button onClick={() => setImgMain(Product[0]?.Content)} href="#" className="block border border-blue-300 hover:border-blue-300">
+                                            <img src={Product[0]?.Content} alt=""
                                                 className="object-cover w-full lg:h-20" />
                                         </button>
                                     </div>
@@ -133,7 +149,7 @@ const Detail = () => {
                                 <div className="mb-8 ">
                                     <div className="border-b border-[black] bio">
                                         <h2 className="max-w-xl  mb-[10px] text-[24px] font-bold   md:text-4xl">
-                                            Macbook Pro M130c90
+                                            {Product[0]?.Name}
                                         </h2>
 
                                         <div class="flex items-center">
@@ -146,13 +162,14 @@ const Detail = () => {
                                     </div>
 
                                     <p className="pt-[30px] inline-block mb-6 text-4xl font-bold text-gray-700   ">
-                                        <span className="text-[black]">$1500.99</span>
+                                        <span className="text-[black]">
+                                            {Product[0]?.Price}
+                                        </span>
                                         <span
                                             className="text-base font-normal text-gray-500 line-through  ">$1800.99</span>
                                     </p>
-                                    <p className="max-w-md text-gray-700  ">
-                                        Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
-                                        Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
+                                    <p className="max-w-md text-gray-700 font-bold">
+                                        {Product[0]?.Description}
                                     </p>
                                 </div>
                                 <div className="mb-8">

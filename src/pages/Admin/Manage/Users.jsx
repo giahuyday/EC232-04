@@ -1,11 +1,23 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import RowTableUsersManage from "../../../components/Admin/RowTableUserManage";
-
+import Axios from "axios";
 
 
 const UsersManage = () => {
-    const Users = useState([])
+    const[Users, setUsers] = useState([])
+
+    useEffect(() => {
+        getUser();
+      },[])
+  
+    const getUser = () => {
+        Axios.get("http://localhost:3001/users").then((response) => {
+            setUsers(response.data)
+            console.log(response.data)
+        })
+    }
+
     return (
         <section className="bg-gray-200 dbg-gray-900 py-3 sm:py-5">
             <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
@@ -111,7 +123,7 @@ const UsersManage = () => {
 
                                 {Users.map((item, index) => {
                                     return (
-                                        <RowTableUsersManage item={item} key={index} />
+                                        <RowTableUsersManage item={item} key={item.AccountID} />
                                     );
                                 })}
 

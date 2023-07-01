@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function Card({ item }) {
     return (
-            <div className="rounded overflow-hidden shadow-lg">
+            <Link to={`/detail/${item.ItemID}`} className="rounded overflow-hidden shadow-lg">
     
                 <a href="#"></a>
                 <div className="relative">
@@ -39,7 +41,7 @@ function Card({ item }) {
                         </svg>
                     </a>
                 </div>
-            </div>
+            </Link>
     )
 }
 

@@ -5,16 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-const RowTableUsersManage = (props) => {
-    const item = {
-      AccountID: 'Item1',
-      UserName: 'dangminh',
-      Phone: '0213456789',
-      Address: 'HCM city',
-      Email: 'dminh@gmail.com',
-      Name: 'Dang Minh'
-    };
-
+const RowTableUsersManage = ({item}) => {
     return (
         <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">
             <td className="w-4 px-4 py-3"></td>
