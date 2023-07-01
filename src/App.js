@@ -8,6 +8,9 @@ import Header from './components/Header.jsx'
 import Detail from './pages/Detail/Detail.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import CheckOut from './pages/CheckOut/CheckOut.jsx'
+import ProductsManage from './pages/Admin/Manage/Products.jsx'
+import UsersManage from './pages/Admin/Manage/Users.jsx'
+
 function App() {
     return (
         // <SignUp/>
@@ -22,6 +25,10 @@ function App() {
                         <Route path="/detail" element={<Detail />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/checkout" element={<CheckOut />} />
+                        <Route path="/manage/products" element={<ProductsManage />} />
+                        <Route path="/manage/users" element={<UsersManage />} />
+                       
+
 
                     </Routes>
             </div>
