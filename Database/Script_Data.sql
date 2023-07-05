@@ -58,6 +58,15 @@ VALUES ('Rate1', 'Acc1', 4, 'Great product!', '2023-06-21', 'Item1'),
 insert into	return_item (ItemID, OrderID,  ReturnDate, Status, comment)
 values ('Item6', 'Order4', '2023-03-25', 'Returned', 'Not working');
 
+insert into Cart (CartID, day, status, AccountID)
+values  ('cart1', '2023-06-21', 'saved', 'Acc1'),
+		('cart2', '2023-06-22', 'saved', 'Acc2'),
+        ('cart3', '2023-06-23', 'saved', 'Acc3');
+
+INSERT INTO Cart_Detail (CartID, itemID, Quantity, Price)
+VALUES  ('cart1', 'Item1', 2, 1000),
+        ('cart2', 'Item2', 1, 500),
+		('cart3', 'Item3', 3, 1500);
 
 
 

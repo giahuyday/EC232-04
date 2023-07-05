@@ -143,4 +143,34 @@ ALTER TABLE Rate
 ADD CONSTRAINT fk_Rate_Item_1
 FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
 
+create table Cart(
+	CartID varchar(50),
+    day date,
+    status nvarchar(50),
+    AccountID varchar(50),
+    
+	primary key(CartID)
+);
+
+create table Cart_Detail(
+	CartID varchar(50),
+    itemID varchar(50),
+    Quantity bigint,
+    Price bigint,
+    
+	primary key(ItemID, CartID)
+);
+
+ALTER TABLE Cart
+ADD CONSTRAINT fk_Cart_Account_1
+FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
+
+ALTER TABLE Cart_Detail
+ADD CONSTRAINT fk_CartDetail_Cart_1
+FOREIGN KEY (CartID) REFERENCES Cart(CartID);
+
+ALTER TABLE Cart_Detail
+ADD CONSTRAINT fk_CartDetail_item_1
+FOREIGN KEY (itemID) REFERENCES item(itemID);
+
 
