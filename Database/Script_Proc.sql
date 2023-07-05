@@ -197,6 +197,4 @@ END //
 
 DELIMITER ;
 
-select * from order_Details
-
 -- call AddOrderDetail('Order5', 'Item1', 1)
