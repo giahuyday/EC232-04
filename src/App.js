@@ -1,5 +1,4 @@
-// create App.js file
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 import IndexPage from './pages/IndexPage/IndexPage.jsx'
 import Login from './pages/Login/Login.jsx'
 import SignUp from './pages/Sign Up/SignUp.jsx'
@@ -12,29 +11,43 @@ import ProductsManage from './pages/Admin/Manage/Products.jsx'
 import UsersManage from './pages/Admin/Manage/Users.jsx'
 
 function App() {
-    return (
-        // <SignUp/>
-        // <Login/>
-        <BrowserRouter>
-            <div className='main-content'>
-                <Header />
-                    <Routes>
-                        <Route path="/*" element={<IndexPage />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<SignUp />} />
-                        <Route path="/detail/:ItemID" element={<Detail />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/checkout" element={<CheckOut />} />
-                        <Route path="/manage/products" element={<ProductsManage />} />
-                        <Route path="/manage/users" element={<UsersManage />} />
-                       
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<MainLayout />} />
+        <Route path="/auth/*" element={<AuthLayout />} />
+        <Route path="/auth/*" element={<AuthLayout />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
 
+function MainLayout() {
+  return (
+    <>
+      <Header />
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/detail/:ItemID" element={<Detail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/manage/products" element={<ProductsManage />} />
+          <Route path="/manage/users" element={<UsersManage />} />
+        </Routes>
+      </div>
+      <Footer />
+    </>
+  )
+}
 
-                    </Routes>
-            </div>
-            <Footer/>
-        </BrowserRouter>
-    )
+function AuthLayout() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  )
 }
 
 export default App
