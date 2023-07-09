@@ -3,25 +3,25 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const Header = () => {
   return (
-    <header className="px-4 lg:px-12 py-2.5">
+    <header className="px-4 lg:px-12">
       <nav className="px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between mx-auto mt-12">
           <Link to={'/'} className="font-[Inter] lg:-ml-6  font-semibold text-[24px] leading-2 tracking-[3%] cursor-pointer block">
             Exclusive
           </Link>
           <div className="flex items-center">
-            <a href="#" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2 ">
+            <Link to="/" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Home
-            </a>
-            <a href="#" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+            </Link>
+            <Link to="/contact" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Contact
-            </a>
-            <a href="#" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+            </Link>
+            <Link to="/about" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               About
-            </a>
-            <a href="#" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
-              <Link to="/auth/signup">Sign Up</Link>
-            </a>
+            </Link>
+            <Link to="/auth/signup" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+              Sign Up
+            </Link>
           </div>
           <div className="flex gap-2 items-center justify-between">
             <div className="flex gap-1 items-center relative">
