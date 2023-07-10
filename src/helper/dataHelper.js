@@ -1,4 +1,5 @@
-import numeral from "numeral";
+const numeral = require('numeral');
+
 function calDiscount(price, discountPercentage) {
     if (typeof price !== 'number' || typeof discountPercentage !== 'number' || price < 0 || discountPercentage < 0 || discountPercentage > 100) {
       throw new Error('Invalid input.');
