@@ -8,13 +8,10 @@ const connection = mysql.createConnection({
 });
 
 module.exports = IndexPageController = {
-  loadingCategory: async (req, res) => {
+  loading: async (req, res) => {
     try {
       const categories = await queryCategories();
       const accounts = await queryAccounts();
-
-      console.log('Categories:', categories);
-      console.log('Accounts:', accounts);
 
       res.send({ categories, accounts });
     } catch (err) {
@@ -26,7 +23,7 @@ module.exports = IndexPageController = {
 
 function queryCategories() {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM Category', (err, result) => {
+    connection.query('SELECT * FROM Category LIMIT 10', (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -38,7 +35,7 @@ function queryCategories() {
 
 function queryAccounts() {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM Account', (err, result) => {
+    connection.query('SELECT * FROM item, item_picture WHERE item.ItemID = item_picture.ItemID LIMIT 10', (err, result) => {
       if (err) {
         reject(err);
       } else {

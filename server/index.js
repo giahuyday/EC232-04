@@ -85,7 +85,7 @@ app.post('/detail/:ItemID', (req, res) => {
     }
   })
 })
-app.get('/home/category', IndexPageController.loadingCategory)
+app.get('/home/loading', IndexPageController.loading)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 

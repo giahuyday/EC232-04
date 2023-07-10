@@ -21,8 +21,8 @@ const IndexPage = () => {
   }
 
   const getCategory = () => {
-    axios.get("http://localhost:3001/category").then((result) => {
-      setCategory(result.data);
+    axios.get("http://localhost:3001/home/loading").then((result) => {
+      setCategory(result.data.categories);
     })
   }
   return (
@@ -191,8 +191,8 @@ const IndexPage = () => {
           <div className="w-[1308px] overflow-x-auto flex flex-row items-start justify-start gap-[30px] text-xs text-text">
             <div className="flex flex-col items-start justify-start gap-[16px]">
               <div className="relative rounded bg-secondary w-[270px] h-[250px] overflow-hidden shrink-0">
-                <div className="absolute top-[12px] left-[12px] rounded bg-secondary-2 flex flex-row py-1 px-3 items-center justify-center">
-                  <div className="relative leading-[18px]">-40%</div>
+                <div className="absolute top-[12px] left-[12px] rounded bg-secondary-2 flex flex-row py-1 px-3 items-center justify-center bg-[#DB4444]">
+                  <div className="relative leading-[18px] ">-40%</div>
                 </div>
                 <div className="absolute top-[12px] right-[12px] flex flex-col items-start justify-start gap-[8px]">
                   <img
