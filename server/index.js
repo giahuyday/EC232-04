@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
+const IndexPageController = require('./controllers/IndexPageController')
 
 app.use(cors())
 app.use(express.json())
@@ -84,15 +85,10 @@ app.post('/detail/:ItemID', (req, res) => {
     }
   })
 })
-// connection.connect()
+app.get('/home/category', IndexPageController.loadingCategory)
+// app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
-// connection.query('SELECT * from account', (err, rows, fields) => {
-//   if (err) throw err
 
-//   console.log('The solution is: ', rows[0])
-// })
-
-// connection.end()
 
 app.listen(3001, () => {
   console.log('Your server is run on 3001')
