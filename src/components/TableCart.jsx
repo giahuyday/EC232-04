@@ -14,7 +14,7 @@ const TableCart = () => {
             <div className="flex flex-wrap items-center -mx-4">
                 <div className="w-full px-4 mb-3 md:w-1/3">
                     <div className="w-full h-96 md:h-24 md:w-24">
-                        <img src="https://i.postimg.cc/kGjz3dpD/pexels-cottonbro-3296434.jpg" alt="" className="object-cover w-full h-full rounded-[5px]" />
+                        <img src="https://shorturl.at/anrxW" alt="" className="object-cover w-full h-full rounded-[5px]" />
                     </div>
                 </div>
                 <div className="w-2/3 px-4">

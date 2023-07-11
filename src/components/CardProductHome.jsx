@@ -15,7 +15,7 @@ const CardProductHome = ({ props }) => {
                         <img
                             className="relative top-[calc(50%_-_76px)] left-[calc(50%_-_86px)] w-[172px] h-[152px] rounded-[20px] hover:rounded-[20px]  hover:transform hover:scale-150 hover:transition-transform"
                             alt=""
-                            src="https://shorturl.at/anrxW"
+                            src={data.Content}
                         />
                     </div>
                 </div>

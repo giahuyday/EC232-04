@@ -3,6 +3,7 @@ const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
 const IndexPageController = require('./controllers/IndexPageController')
+const CartController = require('./controllers/CartController')
 
 app.use(cors())
 app.use(express.json())
@@ -86,6 +87,7 @@ app.post('/detail/:ItemID', (req, res) => {
   })
 })
 app.get('/home/loading', IndexPageController.loading)
+app.get('/cart/:ID', CartController.loading)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 
