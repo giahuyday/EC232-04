@@ -30,7 +30,7 @@ function MainLayout() {
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/detail/:ItemID" element={<Detail />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/:ID" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/manage/products" element={<ProductsManage />} />
           <Route path="/manage/users" element={<UsersManage />} />

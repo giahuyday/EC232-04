@@ -232,7 +232,7 @@ const ProductsManage = () => {
                 </tr>
               </thead>
               <tbody>
-                {products?.map((item, index) => {
+                {products?.map((item) => {
                   return <RowTableProductsManage item={item} key={item.itemID} />
                 })}
               </tbody>

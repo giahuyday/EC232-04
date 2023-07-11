@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { MdCancel } from "react-icons/md"
-const RowTableCart = () => {
-    const [amount, setAmount] = useState(1);
+import { formatNumber } from "../helper/dataHelper";
+const RowTableCart = ({props}) => {
+    const [amount, setAmount] = useState(props.Quantity);
     const handleMinus = () => {
         if (amount == 1) return
         setAmount(amount - 1);
@@ -23,11 +24,11 @@ const RowTableCart = () => {
             <div className="relative rounded bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[1170px] h-[102px] overflow-hidden shrink-0 hover:shadow-[#ebb3b3]"   onMouseEnter={handleHover}
                   onMouseLeave={handleLeave}>
 
-                <div className="absolute top-[39px] left-[387px] leading-[24px]">
-                    $650
+                <div className="absolute top-[39px] left-[387px] leading-[24px] text-[black]">
+               {formatNumber(props.Price)}
                 </div>
                 <div className="absolute top-[39px] left-[1063px] leading-[24px]">
-                    $650
+                  {formatNumber(props.Price*amount)}
                 </div>
                 <div className="absolute top-[15px] left-[666px] rounded box-border w-[200px] h-[70px] overflow-hidden border-gray-300">
                     <div className="absolute top-[6px] left-[12px] flex flex-row items-center justify-start gap-[16px]">

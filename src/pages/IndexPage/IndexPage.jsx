@@ -6,8 +6,19 @@ import { BsPhone, BsSmartwatch } from 'react-icons/bs';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
 import { BiHeadphone } from 'react-icons/bi';
 import { SiYoutubegaming } from 'react-icons/si';
-
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 const IndexPage = () => {
+  const imagesHeader = [
+    "https://www.u.com.my/content/dam/u-mobile/personal/devices/iphone/iphone-14-pro/meta/20220922/iPhone14-Pro-Launch_Meta-Image_EN.png",
+    "https://i.pinimg.com/originals/66/34/fb/6634fb0a93a20723a3f3473f693f8e15.jpg",
+    "https://i.ytimg.com/vi/9Rbb5Sk0r_k/maxresdefault.jpg",
+  ];
+  const imagesMid = "https://9to5mac.com/wp-content/uploads/sites/6/2022/03/green-iphone-wallpaper.jpg?quality=82&strip=all&w=1600"
+  const leftAd = "https://www.gamespot.com/a/uploads/scale_landscape/1601/16018044/3874857-ps5.jpg"
+  const topAd="https://giaydabongtot.com/wp-content/uploads/2020/10/Anh-ronaldo-dep-trai-1-scaled.jpg"
+  const miniLeftAd = "https://images.lifestyleasia.com/wp-content/uploads/sites/5/2022/04/04164940/Hublot_Square-Bang-Unico-All-Black_821.CX_.0140.RX-LS-Horizontal.jpg"
+  const miniRightAd="https://img.freepik.com/premium-psd/black-square-perfume-floating-logo-product-mockup-black-abstract-round-background-3d-render_360590-894.jpg"
   const containerRef = useRef(null);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -61,8 +72,8 @@ const IndexPage = () => {
       <div className="relative bg-bg w-full h-[5600px] overflow-hidden text-left text-base text-secondary-2 font-title-12px-regular">
         <div className="absolute top-[1334.75px] left-[134.75px] box-border w-[1170.5px] h-[0.5px] opacity-[0.3] border-t-[0.5px] border-solid border-text2" />
         <div className="absolute top-[1797.75px] left-[134.75px] box-border w-[1170.5px] h-[0.5px] opacity-[0.3] border-t-[0.5px] border-solid border-text2" />
-        <div className="absolute top-[141.75px] left-[367.75px] box-border w-[0.5px] h-[384.5px] opacity-[0.3] border-r-[0.5px] border-solid border-[1px] border-[black]" />
-        <div className="absolute top-[140px] left-[135px] flex flex-col items-start h-[400px] justify-start gap-[16px] text-center text-text">
+        <div className="absolute top-[100.75px] left-[367.75px] box-border w-[0.5px] h-[480px] opacity-[0.3] border-r-[0.5px] border-solid border-[1px] border-[black]" />
+        <div className="absolute top-[100px] left-[135px] flex flex-col items-start h-[480px] justify-start gap-[16px] text-center text-text">
           {
             Category.map(
               item => (
@@ -72,16 +83,30 @@ const IndexPage = () => {
           }
 
         </div>
-        <div className="absolute bg-[red] top-[140px] left-[413px] bg-text2 w-[892px] h-[400px] overflow-hidden text-center text-text">
-          Quảng cáo
+        <div className="absolute bg-[gray] top-[100px] left-[413px] bg-text2 w-[892px] h-[480px] overflow-hidden text-center text-text">
+          <Slide>
+            <div className="flex items-center bg-cover h-[480px] w-[892px]">
+              <img className="h-[480px] w-[892px] object-cover" src={imagesHeader[0]} />
+            </div>
+            <div className="flex items-center bg-cover h-[480px] w-[892px]">
+              <img className="h-[480px] w-[892px] object-cover" src={imagesHeader[1]} />
+            </div>
+            <div className="flex items-center bg-cover h-[480px] w-[892px]">
+              <img className="h-[480px] w-[892px] object-cover" src={imagesHeader[2]} />
+            </div>
+          </Slide>
         </div>
         <div className="absolute top-[1219px] bg-[#Db4444] left-[603px] rounded bg-secondary-2 flex flex-row py-4 px-12 items-center justify-center text-text">
           <div className="relative leading-[24px] font-medium text-[white]">
             View All Products
           </div>
         </div>
-        <div className="absolute top-[2600px] left-[135px] bg-[red] bg-text2 w-[1170px] h-[500px] overflow-hidden text-text">
-          Quảng cáo
+        <div className="absolute top-[2600px] left-[135px]  bg-text2 w-[1170px] h-[550px] overflow-hidden text-text">
+      
+            <div className="flex items-center bg-cover h-[550px] w-[1170px] ">
+              <img className="h-[550px] w-[1170px] object-cover" src={imagesMid} />
+            </div>
+       
         </div>
         <div className="absolute top-[666px] left-[135px] flex flex-col items-start justify-start gap-[40px]">
           <div className="flex flex-row items-end justify-start gap-[470px]">
@@ -146,7 +171,7 @@ const IndexPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row items-start justify-start gap-[8px] ">
+            <div className="flex flex-row ml-[100px] items-start justify-start gap-[8px] ">
               <button onClick={scrollLeft} className="bg-[#b9b9b9] w-[40px] h-[40px] rounded-full">  <AiFillCaretLeft className="m-[auto]" /></button>
               <button onClick={scrollRight} className="bg-[#b9b9b9] w-[40px] h-[40px] rounded-full"> <AiFillCaretRight className="m-[auto]" /></button>
             </div>
@@ -239,7 +264,7 @@ const IndexPage = () => {
             </div>
           </div>
         </div>
-       
+
         <div className="absolute top-[3200px] left-[135px] gap-[60px]">
           <div className=" justify-start gap-[60px]">
             <div className="flex items-start justify-start gap-[672px]">
@@ -261,10 +286,10 @@ const IndexPage = () => {
             <div className="flex flex-col items-start justify-start gap-[60px] text-text2">
 
               <div className="grid grid-cols-4 w-[1170] gap-[30px]">
-              {Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+                {Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))}
               </div>
             </div>
-              
+
           </div>
           <div className="rounded bg-secondary-2 flex flex-row py-4 px-12 mt-[50px] bg-[#db4444] items-center justify-center text-text">
             <div className="relative leading-[24px] font-medium text-[white]">
@@ -286,15 +311,15 @@ const IndexPage = () => {
               New Arrival
             </div>
           </div>
-          <div className="flex flex-row items-start justify-start gap-[30px] text-5xl text-text font-heading-24px-bold bg-[red]">
-            <div className="relative rounded bg-text2 w-[570px] h-[600px] overflow-hidden shrink-0 bg-[yellow]">
+          <div className="flex flex-row items-start justify-start gap-[30px] text-5xl text-text font-heading-24px-bold ">
+            <div className="relative rounded bg-text2 w-[570px] h-[600px] overflow-hidden shrink-0 ">
               <img
-                className="absolute top-[89px] left-[29px] w-[511px] h-[511px] object-cover"
+                className="absolute  w-[570px] h-[600px] object-cover"
                 alt=""
-                src="/ps5slimgoedkopeplaystation-large-1@2x.png"
+                src={leftAd}
               />
-              <div className="absolute top-[446px] left-[32px] flex flex-col items-start justify-start gap-[16px] bg-[red]">
-                <div className="flex flex-col items-start justify-start gap-[16px] bg-[red]">
+              <div className="absolute top-[446px] left-[32px] flex flex-col items-start justify-start gap-[16px] text-[white] ">
+                <div className="flex flex-col items-start justify-start gap-[16px] text-[white]">
                   <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
                     PlayStation 5
                   </div>
@@ -302,8 +327,8 @@ const IndexPage = () => {
                     Black and White version of the PS5 coming out on sale.
                   </div>
                 </div>
-                <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular">
-                  <div className="relative leading-[24px] font-medium">
+                <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular bg-[#db4444] p-[4px] rounded-[5px]">
+                  <div className="relative font-medium">
                     Shop Now
                   </div>
                   <img
@@ -317,52 +342,41 @@ const IndexPage = () => {
             <div className="flex flex-col items-center justify-start gap-[32px]">
               <div className="relative rounded bg-gray-100 w-[570px] h-[284px] overflow-hidden shrink-0">
                 <img
-                  className="absolute top-[0px] left-[138px] w-[432px] h-[284px] object-cover"
+                  className="absolute w-[570px] h-[290px] object-cover"
                   alt=""
-                  src="/attractivewomanwearinghatposingblackbackground-1@2x.png"
+                  src={topAd}
                 />
                 <div className="absolute top-[138px] left-[24px] flex flex-col items-start justify-start gap-[16px]">
                   <div className="flex flex-col items-start justify-start gap-[16px]">
-                    <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
-                      Women’s Collections
+                    <div className="relative tracking-[0.03em] leading-[24px] font-semibold text-[20px]">
+                      Man’s Collections
                     </div>
-                    <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[255px]">
-                      Featured woman collections that give you another vibe.
+                    <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[200px]">
+                      Featured man collections that give you another vibe.
                     </div>
                   </div>
                   <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular">
                     <div className="relative leading-[24px] font-medium">
                       Shop Now
                     </div>
-                    <img
-                      className="relative w-[81px] h-px opacity-[0.5]"
-                      alt=""
-                      src="/underline.svg"
-                    />
+                   
                   </div>
                 </div>
               </div>
               <div className="flex flex-row items-center justify-center gap-[30px]">
                 <div className="relative rounded bg-text2 w-[270px] h-[284px] overflow-hidden shrink-0">
                   <img
-                    className="absolute top-[calc(50%_-_142px)] left-[calc(50%_-_135px)] w-[270px] h-[284px]"
+                    className="absolute w-[270px] h-[284px] object-cover"
                     alt=""
-                    src="/ellipse-24.svg"
+                    src={miniLeftAd}
                   />
-                  <div className="absolute top-[31px] left-[30px] w-[210px] h-[222px] overflow-hidden">
-                    <img
-                      className="absolute top-[calc(50%_-_111px)] left-[calc(50%_-_95px)] w-[190px] h-[221px] object-cover"
-                      alt=""
-                      src="/69694768-amazonechopngcliparttransparentamazonechopng-1@2x.png"
-                    />
-                  </div>
-                  <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px]">
+                  <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px] text-[white] ">
                     <div className="flex flex-col items-start justify-start gap-[8px]">
-                      <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
-                        Speakers
+                      <div className="relative tracking-[0.03em] leading-[24px] font-semibold text-[25px]">
+                       Watch
                       </div>
-                      <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[191px]">
-                        Amazon wireless speakers
+                      <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[191px] text-[15px]">
+                       Hublot watch
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular">
@@ -381,16 +395,10 @@ const IndexPage = () => {
                   <img
                     className="absolute top-[calc(50%_-_142px)] left-[calc(50%_-_135px)] w-[270px] h-[284px]"
                     alt=""
-                    src="/ellipse-241.svg"
+                    src={miniRightAd}
                   />
-                  <div className="absolute top-[calc(50%_-_112px)] left-[calc(50%_-_105px)] w-[210px] h-[222px] overflow-hidden">
-                    <img
-                      className="absolute top-[calc(50%_-_103px)] left-[calc(50%_-_101px)] w-[201px] h-[203px] object-cover"
-                      alt=""
-                      src="/652e82cd70aa6522dd785109a455904c@2x.png"
-                    />
-                  </div>
-                  <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px]">
+               
+                  <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px] text-[white]">
                     <div className="flex flex-col items-start justify-start gap-[8px]">
                       <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
                         Perfume
@@ -403,11 +411,7 @@ const IndexPage = () => {
                       <div className="relative leading-[24px] font-medium">
                         Shop Now
                       </div>
-                      <img
-                        className="relative w-[81px] h-px opacity-[0.5]"
-                        alt=""
-                        src="/underline.svg"
-                      />
+                    
                     </div>
                   </div>
                 </div>
@@ -461,7 +465,7 @@ const IndexPage = () => {
             </div>
           </div>
         </div>
-      
+
         <div className="absolute bg-black top-[0px] left-[0px] bg-text2 w-[1440px] text-[white] h-12 overflow-hidden text-sm text-text">
           <div className="absolute top-[12px] right-[136px] flex flex-row items-start justify-start gap-[231px]">
             <div className="flex flex-row items-center justify-start gap-[8px]">
@@ -474,7 +478,7 @@ const IndexPage = () => {
               </div>
             </div>
             <div className="flex flex-row items-center justify-center gap-[5px]">
-              
+
             </div>
           </div>
         </div>

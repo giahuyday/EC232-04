@@ -1,11 +1,20 @@
-
-import TableCart from "../../components/TableCart";
 import { Link } from "react-router-dom";
 import RowTableCart from "../../components/RowTableCart";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Cart = () => {
     const backButton = ()=>{
         window.history.back();
     }
+    const [dataCart,setDataCart] = useState([])
+    const totalPrice = dataCart.reduce((total, item) => total + item.Price, 0);
+    useEffect (()=>{
+        axios.get('http://localhost:3001/cart/acc1').then((result)=>{
+            setDataCart(()=>result.data)
+            
+        })
+    },[])
+    console.log(dataCart)
     return (
         <div className="my-[50px] ">
             
@@ -22,10 +31,13 @@ const Cart = () => {
                                     <div className="relative leading-[24px]">Subtotal</div>
                                 </div>
                             </div>
-                            <RowTableCart/>
-                            <RowTableCart/>
-                            <RowTableCart/>
-                            
+                            {dataCart.length > 0 ? (
+                                dataCart.map((item) => (
+                                    <RowTableCart props={item} key={item.id} />
+                                ))
+                            ) : (
+                                <p>Loading...</p>
+                            )}
                             
                         </div>
                         <button onClick={backButton} className="flex flex-row items-start justify-start gap-[757px]">
@@ -55,7 +67,7 @@ const Cart = () => {
                             </div>
                             <div className="absolute top-[84px] left-[24px] flex flex-row items-start justify-start gap-[307px]">
                                 <div className="relative leading-[24px]">Subtotal:</div>
-                                <div className="relative leading-[24px]">$1750</div>
+                                <div className="relative leading-[24px]">{totalPrice}</div>
                             </div>
                             <div className="absolute top-[140px] left-[24px] flex flex-row items-start justify-start gap-[314px]">
                                 <div className="relative leading-[24px]">Shipping:</div>
