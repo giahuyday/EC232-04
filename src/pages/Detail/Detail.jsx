@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { InputNumber } from 'antd'
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { BsArrowRepeat } from 'react-icons/bs'
+import { BsCart } from 'react-icons/bs'
 import TableCart from '../../components/TableCart'
 import Card from './../../components/Card'
 const Detail = () => {
@@ -91,7 +92,10 @@ const Detail = () => {
           </div>
           <div className="flex  w-full mt-4 items-center gap-8">
             <InputNumber min={1} max={100} defaultValue={amount} onChange={onAmountChange} size="large" className="self-stretch" />
-            <button className="px-16 py-4 bg-rose-500 text-white select-none hover:bg-rose-600 transition-all active:scale-95">Buy now</button>
+            <button className="px-6 py-4 bg-rose-500 text-white select-none hover:bg-rose-600 transition-all active:scale-95">Buy now</button>
+            <div className="flex gap-1 items-center text-xl">
+              <BsCart size={48} /> Add to cart
+            </div>
             <div className="border rounded-md flex item-center p-2 cursor-pointer hover:bg-rose-500 transition-all active:scale-95 ml-auto">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-10 h-10 ">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
