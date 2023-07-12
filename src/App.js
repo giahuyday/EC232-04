@@ -4,6 +4,7 @@ import Login from './pages/Login/Login.jsx'
 import SignUp from './pages/Sign Up/SignUp.jsx'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
+import HeaderAdmin from './components/Admin/HeaderAdmin.jsx'
 import Detail from './pages/Detail/Detail.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import CheckOut from './pages/CheckOut/CheckOut.jsx'
@@ -17,6 +18,7 @@ function App() {
         <Route path="/*" element={<MainLayout />} />
         <Route path="/auth/*" element={<AuthLayout />} />
         <Route path="/auth/*" element={<AuthLayout />} />
+        <Route path="/admin/*" element={<AdminLayout />} />
       </Routes>
     </BrowserRouter>
   )
@@ -47,6 +49,19 @@ function AuthLayout() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
+  )
+}
+function AdminLayout() {
+  return (
+    <>
+    <div className="">
+      <HeaderAdmin>
+        <Routes>
+          <Route path="/admin" element={<Login />} />
+        </Routes>
+    </HeaderAdmin>
+    </div>
+    </>
   )
 }
 

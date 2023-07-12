@@ -88,6 +88,7 @@ app.post('/detail/:ItemID', (req, res) => {
 })
 app.get('/home/loading', IndexPageController.loading)
 app.get('/cart/:ID', CartController.loading)
+app.post('/cartpost/:ID', CartController.updateQuantity)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 

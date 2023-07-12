@@ -11,14 +11,14 @@ import 'react-slideshow-image/dist/styles.css';
 const IndexPage = () => {
   const imagesHeader = [
     "https://www.u.com.my/content/dam/u-mobile/personal/devices/iphone/iphone-14-pro/meta/20220922/iPhone14-Pro-Launch_Meta-Image_EN.png",
-    "https://i.pinimg.com/originals/66/34/fb/6634fb0a93a20723a3f3473f693f8e15.jpg",
+    "https://s.tmimgcdn.com/scr/1200x750/293200/headphone-advertisement-poster-vector_293283-original.jpg",
     "https://i.ytimg.com/vi/9Rbb5Sk0r_k/maxresdefault.jpg",
   ];
   const imagesMid = "https://9to5mac.com/wp-content/uploads/sites/6/2022/03/green-iphone-wallpaper.jpg?quality=82&strip=all&w=1600"
   const leftAd = "https://www.gamespot.com/a/uploads/scale_landscape/1601/16018044/3874857-ps5.jpg"
-  const topAd="https://giaydabongtot.com/wp-content/uploads/2020/10/Anh-ronaldo-dep-trai-1-scaled.jpg"
-  const miniLeftAd = "https://images.lifestyleasia.com/wp-content/uploads/sites/5/2022/04/04164940/Hublot_Square-Bang-Unico-All-Black_821.CX_.0140.RX-LS-Horizontal.jpg"
-  const miniRightAd="https://img.freepik.com/premium-psd/black-square-perfume-floating-logo-product-mockup-black-abstract-round-background-3d-render_360590-894.jpg"
+  const topAd="https://cafebiz.cafebizcdn.vn/2018/4/23/st2-1524477697790203350883.jpg"
+  const miniLeftAd = "https://www.apple.com/newsroom/images/product/watch/standard/Apple-Watch-Ultra-Orange-Alpine-Loop-Wayfinder-face-Night-Mode-220907_inline.jpg.large.jpg"
+  const miniRightAd="https://wallpapercave.com/wp/wp7442851.jpg"
   const containerRef = useRef(null);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -346,13 +346,13 @@ const IndexPage = () => {
                   alt=""
                   src={topAd}
                 />
-                <div className="absolute top-[138px] left-[24px] flex flex-col items-start justify-start gap-[16px]">
+                <div className="absolute top-[138px] left-[24px] flex flex-col items-start justify-start gap-[16px] color-[]">
                   <div className="flex flex-col items-start justify-start gap-[16px]">
                     <div className="relative tracking-[0.03em] leading-[24px] font-semibold text-[20px]">
-                      Man’s Collections
+                      OPPO Rono6
                     </div>
                     <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[200px]">
-                      Featured man collections that give you another vibe.
+                    Cooperation with M-TP.
                     </div>
                   </div>
                   <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular">
@@ -400,11 +400,11 @@ const IndexPage = () => {
                
                   <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px] text-[white]">
                     <div className="flex flex-col items-start justify-start gap-[8px]">
-                      <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
-                        Perfume
+                      <div className="relative tracking-[0.03em] leading-[24px] font-semibold text-[24px]">
+                        Headphone
                       </div>
                       <div className="relative text-sm leading-[21px] font-title-12px-regular inline-block w-[191px]">
-                        GUCCI INTENSE OUD EDP
+                        SONY INTENSE OUD EDP
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-start text-base text-bg font-title-12px-regular">

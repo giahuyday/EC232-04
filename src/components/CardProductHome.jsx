@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber } from '../helper/dataHelper.js';
+import { formatNumber,calDiscount } from '../helper/dataHelper.js';
 import { Link } from 'react-router-dom'
 import { AiFillStar } from 'react-icons/ai';
 const CardProductHome = ({ props }) => {
@@ -25,9 +25,9 @@ const CardProductHome = ({ props }) => {
                     </div>
 
                     <div className="flex flex-row items-start justify-start gap-[12px] text-secondary-2">
-                        <div className="relative leading-[24px] font-medium text-[#DB4444]">{formatNumber(data.Price)} VND</div>
+                        <div className="relative leading-[24px] font-medium text-[#DB4444]">   {formatNumber(calDiscount(data.Price,30))}</div>
                         <div className="relative [text-decoration:line-through] leading-[24px] font-medium text-text2 opacity-[0.5]">
-                            ${data.Price}
+                        {formatNumber(data.Price)}
                         </div>
                     </div>
                     <div className="flex flex-row items-start justify-start gap-[8px] text-sm">

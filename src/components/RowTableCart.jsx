@@ -1,15 +1,32 @@
 import { useState } from "react";
 import { MdCancel } from "react-icons/md"
 import { formatNumber } from "../helper/dataHelper";
-const RowTableCart = ({props}) => {
+import axios from "axios";
+const RowTableCart = ({props,reset}) => {
+ 
     const [amount, setAmount] = useState(props.Quantity);
-    const handleMinus = () => {
-        if (amount == 1) return
-        setAmount(amount - 1);
+    const handleMinus = async () => {
+        if (amount === 1) return
+        setAmount(amount => (amount - 1));
+        const quantity = {
+            Quantity : amount-1,
+            itemId:props.itemID,
+            CartID:props.CartID
+        };
+        await axios.post('http://localhost:3001/cartpost/acc1',quantity)
+        reset()
     }
-    const handleAdd = () => {
-        setAmount(amount + 1);
+    const handleAdd = async() => {
+        setAmount(amount=>amount + 1);
+        const quantity = {
+            Quantity : amount+1,
+            itemId:props.itemID,
+            CartID:props.CartID
+        };
+       await axios.post('http://localhost:3001/cartpost/acc1',quantity)
+       reset()
     }
+   
     const [hovered, setHovered] = useState(false);
 
     const handleHover = () => {

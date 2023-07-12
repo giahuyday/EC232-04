@@ -17,6 +17,18 @@ function queryCart(id) {
     });
   });
 }
+function queryUpdareQuantity(qua,cartid,itemid) {
+  return new Promise((resolve, reject) => {
+    const query = 'UPDATE Cart_Detail SET Quantity = ? WHERE CartID = ? and itemID = ?'
+    connection.query(query,[qua,cartid,itemid], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
 
 
 module.exports = CartContoller = {
@@ -24,6 +36,19 @@ module.exports = CartContoller = {
     try {
       const cart = await queryCart(req.params.ID);
       res.send(cart);
+    } catch (err) {
+      console.error('Fetch Failed!', err);
+      res.status(500).send('Fetch Failed!');
+    }
+  },
+  updateQuantity: async (req, res) => {
+    try {
+      console.log(req.body)
+      const quantity = req.body.Quantity;
+      const cartID = req.body.CartID;
+      const itemID = req.body.itemId;
+      const result = await queryUpdareQuantity(quantity,cartID,itemID)
+      res.send(result)
     } catch (err) {
       console.error('Fetch Failed!', err);
       res.status(500).send('Fetch Failed!');

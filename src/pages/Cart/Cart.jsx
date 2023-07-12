@@ -2,19 +2,24 @@ import { Link } from "react-router-dom";
 import RowTableCart from "../../components/RowTableCart";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { formatNumber } from "../../helper/dataHelper";
 const Cart = () => {
     const backButton = ()=>{
         window.history.back();
     }
     const [dataCart,setDataCart] = useState([])
-    const totalPrice = dataCart.reduce((total, item) => total + item.Price, 0);
+    const [resetData,setResetData] = useState(false);
+    const reset = ()=>{
+        setResetData(!resetData)
+    }
+    const totalPrice = dataCart.reduce((total, item) => total + item.Price*item.Quantity, 0);
     useEffect (()=>{
         axios.get('http://localhost:3001/cart/acc1').then((result)=>{
             setDataCart(()=>result.data)
             
         })
-    },[])
-    console.log(dataCart)
+    },[resetData])
+
     return (
         <div className="my-[50px] ">
             
@@ -33,7 +38,7 @@ const Cart = () => {
                             </div>
                             {dataCart.length > 0 ? (
                                 dataCart.map((item) => (
-                                    <RowTableCart props={item} key={item.id} />
+                                    <RowTableCart props={item} key={item.id} reset={reset}/>
                                 ))
                             ) : (
                                 <p>Loading...</p>
@@ -65,17 +70,17 @@ const Cart = () => {
                             <div className="absolute top-[32px] left-[24px] text-xl leading-[28px] font-medium">
                                 Cart Total
                             </div>
-                            <div className="absolute top-[84px] left-[24px] flex flex-row items-start justify-start gap-[307px]">
+                            <div className="absolute top-[84px] left-[24px] flex flex-row items-start justify-start gap-[250px]">
                                 <div className="relative leading-[24px]">Subtotal:</div>
-                                <div className="relative leading-[24px]">{totalPrice}</div>
+                                <div className="relative leading-[24px]">{formatNumber(totalPrice)}</div>
                             </div>
-                            <div className="absolute top-[140px] left-[24px] flex flex-row items-start justify-start gap-[314px]">
+                            <div className="absolute top-[140px] left-[24px] flex flex-row items-start justify-start gap-[250px]">
                                 <div className="relative leading-[24px]">Shipping:</div>
-                                <div className="relative leading-[24px]">Free</div>
+                                <div className="relative leading-[24px]">{formatNumber(20000)}</div>
                             </div>
-                            <div className="absolute top-[196px] left-[24px] flex flex-row items-start justify-start gap-[335px]">
+                            <div className="absolute top-[196px] left-[24px] flex flex-row items-start justify-start gap-[275px]">
                                 <div className="relative leading-[24px]">Total:</div>
-                                <div className="relative leading-[24px]">$1750</div>
+                                <div className="relative leading-[24px] text-[#db4444] font-[700]">{formatNumber(totalPrice+20000)}</div>
                             </div>
                             <div className="absolute top-[236px] bg-[#db4444] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
                                 <div className="relative leading-[24px] font-medium">

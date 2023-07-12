@@ -9,7 +9,8 @@ function calDiscount(price, discountPercentage) {
     return discountedPrice;
   }
   function formatNumber(number) {
-    return numeral(number).format('0,0');
+    const newNumber= numeral(number).format('0,0').toString() + '₫'
+    return newNumber;
   }
   module.exports = {
     calDiscount,
