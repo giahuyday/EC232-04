@@ -36,7 +36,7 @@ values ('Acc1', 'john_doe', 'password1', 'John Doe', '1990-01-01', 5000, 'john.d
  ('Acc2', 'jane_smith', 'password2', 'Jane Smith', '1995-03-15', 10000, 'jane.smith@example.com', '987654321', '456 Elm St'),
  ('Acc3', 'bob_johnson', 'password3', 'Bob Johnson', '1988-07-10', 7500, 'bob.johnson@example.com', '555555555', '789 Oak St');
  
- INSERT INTO Order_ (OrderID, GuessName, Delivery_Address, Day, Phone, Note, Total_Price, Status, AccountID)
+INSERT INTO Order_ (OrderID, GuessName, Delivery_Address, Day, Phone, Note, Total_Price, Status, AccountID)
 VALUES ('Order1', 'John Doe', '123 Main St', '2023-06-21', '123456789', 'Please deliver to the front door', 10497000, 'Pending', 'Acc1'),
 		('Order2', 'Jane Smith', '456 Elm St', '2023-06-22', '987654321', 'Call upon arrival', 45190000, 'Processing', 'Acc2'),
 		('Order3', 'Bob Johnson', '789 Oak St', '2023-06-23', '555555555', 'Leave package at the back porch', 9690000, 'Delivered', 'Acc3'),
@@ -59,14 +59,16 @@ insert into	return_item (ItemID, OrderID,  ReturnDate, Status, comment)
 values ('Item6', 'Order4', '2023-03-25', 'Returned', 'Not working');
 
 insert into Cart (CartID, day, status, AccountID)
-values  ('cart1', '2023-06-21', 'saved', 'Acc1'),
-		('cart2', '2023-06-22', 'saved', 'Acc2'),
-        ('cart3', '2023-06-23', 'saved', 'Acc3');
+values  ('Cart1', '2023-06-21', 'saved', 'Acc1'),
+		('Cart2', '2023-06-22', 'saved', 'Acc2'),
+        ('Cart3', '2023-06-23', 'saved', 'Acc3');
 
-INSERT INTO Cart_Detail (CartID, itemID, Quantity, Price)
-VALUES  ('cart1', 'Item1', 2, 1000),
-        ('cart2', 'Item2', 1, 500),
-		('cart3', 'Item3', 3, 1500);
+INSERT INTO Cart_Detail (CartID, itemID, Quantity)
+VALUES  ('Cart1', 'Item1', 2),
+        ('Cart2', 'Item2', 1),
+		('Cart3', 'Item3', 3);
+        
+        
 
 
 

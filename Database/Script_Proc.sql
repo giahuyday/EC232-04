@@ -3,7 +3,8 @@
 -- AddAccount (done)
 -- AddItem (done)
 -- AddCart (done)
--- AddCartDetail (done)
+-- Add_cardItem (done)
+-- Cal_ItemRate (not done)
  
 -- mỗi proc t sẽ có 1 file .js hướng dẫn call
 
@@ -112,33 +113,7 @@ DELIMITER ;
 
 -- select * from cart
 -- CALL AddCart('Saved', 'Acc1');
--- ------------------------
 
--- thêm đồ vào giỏ hàng sau khi lưu
-DELIMITER //
-
-CREATE PROCEDURE AddCartDetail(
-  IN p_CartID varchar(50),
-  IN p_ItemID varchar(50),
-  IN p_Quantity bigint
-)
-BEGIN
-  DECLARE itemPrice bigint;
-  DECLARE totalPrice bigint;
-  
-  SELECT Price INTO itemPrice FROM Item WHERE ItemID = p_ItemID;
-  
-  SET totalPrice = itemPrice * p_Quantity;
-  
-  INSERT INTO Cart_Detail (CartID, ItemID, Quantity, Price)
-  VALUES (p_CartID, p_ItemID, p_Quantity, totalPrice);
-  
-END //
-
-DELIMITER ;
-
--- select * from cart_detail where CartId = 'cart6'
--- call AddCartDetail('cart4', 'Item1', 1)
 -- --------------------------------------------------
 
 -- tạo oder mới 
@@ -198,3 +173,98 @@ END //
 DELIMITER ;
 
 -- call AddOrderDetail('Order5', 'Item1', 1)
+-- ----------------------------------------------------
+-- thêm 1 món vào giỏ hàng với kiểm tra có giỏ hàng tồn tại chưa
+DELIMITER //
+
+CREATE  PROCEDURE Add_cardItem(
+  IN p_AccountID varchar(50),
+  IN p_ItemID varchar(50),
+  IN p_Quantity bigint
+)
+BEGIN
+  DECLARE existingCartID varchar(50);
+  DECLARE newCartID varchar(50);
+  DECLARE ExistingQuantity BIGINT;
+  
+  SELECT CartID INTO existingCartID FROM Cart WHERE AccountID = p_AccountID AND status = 'Saved';
+  
+  IF existingCartID IS NOT NULL THEN
+	SELECT Quantity INTO ExistingQuantity FROM Cart_Detail WHERE CartID = existingCartID AND ItemID = p_ItemID;
+        IF ExistingQuantity IS NOT NULL THEN
+            UPDATE Cart_Detail
+            SET Quantity = Quantity + p_Quantity
+            WHERE CartID = existingCartID AND ItemID = p_ItemID;
+        ELSE
+            INSERT INTO Cart_Detail (CartID, ItemID, Quantity)
+            VALUES (existingCartID, p_ItemID, p_Quantity);
+        END IF;
+  ELSE
+    SET newCartID = CONCAT('Cart', (SELECT COUNT(*) + 1 FROM Cart));
+    
+    INSERT INTO Cart (CartID, day, status, AccountID)
+    VALUES (newCartID, CURDATE(), 'Saved', p_AccountID);
+    
+    INSERT INTO Cart_Detail (CartID, ItemID, Quantity)
+    VALUES (newCartID, p_ItemID, p_Quantity);
+  END IF;
+  
+  SELECT 1 AS Result;
+END //
+
+-- call Add_cardItem('Acc1', 'Item2', 2)
+DELIMITER ;
+
+-- -------------------------
+-- hàm add hoặc edit comment
+DELIMITER //
+
+CREATE PROCEDURE AddOrUpdateRate(
+    IN p_AccountID VARCHAR(50),
+    IN p_Point FLOAT,
+    IN p_ItemID VARCHAR(50),
+    IN p_Comment NVARCHAR(500)
+)
+BEGIN
+    DECLARE v_RateID VARCHAR(50);
+    DECLARE v_Day DATE;
+    
+    SELECT RateID INTO v_RateID FROM Rate WHERE AccountID = p_AccountID AND ItemID = p_ItemID;
+    
+    IF v_RateID IS NOT NULL THEN
+        UPDATE Rate
+        SET point = p_Point,
+            comment = p_Comment,
+            day = CURDATE()
+        WHERE RateID = v_RateID AND AccountID = p_AccountID;
+    ELSE
+        SET @count = (SELECT COUNT(*) FROM Rate) + 1;
+        SET v_RateID = CONCAT('Rate', @count);
+        
+        INSERT INTO Rate (RateID, AccountID, point, comment, day, ItemID)
+        VALUES (v_RateID, p_AccountID, p_Point, p_Comment, CURDATE(), p_ItemID);
+    END IF;
+    
+    SELECT 1 AS Result;
+END //
+-- call AddOrUpdateRate('Acc1', 4.5, 'Item1', 'Very good')
+DELIMITER ;
+-- --------------------------
+
+-- hàm tính trung bình đánh giá
+
+DELIMITER //
+
+CREATE PROCEDURE GetAveragePoint(
+    IN p_ItemID VARCHAR(50)
+)
+BEGIN
+    SELECT AVG(point)
+    FROM Rate
+    WHERE ItemID = p_ItemID;
+END //
+-- call GetAveragePoint('Item1')
+DELIMITER ;
+
+
+

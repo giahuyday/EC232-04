@@ -88,6 +88,18 @@ ALTER TABLE Item_Picture
 ADD CONSTRAINT fk_Item_Picture_Item
 FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
 
+create table Item_Discount(
+	ItemID varchar(50),
+    Discount int,
+    
+    primary key(ItemID)
+);
+
+ALTER TABLE Item_Discount
+ADD CONSTRAINT fk_Item_Discount_Item
+FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
+
+
 create table Return_Item(
 	ItemID varchar(50),
     OrderID varchar(50),
@@ -126,8 +138,8 @@ FOREIGN KEY (OrderID) REFERENCES Order_(OrderID);
 create table Rate(
 	RateID varchar(50),
     AccountID varchar(50),
-    point int,
-    comment nvarchar(100),
+    point float,
+    comment nvarchar(500),
     day date,
     
     ItemID varchar(50),
@@ -156,7 +168,6 @@ create table Cart_Detail(
 	CartID varchar(50),
     itemID varchar(50),
     Quantity bigint,
-    Price bigint,
     
 	primary key(ItemID, CartID)
 );
