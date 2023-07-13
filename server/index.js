@@ -38,7 +38,7 @@ app.get('/product', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-  connection.query('SELECT * FROM account', (err, result) => {
+  connection.query('SELECT * FROM Account', (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
     } else {

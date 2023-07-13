@@ -4,11 +4,13 @@ import Axios from 'axios'
 
 const ProductsManage = () => {
   const [products, SetProducts] = useState([])
-
+  const [currentPage, setCurrentPage] = useState(1)
   useEffect(() => {
     getProducts()
   }, [])
-
+  const movePage = (move) =>{
+    setCurrentPage(currentPage+move)
+  }
   const getProducts = () => {
     Axios.get('http://localhost:3001/product').then((response) => {
       SetProducts(response.data)
@@ -43,10 +45,10 @@ const ProductsManage = () => {
       </div>
       <div className='bg-[white] h-[calc(100%_-_180px)]'>
         <section className="bg-white dbg-gray-900 py-3 sm:py-5">
-          <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
+          <div className="px-4 mx-auto max-w-screen-2xl lg:px-12 mt-[40px]">
             <div className="relative overflow-hidden bg-white shadow-md dbg-gray-800 ">
               <div className="h-[40px] w-[300px] mb-[20px]">
-               <input type="text" placeholder='Enter Find Item' className='p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]'   />
+                <input type="text" placeholder='Enter Find Item' className='p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]' />
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dtext-gray-400 ">
@@ -78,63 +80,86 @@ const ProductsManage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {products?.map((item) => {
+                    {products.slice((currentPage-1)*5,5*currentPage).map((item) => {
                       return <RowTableProductsManage item={item} key={item.itemID} />
                     })}
                   </tbody>
                 </table>
               </div>
-             
+
             </div>
           </div>
         </section>
       </div>
       <div className='h-[100px]  border-solid border-[black] border-t-[2px] flex justify-end '>
-      <nav className="flex flex-col items-start p-4 space-y-3 md:flex-row md:items-center md:space-y-0 mr-[100px]" aria-label="Table navigation">
-                <ul className="inline-flex items-stretch -space-x-px">
+        <nav className="flex flex-col items-start p-4 space-y-3 md:flex-row md:items-center md:space-y-0 mr-[100px]" aria-label="Table navigation">
+          <ul className="inline-flex items-stretch -space-x-px">
+            <li>
+              <button onClick={()=>movePage(-1)} className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                <span className="sr-only">Previous</span>
+                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </li>
+          
+              {currentPage === 1 ? (
+                <>
                   <li>
-                    <a href="#" className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
-                      <span className="sr-only">Previous</span>
-                      <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                    <button onClick={()=>setCurrentPage(1)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-black font-[600] bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
                       1
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                    <button onClick={()=>setCurrentPage(2)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
                       2
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 py-2 text-sm leading-tight border text-primary-600 bg-primary-50 border-primary-300 hover:bg-primary-100 hover:text-primary-700 dborder-gray-700 dbg-gray-700 dtext-white">
+                    <button onClick={()=>setCurrentPage(3)}  className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
                       3
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
-                      ...
-                    </a>
+                    <button onClick={()=>setCurrentPage(4)}  className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                      4
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                 <li>
+                    <button onClick={()=>movePage(-1)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                      {currentPage-1}
+                    </button>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
-                      100
-                    </a>
+                    <button onClick={()=>movePage(0)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-black font-[600] bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                      {currentPage}
+                    </button>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
-                      <span className="sr-only">Next</span>
-                      <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </a>
+                    <button onClick={()=>movePage(1)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                      {currentPage+1}
+                    </button>
                   </li>
-                </ul>
-              </nav>
+                  <li>
+                    <button onClick={()=>movePage(2)} className="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                      {currentPage+2}
+                    </button>
+                  </li>
+                </>
+              )}
+            <li>
+              <button onClick={()=>movePage(1)} className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dbg-gray-800 dborder-gray-700 dtext-gray-400 dhover:bg-gray-700 dhover:text-white">
+                <span className="sr-only">Next</span>
+                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
 
