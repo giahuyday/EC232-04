@@ -8,15 +8,25 @@ const CartController = require('./controllers/CartController')
 app.use(cors())
 app.use(express.json())
 
+
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'ec_group4',
-})
+  host: 'db4free.net',
+  user: 'dangminh_dbms',
+  password: 'dangminh_dbms',
+  database: 'dangminh_dbms',
+});
+
+
+connection.connect((error) => {
+  if (error) {
+    console.error('Lỗi kết nối đến cơ sở dữ liệu:', error);
+    return;
+  }
+  console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL');
+});
 
 app.get('/product', (req, res) => {
-  connection.query('SELECT * FROM item, item_picture WHERE item.ItemID = item_picture.ItemID', (err, result) => {
+  connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID', (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
     } else {

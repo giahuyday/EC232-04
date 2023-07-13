@@ -57,7 +57,7 @@ function AdminLayout() {
     <div className="">
       <HeaderAdmin>
         <Routes>
-          <Route path="/admin" element={<Login />} />
+          <Route path="/" element={<ProductsManage/>} />
         </Routes>
     </HeaderAdmin>
     </div>

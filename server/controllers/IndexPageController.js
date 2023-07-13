@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 
+
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'ec_group4',
-});
+  host: 'db4free.net',
+  user: 'dangminh_dbms',
+  password: 'dangminh_dbms',
+  database: 'dangminh_dbms',
+})
 
 module.exports = IndexPageController = {
   loading: async (req, res) => {
@@ -35,7 +36,7 @@ function queryCategories() {
 
 function queryAccounts() {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM item, item_picture WHERE item.ItemID = item_picture.ItemID LIMIT 10', (err, result) => {
+    connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID LIMIT 10', (err, result) => {
       if (err) {
         reject(err);
       } else {

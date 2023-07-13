@@ -1,11 +1,14 @@
 const mysql = require('mysql');
 // connect db bình thường 
+
+
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'ec_group04'
+  host: 'db4free.net',
+  user: 'dangminh_dbms',
+  password: 'dangminh_dbms',
+  database: 'dangminh_dbms',
 });
+;
 
 // những tham số cần có khi gọi hàm  
 const accountID = 'Acc2'; // mã người dùng

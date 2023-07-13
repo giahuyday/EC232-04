@@ -1,17 +1,17 @@
 -- nhóm 4 
 -- file data 
 
-insert into category (CateID, Name)
+insert into Category (CateID, Name)
 values ('Cate1', 'Laptop'),
 		('Cate2', 'HeadPhone'),
         ('Cate3', 'Mouse');
         
-insert into producer (ProducerID, Name, Adress, Email)
+insert into Producer (ProducerID, Name, Adress, Email)
 values  ('Pro1', 'Sony', 'Minato City, Tokyo, Japan', 'Sony@gmail.com'),
 		('Pro2', 'Hp', 'Palo Alto, California, United States', 'Hp@gmail.com'),
         ('Pro3', 'Asus', 'Beitou District, Taipei, Taiwan', 'Asus@gmail.com' );
         
-insert into item (ItemID, Name, Price, Description, Color, Status, CateID, ProducerID)
+insert into Item (ItemID, Name, Price, Description, Color, Status, CateID, ProducerID)
 values  ('Item1', 'Laptop HP 15s-fq2712TU', 9999000, 'i3-1115G4/ RAM 8GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro2'),
 		('Item2', 'Laptop HP Spectre x360 14-ef0030TU', 45190000, 'i7-1255U/ RAM 16GB/ 1TB SSD/ Windows 11', 'Blue', 'Available', 'Cate1', 'Pro2'),
 		('Item3', 'Laptop ASUS Vivobook X415EA-EK675W', 9690000, 'i3-1115G4/ RAM 4GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro3'),
@@ -21,7 +21,7 @@ values  ('Item1', 'Laptop HP 15s-fq2712TU', 9999000, 'i3-1115G4/ RAM 8GB/ 256GB 
 		('Item7', 'Gaming mouse ASUS GT200', 299000, 'Gaming/ USB 2.0/ wired/ Switch Omron', 'Black', 'Available', 'Cate3', 'Pro3'),
 		('Item8', 'Gaming mouse ASUS Gladius III WL Aimpoint', 2749000, 'Gaming/ USB, Bluetooth/ 2.4 GHz Wireless/ 19.000 dpi', 'Black', 'Available', 'Cate3', 'Pro3');
         
-insert into item_picture (PictureID, Name, Content, ItemID)
+insert into Item_Picture (PictureID, Name, Content, ItemID)
 values  ('Pic1', 'Laptop HP 15s-fq2712TU', 'https://shorturl.at/foCQY', 'Item1'),
 		('Pic2', 'Laptop HP Spectre x360 14-ef0030TU', 'https://shorturl.at/LMXY4', 'Item2'),
 		('Pic3', 'Laptop ASUS Vivobook X415EA-EK675W', 'https://shorturl.at/gyQTX', 'Item3'),
@@ -31,7 +31,7 @@ values  ('Pic1', 'Laptop HP 15s-fq2712TU', 'https://shorturl.at/foCQY', 'Item1')
 		('Pic7', 'Gaming mouse ASUS GT200', 'https://shorturl.at/abiIL', 'Item7'),
 		('Pic8', 'Gaming mouse ASUS Gladius III WL Aimpoint', 'https://shorturl.at/lvEFO', 'Item8');
         
-insert into account (AccountID, UserName, Password, Name, Birth, Money, Email, Phone, Adress)
+insert into Account (AccountID, UserName, Password, Name, Birth, Money, Email, Phone, Adress)
 values ('Acc1', 'john_doe', 'password1', 'John Doe', '1990-01-01', 5000, 'john.doe@example.com', '123456789', '123 Main St'),
  ('Acc2', 'jane_smith', 'password2', 'Jane Smith', '1995-03-15', 10000, 'jane.smith@example.com', '987654321', '456 Elm St'),
  ('Acc3', 'bob_johnson', 'password3', 'Bob Johnson', '1988-07-10', 7500, 'bob.johnson@example.com', '555555555', '789 Oak St');
@@ -55,7 +55,7 @@ VALUES ('Rate1', 'Acc1', 4, 'Great product!', '2023-06-21', 'Item1'),
 		('Rate2', 'Acc2', 3, 'Average experience.', '2023-06-22', 'Item2'),
 		('Rate3', 'Acc3', 5, 'Excellent service!', '2023-06-23', 'Item3');
 
-insert into	return_item (ItemID, OrderID,  ReturnDate, Status, comment)
+insert into	Return_Item (ItemID, OrderID,  ReturnDate, Status, comment)
 values ('Item6', 'Order4', '2023-03-25', 'Returned', 'Not working');
 
 insert into Cart (CartID, day, status, AccountID)

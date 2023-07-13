@@ -1,6 +1,6 @@
 import React from 'react'
-
-const HeaderAdmin = ({main}) => {
+import Link from 'antd/es/typography/Link'
+const HeaderAdmin = ({ children }) => {
     return (
         <div className='w-[100vw] h-[100vh]'>
             <div className='flex justify-center'>
@@ -9,16 +9,15 @@ const HeaderAdmin = ({main}) => {
             </div>
             <div className='absolute h-[2px] w-[100vw] bg-[black] left-0'></div>
             <div className='flex h-[calc(100%_-_150px)]'>
-                <div className='h-[100%] w-[300px] bg-[yellow] flex justify-center'>
+                <div className='h-[100%] w-[300px] flex justify-center'>
                     <div className='h-[600px] w-[120px] bg-[white] mt-[50px] gap-y-[10px] flex flex-col'>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
-                        <p className='font-[500] text-[18px]'> Quản trị</p>
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                    <Link to="#">   <p className='font-[500] text-[18px]'> Quản trị</p></Link> 
+                      
                     </div>
                 </div>
                 <div className='h-[100%] w-[2px] bg-[black]'></div>
@@ -32,7 +31,7 @@ const HeaderAdmin = ({main}) => {
                     <div className='bg-[red] h-[100px] border-solid border-[black] border-t-[2px]'>
                         
                     </div> */}
-                    {main}
+                    {children}
                 </div>
             </div>
 
