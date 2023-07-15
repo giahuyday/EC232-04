@@ -4,25 +4,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { formatNumber } from "../../helper/dataHelper";
 const Cart = () => {
-    const backButton = ()=>{
+    const backButton = () => {
         window.history.back();
     }
-    const [dataCart,setDataCart] = useState([])
-    const [resetData,setResetData] = useState(false);
-    const reset = ()=>{
+    const [dataCart, setDataCart] = useState([])
+    const [resetData, setResetData] = useState(false);
+    const reset = () => {
         setResetData(!resetData)
     }
-    const totalPrice = dataCart.reduce((total, item) => total + item.Price*item.Quantity, 0);
-    useEffect (()=>{
-        axios.get('http://localhost:3001/cart/acc1').then((result)=>{
-            setDataCart(()=>result.data)
-            
+    const totalPrice = dataCart.reduce((total, item) => total + item.Price * item.Quantity, 0);
+    useEffect(() => {
+        axios.get('http://localhost:3001/cart/acc1').then((result) => {
+            setDataCart(() => result.data)
+
         })
-    },[resetData])
+    }, [resetData])
 
     return (
         <div className="my-[50px] ">
-            
+
 
             <div className="relative bg-bg w-full h-[1518px] overflow-hidden text-left text-base text-text2 font-title-14px-regular">
                 <div className="absolute top-[150px] left-[135px] flex flex-col items-start justify-start gap-[80px]">
@@ -38,12 +38,23 @@ const Cart = () => {
                             </div>
                             {dataCart.length > 0 ? (
                                 dataCart.map((item) => (
-                                    <RowTableCart props={item} key={item.id} reset={reset}/>
+                                    <RowTableCart props={item} key={item.id} reset={reset} />
                                 ))
                             ) : (
-                                <p>Loading...</p>
+                                <div>
+                                    <div class="animate-pulse flex flex-col items-center gap-4 w-60">
+                                        <div>
+                                            <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+                                            <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+                                        </div>
+                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+                                        <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+                                    </div>
+                                </div>
                             )}
-                            
+
                         </div>
                         <button onClick={backButton} className="flex flex-row items-start justify-start gap-[757px]">
                             <div className="rounded flex flex-row py-4 px-12 items-center justify-center border-[1px] border-solid border-gray-400">
@@ -51,14 +62,14 @@ const Cart = () => {
                                     Return To Shop
                                 </div>
                             </div>
-                    
+
                         </button>
                     </div>
                     <div className="flex flex-row items-start justify-start gap-[173px]">
                         <div className="flex flex-row items-end justify-start gap-[16px]">
                             <div className="relative rounded box-border w-[300px] h-14 overflow-hidden shrink-0 border-text2">
-                                <input type='text' className=" relative rounded box-border w-[300px] h-14 overflow-hidden shrink-0 border-[1px] border-solid border-[gray]"/>
-                              
+                                <input type='text' className=" relative rounded box-border w-[300px] h-14 overflow-hidden shrink-0 border-[1px] border-solid border-[gray]" />
+
                             </div>
                             <button className="rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text bg-[#db4444]">
                                 <div className="relative leading-[24px] font-medium ">
@@ -80,7 +91,7 @@ const Cart = () => {
                             </div>
                             <div className="absolute top-[196px] left-[24px] flex flex-row items-start justify-start gap-[275px]">
                                 <div className="relative leading-[24px]">Total:</div>
-                                <div className="relative leading-[24px] text-[#db4444] font-[700]">{formatNumber(totalPrice+20000)}</div>
+                                <div className="relative leading-[24px] text-[#db4444] font-[700]">{formatNumber(totalPrice + 20000)}</div>
                             </div>
                             <div className="absolute top-[236px] bg-[#db4444] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
                                 <div className="relative leading-[24px] font-medium">
@@ -101,10 +112,10 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="absolute top-[40px] left-[135px] flex flex-row items-center justify-start gap-[12px] text-sm">
-                    <Link to={'/'}>     
-                    <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Home</div>
+                    <Link to={'/'}>
+                        <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Home</div>
                     </Link>
-                   <div>/</div>
+                    <div>/</div>
                     <div className="relative leading-[21px] text-[21px] font-[600]">Cart</div>
                     <img
                         className="relative w-[13.19px] h-0 hidden"
