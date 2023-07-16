@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import RowTableProductsManage from '../../../components/Admin/RowTableProductsManage'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
+
 
 const ProductsManage = () => {
   const [products, SetProducts] = useState([])
@@ -12,8 +14,9 @@ const ProductsManage = () => {
     setCurrentPage(currentPage+move)
   }
   const getProducts = () => {
-    Axios.get('http://localhost:3001/product').then((response) => {
+    Axios.post('http://localhost:3001/product').then((response) => {
       SetProducts(response.data)
+      console.log(response.data)
     })
   }
   return (
@@ -27,7 +30,7 @@ const ProductsManage = () => {
             <svg className="h-3.5 w-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path clipRule="evenodd" fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
             </svg>
-            Add new product
+            <Link to="/admin/products/addnew">Add new product</Link>
           </button>
           <button type="button" className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dfocus:ring-gray-700 dbg-gray-800 dtext-gray-400 dborder-gray-600 dhover:text-white dhover:bg-gray-700">
             <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

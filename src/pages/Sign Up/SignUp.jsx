@@ -11,9 +11,9 @@ const SignUp = () => {
   const [Money, setMoney] = useState('')
   const [Email, setEmail] = useState('')
   const [Phone, setPhone] = useState('')
-  const [Address, setAddress] = useState('')
+  const [Adress, setAddress] = useState('')
   const handleSubmit = () => {
-    Axios.post('http://localhost:3001/signup', {
+    Axios.post('http://localhost:3001/auth/signup', {
       userName: userName,
       Password: Password,
       Name: Name,
@@ -21,7 +21,7 @@ const SignUp = () => {
       Money: Money,
       Email: Email,
       Phone: Phone,
-      Address: Address,
+      Adress: Adress,
     }).then((response) => {
       console.log(response)
     })
@@ -80,7 +80,7 @@ const SignUp = () => {
                 <label htmlFor="Address" className="block mb-2 text-sm font-medium text-gray-900">
                   Address
                 </label>
-                <input type="Address" name="Address" id="Address" placeholder="Address" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Address} onChange={(e) => setAddress(e.target.value)} />
+                <input type="Address" name="Address" id="Address" placeholder="Address" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={Adress} onChange={(e) => setAddress(e.target.value)} />
               </div>
 
               <div className="flex items-start">

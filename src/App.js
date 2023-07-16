@@ -13,6 +13,7 @@ import UsersManage from './pages/Admin/Manage/Users.jsx'
 import EditProduct from './components/Admin/EditProduct.jsx'
 import AddProducts from './components/Admin/AddProducts.jsx'
 import EditUser from './components/Admin/EditUser.jsx'
+import AddUser from './components/Admin/AddUser.jsx'
 
 function App() {
   return (
@@ -61,10 +62,11 @@ function AdminLayout() {
       <HeaderAdmin>
         <Routes>
           <Route path="/products" element={<ProductsManage/>} />
-          <Route path="/edit/:ItemID" element={<EditProduct />} />
+          <Route path="/edit/products/:ItemID" element={<EditProduct />} />
           <Route path="/products/addnew" element={<AddProducts/>}/>
-          <Route path="/manage/users" element={<UsersManage/>} />
-          <Route path="/manage/users/edit/:AccountID" element={<EditUser/>} />
+          <Route path="/users" element={<UsersManage/>} />
+          <Route path="/edit/users/:AccountID" element={<EditUser/>} />
+          <Route path="/users/addnew" element={<AddUser/>}/>
         </Routes>
     </HeaderAdmin>
     </div>

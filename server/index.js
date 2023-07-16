@@ -26,7 +26,7 @@ connection.connect((error) => {
 });
 
 app.post('/product', (req, res) => {
-  connection.query('SELECT * FROM Item', (err, result) => {
+  connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID', (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
     } else {
@@ -176,6 +176,7 @@ app.post('/manage/products/addImg', (req, res) => {
 
 app.post('/manage/users/detail/:AccountID', (req, res) => {
   const AccountID = req.params.AccountID
+  // const { userName, Password, Name, Birth, Money, Email, Phone, Adress } = req.body
   connection.query('SELECT * FROM Account WHERE Account.AccountID = ?', [AccountID], (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
@@ -197,9 +198,9 @@ app.post('/admin/users/edit/:AccountID', (req, res) => {
   const Email = req.body.Email
   const Phone = req.body.Phone
   const Adress = req.body.Adress
-  connection.query('UPDATE Account SET Account.UserName=?, Account.Password=?, Account.Name=?, Account.Birth= ?,Account.Money=?, Account.Email=?, Account.Phone=?, Account.Adress=? WHERE AccountID = ?', [UserName, Password, Name, null,Money, Email, Phone, Adress, AccountID], (err, result) => {
+  connection.query('UPDATE Account SET Account.UserName=?, Account.Password=?, Account.Name=?, Account.Birth= ?,Account.Money=?, Account.Email=?, Account.Phone=?, Account.Adress=? WHERE AccountID = ?', [UserName, Password, Name, Birth, Money, Email, Phone, Adress, AccountID], (err, result) => {
     if (err) {
-      // console.log(err)
+      console.log(err)
     } else {
       console.log(result)
       res.send(result)

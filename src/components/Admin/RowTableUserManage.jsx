@@ -2,7 +2,7 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Link } from "react-router-dom";
 
 
 const RowTableUsersManage = ({item}) => {
@@ -35,9 +35,9 @@ const RowTableUsersManage = ({item}) => {
             </td>
             <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">
                 <div>
-                    <button className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-yellow-200" >
+                    <Link  to={`/edit/${item.AccountID}`} className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-yellow-200" >
                         Edit
-                    </button>
+                    </Link>
                     <button className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#da2e28] hover:bg-[#df9b9b]" >
 
                         Delete
