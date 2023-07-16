@@ -10,6 +10,9 @@ import Cart from './pages/Cart/Cart.jsx'
 import CheckOut from './pages/CheckOut/CheckOut.jsx'
 import ProductsManage from './pages/Admin/Manage/Products.jsx'
 import UsersManage from './pages/Admin/Manage/Users.jsx'
+import EditProduct from './components/Admin/EditProduct.jsx'
+import AddProducts from './components/Admin/AddProducts.jsx'
+import EditUser from './components/Admin/EditUser.jsx'
 
 function App() {
   return (
@@ -34,8 +37,8 @@ function MainLayout() {
           <Route path="/detail/:ItemID" element={<Detail />} />
           <Route path="/cart/:ID" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/manage/products" element={<ProductsManage />} />
-          <Route path="/manage/users" element={<UsersManage />} />
+          {/* <Route path="/manage/products" element={<ProductsManage />} />
+          <Route path="/manage/users" element={<UsersManage />} /> */}
         </Routes>
       </div>
       <Footer />
@@ -58,7 +61,10 @@ function AdminLayout() {
       <HeaderAdmin>
         <Routes>
           <Route path="/products" element={<ProductsManage/>} />
-          <Route path="/users" element={<UsersManage/>} />
+          <Route path="/edit/:ItemID" element={<EditProduct />} />
+          <Route path="/products/addnew" element={<AddProducts/>}/>
+          <Route path="/manage/users" element={<UsersManage/>} />
+          <Route path="/manage/users/edit/:AccountID" element={<EditUser/>} />
         </Routes>
     </HeaderAdmin>
     </div>
