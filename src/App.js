@@ -14,7 +14,7 @@ import EditProduct from './components/Admin/EditProduct.jsx'
 import AddProducts from './components/Admin/AddProducts.jsx'
 import EditUser from './components/Admin/EditUser.jsx'
 import AddUser from './components/Admin/AddUser.jsx'
-
+import Profile from './pages/Profile/Profile.jsx'
 function App() {
   return (
     <BrowserRouter>
@@ -38,6 +38,7 @@ function MainLayout() {
           <Route path="/detail/:ItemID" element={<Detail />} />
           <Route path="/cart/:ID" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/profile" element={<Profile />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
           <Route path="/manage/users" element={<UsersManage />} /> */}
         </Routes>
