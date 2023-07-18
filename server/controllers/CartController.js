@@ -1,12 +1,4 @@
-const mysql = require('mysql2');
-
-
-const connection = mysql.createConnection({
-  host: 'db4free.net',
-  user: 'dangminh_dbms',
-  password: 'dangminh_dbms',
-  database: 'dangminh_dbms',
-})
+const connection = require('../Database/connecting.js');
 
 function queryCart(id) {
   return new Promise((resolve, reject) => {

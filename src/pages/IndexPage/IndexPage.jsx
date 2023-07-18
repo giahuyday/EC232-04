@@ -44,21 +44,14 @@ const IndexPage = () => {
   const [Prouducts, SetProducts] = useState([])
   const [Category, setCategory] = useState([])
   useEffect(() => {
-    getProducts();
-    getCategory();
+    getData()
 
   }, [])
 
-  const getProducts = () => {
-    axios.get("http://localhost:3001/product").then((response) => {
-      SetProducts(response.data)
-
-    })
-  }
-
-  const getCategory = () => {
+  const getData = () => {
     axios.get("http://localhost:3001/home/loading").then((result) => {
       setCategory(result.data.categories);
+      SetProducts(result.data.items);
     })
   }
   return (
@@ -286,7 +279,7 @@ const IndexPage = () => {
             <div className="flex flex-col items-start justify-start gap-[60px] text-text2">
 
               <div className="grid grid-cols-4 w-[1170] gap-[30px]">
-                {Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+                {Prouducts.slice(0,8).map(item => (<CardProductHome props={item} key={item.ItemID} />))}
               </div>
             </div>
 

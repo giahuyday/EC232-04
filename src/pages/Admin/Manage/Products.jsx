@@ -48,7 +48,7 @@ const ProductsManage = () => {
       </div>
       <div className='bg-[white] h-[calc(100%_-_180px)]'>
         <section className="bg-white dbg-gray-900 py-3 sm:py-5">
-          <div className="px-4 mx-auto max-w-screen-2xl lg:px-12 mt-[40px]">
+          <div className="px-4 mx-auto max-w-screen-2xl lg:px-12 mt-[10px]">
             <div className="relative overflow-hidden bg-white shadow-md dbg-gray-800 ">
               <div className="h-[40px] w-[300px] mb-[20px]">
                 <input type="text" placeholder='Enter Find Item' className='p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]' />

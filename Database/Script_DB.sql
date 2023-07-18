@@ -11,7 +11,6 @@ create table Account(
     Email varchar(50),
     Phone varchar(50),
     Adress nvarchar(100),
-    
     primary key(AccountID)
 );
 
@@ -91,7 +90,6 @@ FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
 create table Item_Discount(
 	ItemID varchar(50),
     Discount int,
-    
     primary key(ItemID)
 );
 
@@ -160,7 +158,6 @@ create table Cart(
     day date,
     status nvarchar(50),
     AccountID varchar(50),
-    
 	primary key(CartID)
 );
 
@@ -168,7 +165,6 @@ create table Cart_Detail(
 	CartID varchar(50),
     itemID varchar(50),
     Quantity bigint,
-    
 	primary key(ItemID, CartID)
 );
 
@@ -183,5 +179,8 @@ FOREIGN KEY (CartID) REFERENCES Cart(CartID);
 ALTER TABLE Cart_Detail
 ADD CONSTRAINT fk_CartDetail_item_1
 FOREIGN KEY (itemID) REFERENCES item(itemID);
+
+
+
 
 
