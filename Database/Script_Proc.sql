@@ -1,15 +1,8 @@
--- danh sách Proc, dò trong cái danh sách proc trong cái mysql coi chưa có thì thêm vào 
-
--- AddAccount (done)
--- AddItem (done)
--- AddCart (done)
--- Add_cardItem (done)
--- Cal_ItemRate (not done)
- 
--- mỗi proc t sẽ có 1 file .js hướng dẫn call
+-- Nhóm 4  
+-- file Procedure
 
 
--- tạo account mới 
+-- tạo Account mới 
 DELIMITER //
 
 CREATE PROCEDURE AddAccount(
@@ -94,7 +87,7 @@ CREATE PROCEDURE AddCart(
 BEGIN
   DECLARE newCartID varchar(50);
   DECLARE usernameCount int;
-  SET newCartID = CONCAT('cart', (SELECT COUNT(*) + 1 FROM Cart));
+  SET newCartID = CONCAT('Cart', (SELECT COUNT(*) + 1 FROM Cart));
   
   SELECT COUNT(*) INTO usernameCount FROM Account WHERE AccountID = p_AccountID;
   
@@ -111,7 +104,7 @@ END //
 
 DELIMITER ;
 
--- select * from cart
+-- select * from Cart
 -- CALL AddCart('Saved', 'Acc1');
 
 -- --------------------------------------------------
@@ -265,6 +258,95 @@ BEGIN
 END //
 -- call GetAveragePoint('Item1')
 DELIMITER ;
+-- -------------------------------------
 
+-- thêm 1 ảnh mới vào 
+DELIMITER //
+
+CREATE PROCEDURE Add_ItemPicture(
+	IN p_ItemID VARCHAR(50),
+    IN p_Content VARCHAR(500)
+)
+BEGIN
+    DECLARE v_ItemCount INT;
+    DECLARE v_Name NVARCHAR(50);
+    DECLARE v_PictureID VARCHAR(50);
+    
+    SELECT COUNT(*) INTO v_ItemCount FROM Item WHERE ItemID = p_ItemID;
+    
+    IF v_ItemCount > 0 THEN
+        SELECT Name INTO v_Name FROM Item WHERE ItemID = p_ItemID;
+        
+        SET @count = (SELECT COUNT(*) FROM Item_Picture) + 1;
+        SET v_PictureID = CONCAT('Pic', @count);
+        
+        INSERT INTO Item_Picture (PictureID, Name, Content, ItemID)
+        VALUES (v_PictureID, v_Name, p_Content, p_ItemID);
+        
+        SELECT 1 AS Result; 
+    ELSE
+        SELECT 0 AS Result; 
+    END IF;
+END //
+
+DELIMITER ;
+-- CALL Add_ItemPicture('Item44', 'https://marketingai.vn/wp-content/uploads/2023/02/332867346_700587748460794_8977339113547331667_n.jpg');
+-- --------------------------
+
+-- hàm tính trung bình doanh thu của năm 
+DELIMITER //
+CREATE PROCEDURE GetTotalPriceByWeeks(IN inputDate DATE)
+BEGIN
+    DECLARE startDate DATE;
+    DECLARE endDate DATE;
+    DECLARE currentDate DATE;
+    DECLARE nextWeekDate DATE;
+    DECLARE weekNumber INT;
+    DECLARE weekTotal BIGINT;
+
+    SET startDate = DATE_FORMAT(inputDate, '%Y-%m-01');
+    SET endDate = LAST_DAY(startDate);
+
+    SET currentDate = startDate;
+    
+    SET weekNumber = 1;
+    
+    DROP TEMPORARY TABLE IF EXISTS WeeklyTotals;
+    CREATE TEMPORARY TABLE WeeklyTotals (WeekNumber INT, TotalPrice BIGINT);
+
+    WHILE currentDate <= endDate DO
+        SET weekTotal = 0;
+		SET nextWeekDate = DATE_ADD(currentDate, INTERVAL 7 DAY);
+        
+        SELECT SUM(Total_Price) INTO weekTotal
+        FROM Order_ 
+        WHERE Order_.Day >= currentDate and Order_.Day < nextWeekDate;
+		
+		IF weekTotal is null THEN
+			SET weekTotal = 0;
+        END IF;
+    
+        INSERT INTO WeeklyTotals (WeekNumber, TotalPrice) VALUES (weekNumber, weekTotal);
+
+        SET currentDate = DATE_ADD(currentDate, INTERVAL 7 DAY);
+        
+        
+        
+        IF weekNumber = 5 THEN
+			update WeeklyTotals as we
+            SET we.TotalPrice = we.TotalPrice + weekTotal
+            where we.WeekNumber = 4;
+        END IF;
+        
+        SET weekNumber = weekNumber + 1;
+                
+    END WHILE;
+
+    SELECT we.WeekNumber as value , we.TotalPrice as totalPrice FROM WeeklyTotals as we where we.WeekNumber <= 4;
+    
+    DROP TEMPORARY TABLE IF EXISTS WeeklyTOrder_otals;
+END //
+
+DELIMITER ;
 
 
