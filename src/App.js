@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import IndexPage from './pages/IndexPage/IndexPage.jsx'
 import Login from './pages/Login/Login.jsx'
 import SignUp from './pages/Sign Up/SignUp.jsx'
@@ -14,6 +14,7 @@ import EditProduct from './components/Admin/EditProduct.jsx'
 import AddProducts from './components/Admin/AddProducts.jsx'
 import EditUser from './components/Admin/EditUser.jsx'
 import AddUser from './components/Admin/AddUser.jsx'
+import ChartManage from './pages/Chart/Chart.jsx'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function MainLayout() {
           <Route path="/" element={<IndexPage />} />
           <Route path="/detail/:ItemID" element={<Detail />} />
           <Route path="/cart/:ID" element={<Cart />} />
+          <Route path="/chart" element={<ChartManage />} />
           <Route path="/checkout" element={<CheckOut />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
           <Route path="/manage/users" element={<UsersManage />} /> */}
