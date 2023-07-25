@@ -59,10 +59,10 @@ app.post('/auth/login', (req, res) => {
     }
     if (result.length > 0) {
       console.log(result)
-      res.send('Success')
+      res.send('Failed')
     } else {
       console.log(result)
-      res.send('Failed !')
+      res.send('Success')
     }
   })
 })
