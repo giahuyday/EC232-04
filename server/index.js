@@ -26,8 +26,8 @@ connection.connect((error) => {
   console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL');
 });
 
-app.post('/product', (req, res) => {
-  connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID', (err, result) => {
+app.get('/product', (req, res) => {
+  connection.query('SELECT * FROM Item', (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
     } else {

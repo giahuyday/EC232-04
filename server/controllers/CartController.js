@@ -2,7 +2,7 @@ const connection = require('../Database/connecting.js');
 
 function queryCart(id) {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT *,Cart_Detail.Price AS Cart_Detail_Price, item.Price AS Item_Price FROM Cart_Detail,Cart,item_picture,item where cart.cartid=Cart_Detail.cartid and item.ItemID = item_picture.ItemID and item.ItemID = Cart_Detail.itemID and Cart.AccountID = ?',[id], (err, result) => {
+    connection.query('SELECT *, Item.Price AS Item_Price FROM Cart_Detail,Cart,Item_Picture,Item where Cart.CartID=Cart_Detail.CartID and Item.ItemID = Item_Picture.ItemID and Item.ItemID = Cart_Detail.itemID and Cart.AccountID = ?',[id], (err, result) => {
       if (err) {
         reject(err);
       } else {

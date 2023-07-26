@@ -249,7 +249,7 @@ const IndexPage = () => {
 
           </div>
           <div className="flex flex-row items-start justify-start gap-[30px] text-text2">
-            {Prouducts.slice(0, 4).map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+            {Prouducts.slice(0,4).map(item => (<CardProductHome props={item} key={item.ItemID} />))}
           </div>
           <div className="rounded bg-secondary-2 flex flex-row py-4 w-[1170px]  px-12 bg-[#db4444] items-center justify-center text-text">
             <div className="relative leading-[24px] font-medium text-[white]">

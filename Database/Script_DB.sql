@@ -166,7 +166,7 @@ create table Cart(
 
 create table Cart_Detail(
 	CartID varchar(50),
-    itemID varchar(50),
+    ItemID varchar(50),
     Quantity bigint,
     
 	primary key(ItemID, CartID)
