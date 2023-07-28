@@ -210,8 +210,13 @@ app.post('/admin/users/edit/:AccountID', (req, res) => {
 })
 
 app.get('/home/loading', IndexPageController.loading)
-app.get('/cart/:ID', CartController.loading)
-app.post('/cartpost/:ID', CartController.updateQuantity)
+
+
+app.post('/cartpost/add', CartController.addCart)
+app.post('/cartpost/remove', CartController.removeCart)
+app.get('/cart/loading/:ID', CartController.loading)
+app.post('/cartpost/update', CartController.updateQuantity)
+
 app.get('/chart/loading', ChartController.loading)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 

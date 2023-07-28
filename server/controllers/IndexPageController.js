@@ -28,7 +28,7 @@ function queryCategories() {
 
 function queryItems() {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID LIMIT 10', (err, result) => {
+    connection.query('SELECT * FROM Item i JOIN ( SELECT ItemID, MAX(PictureID) AS PictureID FROM Item_Picture GROUP BY ItemID ) ip_max ON i.ItemID = ip_max.ItemID JOIN Item_Picture ip ON ip_max.PictureID = ip.PictureID;', (err, result) => {
       if (err) {
         reject(err);
       } else {

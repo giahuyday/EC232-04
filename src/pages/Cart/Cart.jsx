@@ -3,6 +3,7 @@ import RowTableCart from "../../components/RowTableCart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { formatNumber } from "../../helper/dataHelper";
+import LoadingEffect from "../../components/Loading";
 const Cart = () => {
     const backButton = () => {
         window.history.back();
@@ -13,8 +14,9 @@ const Cart = () => {
         setResetData(!resetData)
     }
     const totalPrice = dataCart.reduce((total, item) => total + item.Price * item.Quantity, 0);
+  
     useEffect(() => {
-        axios.get('http://localhost:3001/cart/acc1').then((result) => {
+        axios.get('http://localhost:3001/cart/loading/acc1').then((result) => {
             setDataCart(() => result.data)
 
         })
@@ -41,18 +43,7 @@ const Cart = () => {
                                     <RowTableCart props={item} key={item.id} reset={reset} />
                                 ))
                             ) : (
-                                <div>
-                                    <div class="animate-pulse flex flex-col items-center gap-4 w-[1170px]">
-                                        <div>
-                                            <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
-                                            <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
-                                        </div>
-                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-                                        <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-                                        <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
-                                    </div>
-                                </div>
+                               <LoadingEffect/>
                             )}
 
                         </div>
