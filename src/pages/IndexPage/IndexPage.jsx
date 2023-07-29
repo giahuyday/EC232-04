@@ -8,6 +8,7 @@ import { BiHeadphone } from 'react-icons/bi';
 import { SiYoutubegaming } from 'react-icons/si';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import LoadingEffect from "../../components/Loading";
 const IndexPage = () => {
   const imagesHeader = [
     "https://www.u.com.my/content/dam/u-mobile/personal/devices/iphone/iphone-14-pro/meta/20220922/iPhone14-Pro-Launch_Meta-Image_EN.png",
@@ -44,21 +45,14 @@ const IndexPage = () => {
   const [Prouducts, SetProducts] = useState([])
   const [Category, setCategory] = useState([])
   useEffect(() => {
-    getProducts();
-    getCategory();
+    getData()
 
   }, [])
 
-  const getProducts = () => {
-    axios.get("http://localhost:3001/product").then((response) => {
-      SetProducts(response.data)
-
-    })
-  }
-
-  const getCategory = () => {
+  const getData = () => {
     axios.get("http://localhost:3001/home/loading").then((result) => {
       setCategory(result.data.categories);
+      SetProducts(result.data.items);
     })
   }
   return (
@@ -75,10 +69,14 @@ const IndexPage = () => {
         <div className="absolute top-[100.75px] left-[367.75px] box-border w-[0.5px] h-[480px] opacity-[0.3] border-r-[0.5px] border-solid border-[1px] border-[black]" />
         <div className="absolute top-[100px] left-[135px] flex flex-col items-start h-[480px] justify-start gap-[16px] text-center text-text">
           {
+            Category.length>0 ?(
             Category.map(
               item => (
                 <div className="relative leading-[24px]" key={item.CateID}>{item.Name}</div>
               )
+            )
+            ):(
+              <LoadingEffect></LoadingEffect>
             )
           }
 
@@ -177,7 +175,10 @@ const IndexPage = () => {
             </div>
           </div>
           <div className="w-[1308px] flex flex-row items-start justify-start gap-[30px] text-xs text-text transition-all overflow-y-hidden overflow-x-hidden" ref={containerRef} >
-            {Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+            { Prouducts.length>0 ? (
+            Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))):(
+              <LoadingEffect></LoadingEffect>
+            )}
           </div>
         </div>
         <div className="absolute top-[1415px] left-[135px] flex flex-col items-start justify-start gap-[60px]">
@@ -256,7 +257,11 @@ const IndexPage = () => {
 
           </div>
           <div className="flex flex-row items-start justify-start gap-[30px] text-text2">
-            {Prouducts.slice(0, 4).map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+            { Prouducts.length>0?(
+            Prouducts.slice(0,4).map(item => (<CardProductHome props={item} key={item.ItemID} />))):
+            (
+              <LoadingEffect></LoadingEffect>
+            )}
           </div>
           <div className="rounded bg-secondary-2 flex flex-row py-4 w-[1170px]  px-12 bg-[#db4444] items-center justify-center text-text">
             <div className="relative leading-[24px] font-medium text-[white]">
@@ -286,7 +291,11 @@ const IndexPage = () => {
             <div className="flex flex-col items-start justify-start gap-[60px] text-text2">
 
               <div className="grid grid-cols-4 w-[1170] gap-[30px]">
-                {Prouducts.map(item => (<CardProductHome props={item} key={item.ItemID} />))}
+                { Prouducts.length >0 ? (
+                Prouducts.slice(0,8).map(item => (<CardProductHome props={item} key={item.ItemID} />))):
+              (
+                <LoadingEffect></LoadingEffect>
+              )}
               </div>
             </div>
 

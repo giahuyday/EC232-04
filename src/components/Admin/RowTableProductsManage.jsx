@@ -20,8 +20,12 @@ const RowTableProductsManage = ({ item }) => {
       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">{item.Price}</td>
       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">{item.Status}</td>
       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">
-        <div>
-          <Link to={`/admin/edit/${item.ItemID}`} className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-yellow-200">Edit</Link>
+        <div className='flex'> 
+          <Link to={`/admin/edit/${item.ItemID}`} className="w-[80px] h-[40px] rounded-[10px] mr-2 flex justify-center items-center">
+            <div className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-[#e7eba5] flex justify-center items-center">
+              Edit
+            </div>
+          </Link>
           <button className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#da2e28] hover:bg-[#df9b9b]">Delete</button>
           <ToastContainer />
         </div>

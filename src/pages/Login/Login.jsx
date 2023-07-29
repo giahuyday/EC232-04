@@ -13,7 +13,7 @@ const Login = () => {
     }).then((response) => {
       console.log(response)
       if (response.data === 'Success') {
-        Navigate('/home')
+        Navigate('/')
       } else {
         alert('Login Failed !')
       }

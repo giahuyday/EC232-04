@@ -1,16 +1,8 @@
-const mysql = require('mysql2');
-
-
-const connection = mysql.createConnection({
-  host: 'db4free.net',
-  user: 'dangminh_dbms',
-  password: 'dangminh_dbms',
-  database: 'dangminh_dbms',
-})
+const connection = require('../Database/connecting.js');
 
 function queryCart(id) {
   return new Promise((resolve, reject) => {
-    connection.query('SELECT *,Cart_Detail.Price AS Cart_Detail_Price, item.Price AS Item_Price FROM Cart_Detail,Cart,item_picture,item where cart.cartid=Cart_Detail.cartid and item.ItemID = item_picture.ItemID and item.ItemID = Cart_Detail.itemID and Cart.AccountID = ?',[id], (err, result) => {
+    connection.query('SELECT *, i.Price AS Item_Price FROM Item i JOIN( SELECT ItemID, MAX(PictureID) AS PictureID FROM Item_Picture GROUP BY ItemID ) ip_max ON i.ItemID = ip_max.ItemID JOIN Item_Picture ip ON ip_max.PictureID = ip.PictureID JOIN Cart_Detail cd ON i.ItemID = cd.ItemID AND i.Status = "Available" JOIN Cart c ON cd.CartID = c.CartID AND c.status="saved" AND c.AccountID = ?',[id], (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -45,7 +37,6 @@ module.exports = CartContoller = {
   },
   updateQuantity: async (req, res) => {
     try {
-      console.log(req.body)
       const quantity = req.body.Quantity;
       const cartID = req.body.CartID;
       const itemID = req.body.itemId;
@@ -56,5 +47,40 @@ module.exports = CartContoller = {
       res.status(500).send('Fetch Failed!');
     }
   },
+  addCart : async(req,res) =>{
+    try {
+      const quantity = req.body.Quantity;
+      const Account = req.body.Account;
+      const ItemId =  req.body.itemId;
+      connection.query('call Add_cardItem(?,?,?)',[Account,ItemId,quantity],(err, result)=>{
+        if (err) {
+          console.log(err)
+        } else {
+         res.send(result)
+        }
+      })
+    }
+    catch(err){
+      console.error('Fetch Failed!', err);
+      res.status(500).send('Fetch Failed!');
+    }
+  },
+  removeCart : async(req,res) =>{
+    try {
+      const CartID = req.body.CartID;
+      const ItemID = req.body.ItemID;
+      connection.query('Delete From Cart_Detail WHERE CartID=? AND itemID=?',[CartID,ItemID],(err, result)=>{
+        if (err) {
+          console.log(err)
+        } else {
+         res.send(result)
+        }
+      })
+    }
+    catch(err){
+      console.error('Fetch Failed!', err);
+      res.status(500).send('Fetch Failed!');
+    }
+  }
 };
 

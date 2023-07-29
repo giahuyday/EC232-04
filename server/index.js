@@ -4,6 +4,7 @@ const mysql = require('mysql')
 const cors = require('cors')
 const IndexPageController = require('./controllers/IndexPageController')
 const CartController = require('./controllers/CartController')
+const ChartController = require('./controllers/ChartController')
 
 app.use(cors())
 app.use(express.json())
@@ -25,8 +26,8 @@ connection.connect((error) => {
   console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL');
 });
 
-app.post('/product', (req, res) => {
-  connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = Item_Picture.ItemID', (err, result) => {
+app.get('/product', (req, res) => {
+  connection.query('SELECT * FROM Item', (err, result) => {
     if (err) {
       console.log('Fetch Failed !')
     } else {
@@ -58,10 +59,10 @@ app.post('/auth/login', (req, res) => {
     }
     if (result.length > 0) {
       console.log(result)
-      res.send('Success')
+      res.send('Failed')
     } else {
       console.log(result)
-      res.send('Failed !')
+      res.send('Success')
     }
   })
 })
@@ -209,8 +210,14 @@ app.post('/admin/users/edit/:AccountID', (req, res) => {
 })
 
 app.get('/home/loading', IndexPageController.loading)
-app.get('/cart/:ID', CartController.loading)
-app.post('/cartpost/:ID', CartController.updateQuantity)
+
+
+app.post('/cartpost/add', CartController.addCart)
+app.post('/cartpost/remove', CartController.removeCart)
+app.get('/cart/loading/:ID', CartController.loading)
+app.post('/cartpost/update', CartController.updateQuantity)
+
+app.get('/chart/loading', ChartController.loading)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 
