@@ -1,90 +1,115 @@
+import { Radio, Space, Tabs } from 'antd'
+import React, { useState } from 'react'
+
+const { TabPane } = Tabs
+
 const Profile = () => {
+  const [tabPosition, setTabPosition] = useState('left')
+  const changeTabPosition = (e) => {
+    setTabPosition(e.target.value)
+  }
+
   return (
-    <>
+    <div className="h-[100%] flex flex-col ">
       <h1 className="text-3xl font-medium my-8">Billing Details</h1>
-      <div className="flex justify-between gap-6">
-        <div className="flex-[50%] max-w-[400px] ">
-          <div className="text-lg font-semibold capitalize mb-4 cursor-pointer">Manage my account</div>
-          <div className="ml-8 cursor-pointer my-2">My Profile</div>
-          <div className="ml-8 cursor-pointer my-2">Address Book</div>
-          <div className="ml-8 cursor-pointer my-2">My Payment options</div>
-          <div className="text-lg font-semibold capitalize my-4 cursor-pointer">My Orders</div>
-          <div className="ml-8 cursor-pointer my-2">My returns</div>
-          <div className="ml-8 cursor-pointer my-2">My Cancellations</div>
-          <div className="text-lg font-semibold capitalize my-4 cursor-pointer">My WishList</div>
-        </div>
-        <div className="flex-[50%] max-w-[870px]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="border-b border-gray-300 my-2"></div>
-          <div className="flex items-center justify-between mb-10">
-            <div className="">Subtotal: </div>
-            <span>$650</span>
-          </div>
-          <div className="border-b border-gray-300 my-2"></div>
-          <div className="flex items-center justify-between mb-10">
-            <div className="">Shipping: </div>
-            <span>$650</span>
-          </div>
-          <div className="border-b border-gray-300 my-2"></div>
-          <div className="flex items-center justify-between mb-10">
-            <div className="">Total: </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-10">
-            <div className="flex item-center gap-4 cursor-pointer">
-              <input type="radio" name="type" id="bank" className="w-6 h-6 accent-rose-400 cursor-pointer" />
-              <label htmlFor="bank" className="cursor-pointer">
-                Bank
-              </label>
-            </div>
-            <div className="flex gap-2">
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-            </div>
-          </div>
-          <div className="flex items-center mb-10 gap-4 ">
-            <input type="radio" name="type" id="cash" className="w-6 h-6 accent-rose-400 cursor-pointer" />
-            <label htmlFor="cash" className="cursor-pointer">
-              Cash on delivery
-            </label>
-          </div>
-          <div className="flex gap-4 mb-10">
-            <input type="text" name="" id="" className="flex-1 outline-none border border-blue-200 px-4 py-2" placeholder="Coupon code" />
-            <button className="flex-1 px-4 py-2 bg-rose-500 text-white">Apply coupon</button>
-          </div>
-          <button className="px-8 py-3 bg-rose-500 text-white">Place Order</button>
-        </div>
-      </div>
-    </>
+      <Space
+        style={{
+          marginBottom: 24,
+        }}
+      >
+        Tab position:
+        <Radio.Group value={tabPosition} onChange={changeTabPosition}>
+          <Radio.Button className="capitalize" value="top">
+            top
+          </Radio.Button>
+          <Radio.Button className="capitalize" value="bottom">
+            bottom
+          </Radio.Button>
+          <Radio.Button className="capitalize" value="left">
+            left
+          </Radio.Button>
+          <Radio.Button className="capitalize" value="right">
+            right
+          </Radio.Button>
+        </Radio.Group>
+      </Space>
+      <Tabs tabPosition={tabPosition}>
+        {/* First Top-level Tab: Manage My Account */}
+        <TabPane tab="Manage My Account" key="1">
+          <Tabs tabPosition="top" style={{ marginBottom: 24, height: '100%' }}>
+            <TabPane className="" tab="My Profile" key="1-1">
+              <form className="flex flex-col">
+                <div className="flex gap-6">
+                  <div className="mb-[32px] flex-1">
+                    <label className="text-base font-semibold text-black" htmlFor="name">
+                      First Name
+                    </label>
+                    <input type="name" id="name" name="name" placeholder="Enter your name" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  </div>
+                  <div className="mb-[32px] flex-1">
+                    <label className="text-base font-semibold text-black" htmlFor="Last Name">
+                      Last Name
+                    </label>
+                    <input type="text" id="Last Name" name="Last Name" placeholder="Your Last Name" className="w-full p-2  rounded mt-1 bg-[#F5F5F5] outline-none" />
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="mb-[32px] flex-1">
+                    <label className="text-base font-semibold text-black" htmlFor="email">
+                      Email
+                    </label>
+                    <input type="name" id="email" name="email" placeholder="20123456@fit.hcmus.edu.com" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  </div>
+                  <div className="mb-[32px] flex-1">
+                    <label className="text-base font-semibold text-black" htmlFor="address">
+                      Address
+                    </label>
+                    <input type="text" id="address" name="address" placeholder="224 Nguyễn Văn Cừ, Quận 5, TP HCM" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  </div>
+                </div>
+                <div className="mb-[32px]">
+                  <label className="text-base font-semibold text-black">Password Changes</label>
+                  <input type="password" placeholder="Current Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  <input type="password" placeholder="New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  <input type="password" placeholder="Confirm New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                </div>
+                <div className="flex gap-2 justify-end">
+                  <button className="px-8 py-3 text-black">Cancel</button>
+                  <button className="px-8 py-3 bg-rose-500 text-white">Save Changes</button>
+                </div>
+              </form>
+            </TabPane>
+            <TabPane className="min-h-700" tab="Address Book" key="1-2">
+              Content of Address Book
+            </TabPane>
+            <TabPane className="min-h-700" tab="My Payment Options" key="1-3">
+              Content of My Payment Options
+            </TabPane>
+          </Tabs>
+        </TabPane>
+
+        {/* Second Top-level Tab: My Orders */}
+        <TabPane tab="My Orders" key="2">
+          <Tabs tabPosition="top" style={{ marginBottom: 24, height: '100%' }}>
+            <TabPane className="min-h-700" tab="My Returns" key="2-1">
+              Content of My Returns
+            </TabPane>
+            <TabPane className="min-h-700" tab="My Cancellations" key="2-2">
+              Content of My Cancellations
+            </TabPane>
+          </Tabs>
+        </TabPane>
+
+        {/* Third Top-level Tab: My Wishlist */}
+        <TabPane tab="My Wishlist" key="3">
+          <Tabs tabPosition="top" style={{ marginBottom: 24, height: '100%' }}>
+            <TabPane className="min-h-700" tab="All your wishlist here" key="3-1">
+              Content of Wishlist Item 1
+            </TabPane>
+          </Tabs>
+        </TabPane>
+      </Tabs>
+    </div>
   )
 }
 
