@@ -10,6 +10,7 @@ const Detail = () => {
   const [imgMain, setImgMain] = useState()
   const [amount, setAmount] = useState(1)
   const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(false)
   const onAmountChange = (value) => {
     setAmount(value)
   }
@@ -24,6 +25,7 @@ const Detail = () => {
   const fetchProductDetail = async () => {
     try {
       const res = await Axios.get(`http://localhost:3001/detail/${ItemID}`)
+      console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)
       console.log('Fetch successfull', product)
@@ -50,8 +52,13 @@ const Detail = () => {
 
   useEffect(() => {
     fetchProductDetail()
-    setImgMain(product.imagesLinks[0])
+    if (!product) setLoading(true)
+    else setLoading(false)
   }, [])
+  useEffect(() => {
+    setImgMain(product?.imagesLinks?.[0])
+    console.log('Product: ', product)
+  }, [product])
   const listImages = ['https://media.gamestop.com/i/gamestop/11108369-a2080ccd?$pdp$', 'https://m.media-amazon.com/images/I/51JCqvlkqVL._AC_UF1000,1000_QL80_.jpg', 'https://media.gamestop.com/i/gamestop/11108369-a2080ccd?$pdp$', 'https://m.media-amazon.com/images/I/51JCqvlkqVL._AC_UF1000,1000_QL80_.jpg']
   function handleShowClickedImage(e) {
     setImgMain(e.target.src)
@@ -70,6 +77,7 @@ const Detail = () => {
     opacity: isFlyIn ? 1 : 0,
     config: { duration: 1000 },
   })
+  if (loading) return <h1>Loading hehe</h1>
   return (
     <>
       <animated.img src={imgMain} alt="" className="absolute w-[100px] h-[100px] object-contain rounded-md" style={flyInAnimation} />
@@ -77,7 +85,7 @@ const Detail = () => {
       {/* 3 columns responsive based on Grid */}
       <div className="max-w-screen-2xl mx-auto p-5 grid sm:grid-cols-[1fr_4fr] md:grid-cols-[1fr_2fr] lg:grid-cols-[4fr_13fr_13fr] gap-x-[100px] min-h-[70vh]">
         <div className="flex flex-col justify-around">
-          {product.imagesLinks.map((item, index) => {
+          {product.imagesLinks?.map((item, index) => {
             return (
               <div key={index} className="max-w-[170px] max-h-[138px]" onClick={handleShowClickedImage}>
                 <img src={item} alt="" className="object-cover mix-blend-color-burn" />
