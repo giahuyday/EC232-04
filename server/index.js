@@ -9,22 +9,20 @@ const ChartController = require('./controllers/ChartController')
 app.use(cors())
 app.use(express.json())
 
-
 const connection = mysql.createConnection({
   host: 'db4free.net',
   user: 'dangminh_dbms',
   password: 'dangminh_dbms',
   database: 'dangminh_dbms',
-});
-
+})
 
 connection.connect((error) => {
   if (error) {
-    console.error('Lỗi kết nối đến cơ sở dữ liệu:', error);
-    return;
+    console.error('Lỗi kết nối đến cơ sở dữ liệu:', error)
+    return
   }
-  console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL');
-});
+  console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL')
+})
 
 app.get('/product', (req, res) => {
   connection.query('SELECT * FROM Item', (err, result) => {
@@ -79,7 +77,7 @@ app.post('/auth/signup', (req, res) => {
   })
 })
 
-app.post('/detail/:ItemID', (req, res) => {
+app.get('/detail/:ItemID', (req, res) => {
   console.log(req.body)
   const ItemID = req.params.ItemID
   connection.query('SELECT * FROM Item, Item_Picture WHERE Item.ItemID = ? AND Item.ItemID = Item_Picture.ItemID', [ItemID], (err, result) => {
@@ -134,21 +132,21 @@ app.post('/manage/products/add', (req, res) => {
     if (err) {
       console.log(err)
     }
-    const result = Object.values(results[0][0])[0];
+    const result = Object.values(results[0][0])[0]
 
     if (results === 0) {
-        console.log('Category or producer is wrong.');
-        } else  {
-          console.log(results)
-          console.log('New Item created. New id is: ',result);
-          connection.query('CALL Add_ItemPicture(?,?)', [result, Content], (err, result) => {
-            if (err) {
-              console.log(err)
-            } else {
-              res.send('Update Product Accepted')
-            }
-          })
+      console.log('Category or producer is wrong.')
+    } else {
+      console.log(results)
+      console.log('New Item created. New id is: ', result)
+      connection.query('CALL Add_ItemPicture(?,?)', [result, Content], (err, result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.send('Update Product Accepted')
         }
+      })
+    }
     // if (result===0){
     //   console.log("Add Failed")
     // }
@@ -211,7 +209,6 @@ app.post('/admin/users/edit/:AccountID', (req, res) => {
 
 app.get('/home/loading', IndexPageController.loading)
 
-
 app.post('/cartpost/add', CartController.addCart)
 app.post('/cartpost/remove', CartController.removeCart)
 app.get('/cart/loading/:ID', CartController.loading)
@@ -219,8 +216,6 @@ app.post('/cartpost/update', CartController.updateQuantity)
 
 app.get('/chart/loading', ChartController.loading)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
-
-
 
 app.listen(3001, () => {
   console.log('Your server is run on 3001')
