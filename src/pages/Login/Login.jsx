@@ -1,18 +1,31 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { create } from 'zustand'
+import omit from 'lodash-es/omit'
+export const useLoginStore = create((set) => ({
+  isLoggedIn: false,
+  userName: '',
+  setIsLoggedIn: (newState) => set((state) => ({ ...state, isLoggedIn: newState })),
+  setUserNameStore: (newUserName) => set((state) => ({ ...state, userName: newUserName })),
+}))
 const Login = () => {
   const [userName, setUserName] = useState('')
   const [Password, setPassword] = useState('')
   const Navigate = useNavigate()
-  const handleSubmit = () => {
+  const setUserNameInStore = useLoginStore((state) => state.setUserNameStore)
+  const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn)
+  const handleLogin = () => {
     Axios.post('http://localhost:3001/auth/login', {
       userName: userName,
       Password: Password,
     }).then((response) => {
       console.log(response)
       if (response.data === 'Success') {
+        setUserNameInStore(userName)
+        setIsLoggedIn(true)
         Navigate('/')
       } else {
         alert('Login Failed !')
@@ -54,8 +67,8 @@ const Login = () => {
                   Forgot password?
                 </a>
               </div>
-              <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:bg-red-700" onClick={handleSubmit}>
-                Sign in
+              <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:bg-red-700" onClick={handleLogin}>
+                Log in
               </button>
               <p class="text-sm font-light text-black">
                 Don’t have an account yet?{' '}

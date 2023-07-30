@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useLoginStore } from '../pages/Login/Login'
 const Header = () => {
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn)
+  const userName = useLoginStore((state) => state.userName)
   return (
     <header className="px-4 lg:px-12">
       <nav className="px-4 lg:px-6 py-2.5">
@@ -20,7 +23,7 @@ const Header = () => {
               About
             </Link>
             <Link to="/auth/signup" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
-              Sign Up
+              {isLoggedIn ? `Welcome back ${userName}` : 'Sign Up'}
             </Link>
           </div>
           <div className="flex gap-2 items-center justify-between">

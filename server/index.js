@@ -54,10 +54,9 @@ app.post('/auth/login', (req, res) => {
   connection.query('SELECT UserName, Password FROM Account WHERE Account.UserName = ? AND Account.Password = ?', [UserName, Password], (err, result) => {
     if (err) {
       console.log(err)
-    }
-    if (result.length > 0) {
       console.log(result)
       res.send('Failed')
+      return
     } else {
       console.log(result)
       res.send('Success')
