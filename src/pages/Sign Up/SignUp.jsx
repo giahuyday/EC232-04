@@ -31,9 +31,9 @@ const SignUp = () => {
     <section className="bg-gray-50 dark:bg-white">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-700 dark:border-gray-700 ">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 dark:text-black">
+          <div className="p-6 space-y-4 md:space-y-2 sm:p-8 dark:text-black">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Create an account</h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4" action="#">
               <div>
                 <label htmlFor="userName" className="block mb-2 text-sm font-medium text-gray-900 ">
                   Username
@@ -89,7 +89,7 @@ const SignUp = () => {
                 </div>
                 <div className="ml-3 text-sm">
                   <label htmlFor="terms" className="font-light text-black-100">
-                    I accept the
+                    I accept the{' '}
                   </label>
                   <a className="font-medium text-primary-600 hover:underline" href="#">
                     Terms and Conditions

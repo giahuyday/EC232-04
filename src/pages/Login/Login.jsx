@@ -1,38 +1,67 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { create } from 'zustand'
-import omit from 'lodash-es/omit'
 export const useLoginStore = create((set) => ({
   isLoggedIn: false,
   userName: '',
+  accountData: '',
+  setaccountData: (accountData) => set((state) => ({ ...state, accountData: accountData })),
   setIsLoggedIn: (newState) => set((state) => ({ ...state, isLoggedIn: newState })),
   setUserNameStore: (newUserName) => set((state) => ({ ...state, userName: newUserName })),
 }))
 const Login = () => {
-  const [userName, setUserName] = useState('')
-  const [Password, setPassword] = useState('')
+  const [userName, setUserName] = useState('giahuy10')
+  const [Password, setPassword] = useState(123456)
   const Navigate = useNavigate()
   const setUserNameInStore = useLoginStore((state) => state.setUserNameStore)
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn)
-  const handleLogin = () => {
-    Axios.post('http://localhost:3001/auth/login', {
-      userName: userName,
-      Password: Password,
-    }).then((response) => {
+  const userNameInStore = useLoginStore((state) => state.userName)
+  const setaccountData = useLoginStore((state) => state.setaccountData)
+  const fetchUserData = async (UserName) => {
+    try {
+      const response = await Axios.get(`http://localhost:3001/users/${UserName}`)
       console.log(response)
+      const user = response.forEach((res) =>
+        res.find((r) => {
+          return r.UserName === UserName
+        })
+      )
+      console.log(user)
+      setaccountData(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleLogin = async () => {
+    const user = { userName, Password }
+    try {
+      const response = await Axios.post('http://localhost:3001/auth/login', user)
+      console.log(response.data)
+
       if (response.data === 'Success') {
+        // Store user data in local storage
+        localStorage.setItem('user', JSON.stringify(response.data))
+
+        // Update Zustand state
+        setaccountData(response.data)
         setUserNameInStore(userName)
+        setUserName(userName)
         setIsLoggedIn(true)
         Navigate('/')
       } else {
         alert('Login Failed !')
       }
-    })
+    } catch (error) {
+      console.error(error)
+      alert('An error occurred during login.')
+    }
   }
-
+  // useEffect(() => {
+  //   fetchUserData(userNameInStore)
+  // }, [userName])
   return (
     <section class="bg-gray-50 dark:bg-white">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -42,9 +71,9 @@ const Login = () => {
             <form class="space-y-4 md:space-y-6" action="#">
               <div>
                 <label for="userName" class="block mb-2 text-sm font-medium text-gray-900">
-                  Your email
+                  Your username
                 </label>
-                <input type="userName" name="userName" id="userName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                <input type="userName" name="userName" id="userName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required="" value={userName} onChange={(e) => setUserName(e.target.value)} />
               </div>
               <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">

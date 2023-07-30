@@ -13,7 +13,7 @@ import RadioCard from '../../components/Selectable/SelectionComponent.jsx'
 const parseProductDetails = (product) => {
   let imagesLinks = []
   const { CateID, Color, ItemID, PictureID, Description, Name, Price, ProDucerID, Status } = product?.[0]
-  product.map((p, i) => {
+  product.forEach((p, i) => {
     const imgLink = p.Content
     imagesLinks.push(imgLink)
   })

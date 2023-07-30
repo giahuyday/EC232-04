@@ -48,6 +48,24 @@ app.get('/users', (req, res) => {
   })
 })
 
+app.get('/users/:UserName', (req, res) => {
+  const { userName } = req.params
+  console.log(userName)
+  return new Promise((resolve, reject) => {
+    connection.query('SELECT * FROM Account WHERE Account.UserName = ?', [userName], (err, result) => {
+      if (err) {
+        console.log('Fetch Failed !')
+        reject(err)
+      } else {
+        // console.log(rows[0])
+        console.log(result)
+        res.send(result)
+        resolve(result)
+      }
+    })
+  })
+})
+
 app.post('/auth/login', (req, res) => {
   console.log(req.body)
   const { UserName, Password } = req.body
