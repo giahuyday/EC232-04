@@ -1,4 +1,30 @@
+import axios from 'axios'
+import { useEffect, useMemo, useState } from 'react'
+
+const calculateCartInfor = (info) => {
+  let Subtotal = 0
+  let Shipping = 650
+  info.map((cart, index) => {
+    const { AccountID, CartID, CateID, Color, Content, Description, ItemID, Item_Price, Name, PictureID, Price, ProDucerID, Quantity, Status, day, itemI, status } = cart
+    Subtotal += Price * Quantity
+  })
+  return {
+    Subtotal,
+    Shipping,
+  }
+}
+
 const CheckOut = () => {
+  const [dataCart, setDataCart] = useState([])
+  const data = useMemo(() => calculateCartInfor(dataCart), [dataCart])
+  useEffect(() => {
+    axios.get('http://localhost:3001/cart/loading/acc1').then((result) => {
+      setDataCart(() => result.data)
+    })
+  }, [])
+  useEffect(() => {
+    console.log(data)
+  }, [dataCart])
   return (
     <>
       <h1 className="text-3xl font-medium my-8">Billing Details</h1>
@@ -54,38 +80,21 @@ const CheckOut = () => {
           </div>
         </form>
         <div className="flex-[50%] max-w-[527px]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-6">
-              <img src="https://smartnew.vn/wp-content/uploads/2019/11/CVC.png" alt="" className="w-12 h-12" />
-              <div className="">LCD Monitor 24inch</div>
-            </div>
-            <span>$650</span>
-          </div>
+          {dataCart.map((cart, index) => {
+            return (
+              <div className="flex items-center justify-between mb-4" key={index}>
+                <div className="flex items-center gap-6">
+                  <img src={cart.Content} alt="" className="w-12 h-12" />
+                  <div className="">{cart.Name}</div>
+                </div>
+                <span>${cart.Price}</span>
+              </div>
+            )
+          })}
           <div className="border-b border-gray-300 my-2"></div>
           <div className="flex items-center justify-between mb-10">
             <div className="">Subtotal: </div>
-            <span>$650</span>
+            <span>${data.Subtotal}</span>
           </div>
           <div className="border-b border-gray-300 my-2"></div>
           <div className="flex items-center justify-between mb-10">
@@ -95,7 +104,7 @@ const CheckOut = () => {
           <div className="border-b border-gray-300 my-2"></div>
           <div className="flex items-center justify-between mb-10">
             <div className="">Total: </div>
-            <span>$650</span>
+            <span>${data.Subtotal + data.Shipping}</span>
           </div>
           <div className="flex items-center justify-between mb-10">
             <div className="flex item-center gap-4 cursor-pointer">
@@ -104,12 +113,24 @@ const CheckOut = () => {
                 Bank
               </label>
             </div>
-            <div className="flex gap-2">
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
-            </div>
+            <form className="flex gap-2">
+              <label htmlFor="mb-bank" className="border flex gap-1 p-2 rounded-sm">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_MB_new.png" alt="" className="w-12 h-12 object-contain" />
+                <input type="radio" name="bank" id="mb-bank" />
+              </label>
+              <label htmlFor="viettel-bank" className="border flex gap-1 p-2 rounded-sm">
+                <img src="https://baothainguyen.vn/file/oldimage/baothainguyen/UserFiles/image/aa(43).jpg" alt="" className="w-12 h-12 object-contain" />
+                <input type="radio" name="bank" id="viettel-bank" />
+              </label>
+              <label htmlFor="agri-bank" className="border flex gap-1 p-2 rounded-sm">
+                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/01/Logo-Agribank-V.png" alt="" className="w-12 h-12 object-contain" />
+                <input type="radio" name="bank" id="agri-bank" />
+              </label>
+              <label className="border flex gap-1 p-2 rounded-sm" htmlFor="vissa-bank">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
+                <input type="radio" name="bank" id="vissa-bank" />
+              </label>
+            </form>
           </div>
           <div className="flex items-center mb-10 gap-4 ">
             <input type="radio" name="type" id="cash" className="w-6 h-6 accent-rose-400 cursor-pointer" />

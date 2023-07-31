@@ -41,7 +41,7 @@ function MainLayout() {
           <Route path="/detail" element={<Detail />} />
           <Route path="/cart/:ID" element={<Cart />} />
           <Route path="/chart" element={<ChartManage />} />
-          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/checkout/:AccountID" element={<CheckOut />} />
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
           <Route path="/manage/users" element={<UsersManage />} /> */}

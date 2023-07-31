@@ -27,11 +27,11 @@ const Cart = () => {
   const totalQuanity = useCartStore((state) => state.total)
   useEffect(() => {
     axios.get('http://localhost:3001/cart/loading/acc1').then((result) => {
-      setDataCart(() => result.data)
+      setDataCart(result.data)
       console.log(result.data)
       setCartQuanity(totaQuanity)
     })
-  }, [resetData, totaQuanity])
+  }, [totaQuanity])
   useEffect(() => {
     console.log(totalQuanity)
   }, [totalQuanity])
