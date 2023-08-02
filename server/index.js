@@ -52,17 +52,18 @@ app.get('/users', (req, res) => {
 
 app.post('/auth/login', (req, res) => {
   console.log(req.body)
-  const { UserName, Password } = req.body
-  connection.query('SELECT UserName, Password FROM Account WHERE Account.UserName = ? AND Account.Password = ?', [UserName, Password], (err, result) => {
+  const UserName = req.body.userName
+  const Password = req.body.Password
+  connection.query('SELECT * FROM Account WHERE Account.UserName = ? AND Account.Password = ?', [UserName, Password], (err, result) => {
     if (err) {
       console.log(err)
     }
     if (result.length > 0) {
       console.log(result)
-      res.send('Failed')
+      res.send(result)
     } else {
       console.log(result)
-      res.send('Success')
+      res.send("Failed")
     }
   })
 })
