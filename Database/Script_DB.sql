@@ -52,6 +52,7 @@ create table Category(
 	CateID varchar(50),
     Name nvarchar(50),
     Description nvarchar(300),
+    PointAdd int,
     
     primary key(CateID)
 );
@@ -166,7 +167,7 @@ create table Cart(
 
 create table Cart_Detail(
 	CartID varchar(50),
-    ItemID varchar(50),
+    itemID varchar(50),
     Quantity bigint,
     
 	primary key(ItemID, CartID)
@@ -184,4 +185,21 @@ ALTER TABLE Cart_Detail
 ADD CONSTRAINT fk_CartDetail_item_1
 FOREIGN KEY (itemID) REFERENCES item(itemID);
 
+create table Guess_Type(
+	TypeID varchar(50),
+    TypeName varchar(50),
+    PointPercent int,
+    PointUpgrade int,
+    AmountUpgrade int,
+    
+	primary key(TypeID)
+);
+
+create table BuyNumber(
+	NumberID varchar(50),
+    TypeName varchar(50),
+    PointAdd  int,
+    
+	primary key(NumberID)
+);
 

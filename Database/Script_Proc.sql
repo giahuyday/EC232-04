@@ -262,7 +262,6 @@ DELIMITER ;
 
 -- thêm 1 ảnh mới vào 
 DELIMITER //
-
 CREATE PROCEDURE Add_ItemPicture(
 	IN p_ItemID VARCHAR(50),
     IN p_Content VARCHAR(500)
@@ -293,7 +292,7 @@ DELIMITER ;
 -- CALL Add_ItemPicture('Item44', 'https://marketingai.vn/wp-content/uploads/2023/02/332867346_700587748460794_8977339113547331667_n.jpg');
 -- --------------------------
 
--- hàm tính trung bình doanh thu của năm 
+-- hàm tính trung bình doanh thu của tuần trong tháng 
 DELIMITER //
 CREATE PROCEDURE GetTotalPriceByWeeks(IN inputDate DATE)
 BEGIN
@@ -344,9 +343,223 @@ BEGIN
 
     SELECT we.WeekNumber as value , we.TotalPrice as totalPrice FROM WeeklyTotals as we where we.WeekNumber <= 4;
     
-    DROP TEMPORARY TABLE IF EXISTS WeeklyTOrder_otals;
+    DROP TEMPORARY TABLE IF EXISTS WeeklyTotals;
 END //
 
 DELIMITER ;
+
+-- -----------------------
+-- hàm tính trung bình doanh thua của tháng trong năm 
+DELIMITER //
+CREATE PROCEDURE GetTotalPriceByMonth(IN inputDate DATE)
+BEGIN
+    DECLARE startMonth DATE;
+    DECLARE endMonth DATE;
+    DECLARE currentMonth DATE;
+    DECLARE nextMonth DATE;
+    DECLARE MonthNumber INT;
+    DECLARE MonthTotal BIGINT;
+
+    SET startMonth = DATE_FORMAT(inputDate, '%Y-01-01');
+    SET endMonth = DATE_FORMAT(inputDate, '%Y-12-01');
+
+    SET currentMonth = startMonth;
+    
+    SET MonthNumber = 1;
+    
+    DROP TEMPORARY TABLE IF EXISTS MonthTotals;
+    CREATE TEMPORARY TABLE MonthTotals (MonthNumber INT, TotalPrice BIGINT);
+
+    WHILE currentMonth <= endMonth DO
+        SET MonthTotal = 0;
+        
+        SELECT SUM(Total_Price) INTO MonthTotal
+        FROM Order_ 
+        where year(Order_.Day) = year(currentMonth) and month(Order_.Day) = month(currentMonth);
+		
+		IF MonthTotal is null THEN
+			SET MonthTotal = 0;
+        END IF;
+    
+        INSERT INTO MonthTotals (MonthNumber, TotalPrice) VALUES (MonthNumber, MonthTotal);
+
+        SET currentMonth = DATE_ADD(currentMonth, INTERVAL 1 month);
+        
+        SET MonthNumber = MonthNumber + 1;
+                
+    END WHILE;
+
+    SELECT we.MonthNumber as value , we.TotalPrice as totalPrice FROM MonthTotals as we;
+    
+    DROP TEMPORARY TABLE IF EXISTS MonthTotals;
+END//
+DELIMITER ;
+
+-- --------------------------
+-- hàm tính doanh thu của quí 4 tháng trong năm
+DELIMITER //
+CREATE PROCEDURE GetTotalPriceByQuater(IN inputDate DATE)
+BEGIN
+    DECLARE startMonth DATE;
+    DECLARE endMonth DATE;
+    DECLARE currentMonth DATE;
+    DECLARE nextMonth DATE;
+    DECLARE QuaterNumber INT;
+    DECLARE QuaterTotal BIGINT;
+
+    SET startMonth = DATE_FORMAT(inputDate, '%Y-01-01');
+    SET endMonth = DATE_FORMAT(inputDate, '%Y-12-01');
+
+    SET currentMonth = startMonth;
+    
+    SET QuaterNumber = 1;
+    
+    DROP TEMPORARY TABLE IF EXISTS QuaterTotals;
+    CREATE TEMPORARY TABLE QuaterTotals (QuaterNumber INT, TotalPrice BIGINT);
+
+    WHILE currentMonth <= endMonth DO
+        SET QuaterTotal = 0;
+        
+        set nextMonth = DATE_ADD(currentMonth, INTERVAL 2 month);
+        
+        SELECT SUM(Total_Price) INTO QuaterTotal
+        FROM Order_ 
+        where year(Order_.Day) = year(currentMonth) and ( 
+        month(Order_.Day) >= month(currentMonth) 
+        and month(Order_.Day) <= month(nextMonth) ) ;
+		
+		IF QuaterTotal is null THEN
+			SET QuaterTotal = 0;
+        END IF;
+    
+        INSERT INTO QuaterTotals (QuaterNumber, TotalPrice) VALUES (QuaterNumber, QuaterTotal);
+
+        SET currentMonth = DATE_ADD(currentMonth, INTERVAL 3 month);
+        
+        SET QuaterNumber = QuaterNumber + 1;
+                
+    END WHILE;
+
+    SELECT we.QuaterNumber as value , we.TotalPrice as totalPrice FROM QuaterTotals as we;
+    
+    DROP TEMPORARY TABLE IF EXISTS QuaterTotals;
+END //
+
+DELIMITER ;
+
+
+-- -----------------------------------------------------------
+-- hàm tính doanh thu trong tất cả các năm 
+DELIMITER //
+CREATE PROCEDURE GetTotalPriceByYear()
+BEGIN
+    DECLARE startYear YEAR;
+    DECLARE endYear YEAR;
+    DECLARE currentYear YEAR;
+    DECLARE nextYear YEAR;
+    DECLARE YearNumber YEAR;
+    DECLARE YearTotal BIGINT;
+	
+	SELECT DATE_FORMAT( Min(day),'%Y') into startYear FROM Order_;
+	SELECT DATE_FORMAT( Max(day),'%Y') into endYear FROM Order_;
+    
+    SET currentYear = startYear;
+    
+    SET YearNumber = startYear;
+    
+    
+    DROP TEMPORARY TABLE IF EXISTS YearTotals;
+    CREATE TEMPORARY TABLE YearTotals (YearNumber YEAR, TotalPrice BIGINT);
+
+    WHILE currentYear <= endYear DO
+        SET YearTotal = 0;
+        
+        SELECT SUM(Total_Price) INTO YearTotal
+        FROM Order_  as Od
+        where DATE_FORMAT(Od.Day,'%Y') = currentYear;
+        
+        /* -- 1 cách nào đó tùy phiên bản mysql nó lại chịu cái này và ngược lại 
+        SELECT SUM(Total_Price) INTO YearTotal
+        FROM Order_ 
+        where year(Order_.Day) = currentYear;
+		*/
+        
+		IF YearTotal is null THEN
+			SET YearTotal = 0;
+        END IF;
+    
+        INSERT INTO YearTotals (YearNumber, TotalPrice) VALUES (YearNumber, YearTotal);
+
+        SET currentYear = currentYear + 1;
+        
+        SET YearNumber = YearNumber + 1;
+                
+    END WHILE;
+
+    SELECT we.YearNumber as value , we.TotalPrice as totalPrice FROM YearTotals as we;
+    
+    DROP TEMPORARY TABLE IF EXISTS YearTotals;
+    
+END //
+
+DELIMITER ;
+
+
+-- ----------------
+-- trả về loại hạng của khách 
+DELIMITER //
+CREATE PROCEDURE GetGuessType(IN AccID varchar(50))
+BEGIN
+	DECLARE Num int;
+    DECLARE Price int;
+    DECLARE Id int;
+    DECLARE MaxId int;
+    DECLARE CurPoint int;
+
+	select count(Order_.OrderID) into Num
+	from Order_
+	where (Order_.AccountID = AccID) and (Order_.Total_Price > 500);
+    
+    select count(gt.TypeID) into  MaxId
+    from Guess_Type as gt;
+    
+    set ID = 1;
+    while Id <= MaxId do
+
+        select gt.PointUpgrade  into CurPoint
+		from Guess_Type as gt
+		where gt.TypeID = ID;
+        
+        if num = CurPoint then
+         select gt.TypeName as Type
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+         elseif num > CurPoint  and Id + 1 <= MaxId then set ID = ID + 1;
+         
+         elseif num > CurPoint  and Id + 1 > MaxId then 
+         select gt.TypeName as Type
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+         elseif num < CurPoint then 
+         set ID = ID - 1;
+         select gt.TypeName as Type
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+
+        end if;
+
+    end while;
+    
+    
+END //
+
+DELIMITER ;
+
 
 

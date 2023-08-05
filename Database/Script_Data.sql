@@ -14,40 +14,40 @@ values  ('Pro1', 'Sony', 'Minato City, Tokyo, Japan', 'Sony@gmail.com'),
         ('Pro4', 'Apple', '1 Infinite Loop, Cupertino, California, United States', 'Apple@gmail.com' ),
         ('Pro5', 'Logitech', 'Lausanne, Switzerland', 'Logitech@gmail.com' );
         
-insert into Item (ItemID, Name, Price, Description, Color, Status, CateID, ProducerID)
-values  ('Item1', 'Laptop HP 15s-fq2712TU', 9999000, 'i3-1115G4/ RAM 8GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro2'),
-		('Item2', 'Laptop HP Spectre x360 14-ef0030TU', 45190000, 'i7-1255U/ RAM 16GB/ 1TB SSD/ Windows 11', 'Blue', 'Available', 'Cate1', 'Pro2'),
-		('Item3', 'Laptop ASUS Vivobook X415EA-EK675W', 9690000, 'i3-1115G4/ RAM 4GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro3'),
-		('Item4', 'Laptop ASUS ROG Flow X16 GV601VV-NL016W', 60990000, 'i9-13900H/ RAM 16GB/ 1TB SSD/ Windows 11', 'Black', 'Available', 'Cate1', 'Pro3'),
-		('Item5', 'Head Phone In-ear Sony MDR-EX15APBZE', 199000, 'In-ear/ 3.5 mm/ wired/ No LED/ No Micro', 'Black', 'Available', 'Cate2', 'Pro1'),
-		('Item6', 'Head Phone INZONE H7 SONY WH-G700/WZ', 5300000, 'Over-ear/ Bluetooth/ Wireless/ No LED/ Micro', 'White', 'Available', 'Cate2', 'Pro1'),
-		('Item7', 'Gaming mouse ASUS GT200', 299000, 'Gaming/ USB 2.0/ wired/ Switch Omron', 'Black', 'Available', 'Cate3', 'Pro3'),
-		('Item8', 'Gaming mouse ASUS Gladius III WL Aimpoint', 2749000, 'Gaming/ USB, Bluetooth/ 2.4 GHz Wireless/ 19.000 dpi', 'Black', 'Available', 'Cate3', 'Pro3'),
-		('Item9', 'Prodigy G213 Full-size', 1182025, 'Gaming/ Wired / Membrane/ RGB Backlighting', 'Black', 'Available', 'Cate4', 'Pro5'),
-		('Item10', 'ERGO K860 Ergonomic Full-size', 2576814, 'Wireless/ Windows and Mac/ Palm Rest', 'Black', 'Available', 'Cate4', 'Pro5'),
-		('Item11', 'MX Keys S Advanced Full-size', 2600455, 'Wireless Scissor Keyboard/ PC and Mac/ Backlit keys', 'Black', 'Available', 'Cate4', 'Pro5'),
-		('Item12', 'MX Mechanical Full size', 3806120, 'Wireless Mechanical Tactile Switch/ Windows and Mac/ Backlit Keys', 'Graphite', 'Available', 'Cate4', 'Pro5'),
-		('Item13', 'K380 TKL', 709215, 'Wireless Scissor Keyboard/ PC/ Laptop/ Windows/ Mac/ Android/ iPad/ Apple TV', 'Gray', 'Available', 'Cate4', 'Pro5'),
-		('Item14', 'Magic Keyboard with Numeric Keypad', 3073265, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
-		('Item15', 'Magic Keyboard', 2364050, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
-		('Item16', 'Magic Keyboard with Touch ID and Numeric Keypad', 4728100, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Black', 'Available', 'Cate4', 'Pro4'),
-		('Item17', 'Magic Keyboard with Touch ID', 3546075, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
-		('Item18', 'MacBook Air 13.6 inch Laptop', 23640500, 'Apple M2 chip - 8GB Memory - 256GB SSD', 'Silver', 'Available', 'Cate1', 'Pro4'),
-		('Item19', 'MacBook Pro 1 Laptop', 42552900, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
-		('Item20', 'MacBook Air 15 inch Laptop', 35460750, 'M2 chip - 8GB Memory - 512GB SSD', 'Starlight', 'Available', 'Cate1', 'Pro4'),
-		('Item21', 'MacBook Pro 16 inch Laptop', 59101250, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
-		('Item22', 'MacBook Pro 14 inch Laptop', 54373150, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
-		('Item23', 'TUF Gaming A16 16 inch 165Hz Gaming Laptop', 21276450, 'FHD-AMD Ryzen 7 7735HS with 16GB DDR5 Memory- Radeon RX7600S 512GB PCIe SSD', 'Black', 'Available', 'Cate1', 'Pro3'),
-		('Item24', 'Vivobook 14 inch Laptop', 6619340, 'Intel Core 11th Gen i3 with 8GB Memory - 128GB SSD', 'Silver', 'Available', 'Cate1', 'Pro3'),
-		('Item25', 'Zenbook 14" 2.8K OLED Laptop', 13002275, 'Intel Evo Platform - 12th Gen Core i5 Processor - 8GB Memory - 256GB SSD', 'Blue', 'Available', 'Cate1', 'Pro3'),
-		('Item26', 'ROG Zephyrus 1  inch240Hz Gaming Laptop QHD', 37824800, 'Intel 13th Gen Core i9 with 16GB Memory - NVIDIA GeForce RTX 4070 - 1TB SSD', 'Black', 'Available', 'Cate1', 'Pro3'),
-		('Item27', '17.3 inch Chromebook', 5910125, 'Intel Celeron N4500 with 4GB Memory - 64GB', 'Gray', 'Available', 'Cate1', 'Pro3'),
-		('Item28', 'HP  14 inch Laptop', 3546000, 'Intel Celeron - 4GB Memory - 64GB eMMC', 'White', 'Available', 'Cate1', 'Pro2'),
-		('Item29', 'HP 15.6 inch Touch-Screen Laptop', 15366000, 'Intel Core i7 - 16GB Memory - 512GB SSD', 'Silver', 'Available', 'Cate1', 'Pro2'),
-		('Item30', 'HP ENVY 2-in-1 14 inch Full HD Touch-Screen Laptop', 15602400, 'Intel Core i5 - 8GB Memory - 512GB SSD', 'Silver', 'Available', 'Cate1', 'Pro2'),
-		('Item31', 'HP 17.3 inch HD+ Laptop', 9456000, 'HP - 17.3" HD+ Laptop', 'Silver', 'Available', 'Cate1', 'Pro2'),
-		('Item32', 'HP Pavilion - 2-in-1 14 inch FHD Laptop', 8983200, 'Intel Core i3 - 8GB Memory - 256GB SSD', 'Blue', 'Available', 'Cate1', 'Pro2');
-	
+INSERT INTO `item` (`ItemID`, `Name`, `Price`, `Description`, `Color`, `Status`, `CateID`, `ProDucerID`) VALUES
+('Item1', 'Laptop HP 15s-fq2712TU', 420, 'i3-1115G4/ RAM 8GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro2'),
+('Item10', 'ERGO K860 Ergonomic Full-size', 108, 'Wireless/ Windows and Mac/ Palm Rest', 'Black', 'Available', 'Cate4', 'Pro5'),
+('Item11', 'MX Keys S Advanced Full-size', 109, 'Wireless Scissor Keyboard/ PC and Mac/ Backlit keys', 'Black', 'Available', 'Cate4', 'Pro5'),
+('Item12', 'MX Mechanical Full size', 160, 'Wireless Mechanical Tactile Switch/ Windows and Mac/ Backlit Keys', 'Graphite', 'Available', 'Cate4', 'Pro5'),
+('Item13', 'K380 TKL', 30, 'Wireless Scissor Keyboard/ PC/ Laptop/ Windows/ Mac/ Android/ iPad/ Apple TV', 'Gray', 'Available', 'Cate4', 'Pro5'),
+('Item14', 'Magic Keyboard with Numeric Keypad', 129, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
+('Item15', 'Magic Keyboard', 99, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
+('Item16', 'Magic Keyboard with Touch ID and Numeric Keypad', 199, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Black', 'Available', 'Cate4', 'Pro4'),
+('Item17', 'Magic Keyboard with Touch ID', 149, 'Wireless  Scissor Keyboard/ Mac computer/  iOS', 'Silver', 'Available', 'Cate4', 'Pro4'),
+('Item18', 'MacBook Air 13.6 inch Laptop', 993, 'Apple M2 chip - 8GB Memory - 256GB SSD', 'Silver', 'Available', 'Cate1', 'Pro4'),
+('Item19', 'MacBook Pro 1 Laptop', 1787, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
+('Item2', 'Laptop HP Spectre x360 14-ef0030TU', 1898, 'i7-1255U/ RAM 16GB/ 1TB SSD/ Windows 11', 'Blue', 'Available', 'Cate1', 'Pro2'),
+('Item20', 'MacBook Air 15 inch Laptop', 1489, 'M2 chip - 8GB Memory - 512GB SSD', 'Starlight', 'Available', 'Cate1', 'Pro4'),
+('Item21', 'MacBook Pro 16 inch Laptop', 2482, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
+('Item22', 'MacBook Pro 14 inch Laptop', 2284, 'M2 Pro chip - 16GB Memory - 512GB SSD', 'Gray', 'Available', 'Cate1', 'Pro4'),
+('Item23', 'TUF Gaming A16 16 inch 165Hz Gaming Laptop', 894, 'FHD-AMD Ryzen 7 7735HS with 16GB DDR5 Memory- Radeon RX7600S 512GB PCIe SSD', 'Black', 'Available', 'Cate1', 'Pro3'),
+('Item24', 'Vivobook 14 inch Laptop', 278, 'Intel Core 11th Gen i3 with 8GB Memory - 128GB SSD', 'Silver', 'Available', 'Cate1', 'Pro3'),
+('Item25', 'Zenbook 14\" 2.8K OLED Laptop', 546, 'Intel Evo Platform - 12th Gen Core i5 Processor - 8GB Memory - 256GB SSD', 'Blue', 'Available', 'Cate1', 'Pro3'),
+('Item26', 'ROG Zephyrus 1  inch240Hz Gaming Laptop QHD', 1589, 'Intel 13th Gen Core i9 with 16GB Memory - NVIDIA GeForce RTX 4070 - 1TB SSD', 'Black', 'Available', 'Cate1', 'Pro3'),
+('Item27', '17.3 inch Chromebook', 248, 'Intel Celeron N4500 with 4GB Memory - 64GB', 'Gray', 'Available', 'Cate1', 'Pro3'),
+('Item28', 'HP  14 inch Laptop', 149, 'Intel Celeron - 4GB Memory - 64GB eMMC', 'White', 'Available', 'Cate1', 'Pro2'),
+('Item29', 'HP 15.6 inch Touch-Screen Laptop', 645, 'Intel Core i7 - 16GB Memory - 512GB SSD', 'Silver', 'Available', 'Cate1', 'Pro2'),
+('Item3', 'Laptop ASUS Vivobook X415EA-EK675W', 407, 'i3-1115G4/ RAM 4GB/ 256GB SSD/ Windows 11', 'Silver', 'Available', 'Cate1', 'Pro3'),
+('Item30', 'HP ENVY 2-in-1 14 inch Full HD Touch-Screen Laptop', 655, 'Intel Core i5 - 8GB Memory - 512GB SSD', 'Silver', 'Available', 'Cate1', 'Pro2'),
+('Item31', 'HP 17.3 inch HD+ Laptop', 397, 'HP - 17.3\" HD+ Laptop', 'Silver', 'Available', 'Cate1', 'Pro2'),
+('Item32', 'HP Pavilion - 2-in-1 14 inch FHD Laptop', 377, 'Intel Core i3 - 8GB Memory - 256GB SSD', 'Blue', 'Available', 'Cate1', 'Pro2'),
+('Item4', 'Laptop ASUS ROG Flow X16 GV601VV-NL016W', 2562, 'i9-13900H/ RAM 16GB/ 1TB SSD/ Windows 11', 'Black', 'Available', 'Cate1', 'Pro3'),
+('Item5', 'Head Phone In-ear Sony MDR-EX15APBZE', 8, 'In-ear/ 3.5 mm/ wired/ No LED/ No Micro', 'Black', 'Available', 'Cate2', 'Pro1'),
+('Item6', 'Head Phone INZONE H7 SONY WH-G700/WZ', 223, 'Over-ear/ Bluetooth/ Wireless/ No LED/ Micro', 'White', 'Available', 'Cate2', 'Pro1'),
+('Item7', 'Gaming mouse ASUS GT200', 13, 'Gaming/ USB 2.0/ wired/ Switch Omron', 'Black', 'Available', 'Cate3', 'Pro3'),
+('Item8', 'Gaming mouse ASUS Gladius III WL Aimpoint', 115, 'Gaming/ USB, Bluetooth/ 2.4 GHz Wireless/ 19.000 dpi', 'Black', 'Available', 'Cate3', 'Pro3'),
+('Item9', 'Prodigy G213 Full-size', 50, 'Gaming/ Wired / Membrane/ RGB Backlighting', 'Black', 'Available', 'Cate4', 'Pro5');
+
     
 INSERT INTO Item_Picture (PictureID, Name, Content, ItemID)
 VALUES
@@ -142,7 +142,8 @@ INSERT INTO Order_ (OrderID, GuessName, Delivery_Address, Day, Phone, Note, Tota
 VALUES ('Order1', 'John Doe', '123 Main St', '2023-06-21', '123456789', 'Please deliver to the front door', 10497000, 'Pending', 'Acc1'),
 		('Order2', 'Jane Smith', '456 Elm St', '2023-06-22', '987654321', 'Call upon arrival', 45190000, 'Processing', 'Acc2'),
 		('Order3', 'Bob Johnson', '789 Oak St', '2023-06-23', '555555555', 'Leave package at the back porch', 9690000, 'Delivered', 'Acc3'),
-		('Order4', 'Bob Johnson', '789 Oak St', '2023-03-23', '555555555', 'Leave package at the back porch', 5300000, 'Returned', 'Acc3');
+		('Order4', 'Bob Johnson', '789 Oak St', '2023-03-23', '555555555', 'Leave package at the back porch', 5300000, 'Returned', 'Acc3'),
+		('Order5', 'Bob Johnson', '789 Oak St', '2023-03-23', '555555555', 'Leave package at the back porch', 5300000, 'Returned', 'Acc1');
 
 insert into  Order_Details (ItemID, OrderID , Quantity, Price)
 VALUES ('Item1', 'Order1', 1, 9999000),
@@ -170,7 +171,15 @@ VALUES  ('Cart1', 'Item1', 2),
         ('Cart2', 'Item2', 1),
 		('Cart3', 'Item3', 3);
         
+insert into Guess_Type (TypeID, TypeName, PointPercent, PointUpgrade , AmountUpgrade)
+values  ('1','Normal',1, 0, 0),
+		('2','Loyal',5, 5,5),
+		('3','VIP',10, 10 ,10);
         
+insert into BuyNumber (NumberID, TypeName, PointAdd)
+values ('1','One',1),
+		('2','Five',5),
+		('3','Ten',10);
 
 
 
