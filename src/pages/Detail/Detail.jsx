@@ -70,7 +70,7 @@ const Detail = () => {
         
         </div>
         <div className="flex flex-col col-span-2 lg:col-span-1">
-          <h3 className="text-[1.5rem] font-semibold leading-6 space tracking-[0.045rem] font-sans">Havic HV G-92 Gamepad</h3>
+          <h3 className="text-[1.5rem] font-semibold leading-6 space tracking-[0.045rem] font-sans">{Product[0]?.Name}</h3>
           <div className="flex py-6">
             <div className="flex items-center space-x-1">
               <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">

@@ -16,6 +16,7 @@ import EditUser from './components/Admin/EditUser.jsx'
 import AddUser from './components/Admin/AddUser.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import ChartManage from './pages/Chart/Chart.jsx'
+import Search from './components/Search/Search.jsx'
 
 function App() {
   return (
