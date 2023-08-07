@@ -171,10 +171,10 @@ VALUES  ('Cart1', 'Item1', 2),
         ('Cart2', 'Item2', 1),
 		('Cart3', 'Item3', 3);
         
-insert into Guess_Type (TypeID, TypeName, PointPercent, PointUpgrade , AmountUpgrade)
-values  ('1','Normal',1, 0, 0),
-		('2','Loyal',5, 5,5),
-		('3','VIP',10, 10 ,10);
+insert into Guess_Type (TypeID, TypeName, PointPercent, PointUpgrade , AmountUpgrade, Description)
+values  ('1','Normal',1, 0, 0,'Mức mặc định'),
+		('2','Loyal',5, 5,5,'Thanh toán từ 5 đơn có giá trị từ 500$'),
+		('3','VIP',10, 10 ,10,'Thanh toán từ 10 đơn có giá trị từ 500$');
         
 insert into BuyNumber (NumberID, TypeName, PointAdd)
 values ('1','One',1),

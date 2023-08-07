@@ -515,6 +515,8 @@ BEGIN
     DECLARE Id int;
     DECLARE MaxId int;
     DECLARE CurPoint int;
+    DECLARE AccountType varchar(50);
+    DECLARE Percent int;
 
 	select count(Order_.OrderID) into Num
 	from Order_
@@ -557,9 +559,70 @@ BEGIN
     end while;
     
     
+    
 END //
 
 DELIMITER ;
+-- --------------------------------------------------------
+-- lấy thông tin cơ bản của 1 Account
+DELIMITER //
+CREATE PROCEDURE GetAccountInfo(IN AccID varchar(50))
+BEGIN
+	DECLARE Num int;
+    DECLARE Price int;
+    DECLARE Id int;
+    DECLARE MaxId int;
+    DECLARE CurPoint int;
+    DECLARE AccountType varchar(50);
+    DECLARE Percent int;
+    
 
+	select count(Order_.OrderID) into Num
+	from Order_
+	where (Order_.AccountID = AccID) and (Order_.Total_Price > 500);
+    
+    select count(gt.TypeID) into  MaxId
+    from Guess_Type as gt;
+    
+    set ID = 1;
+    while Id <= MaxId do
 
+        select gt.PointUpgrade  into CurPoint
+		from Guess_Type as gt
+		where gt.TypeID = ID;
+        
+        if num = CurPoint then
+         select gt.TypeName , gt.PointPercent into AccountType , Percent
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+         elseif num > CurPoint  and Id + 1 <= MaxId then set ID = ID + 1;
+         
+         elseif num > CurPoint  and Id + 1 > MaxId then 
+         select gt.TypeName , gt.PointPercent into AccountType , Percent
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+         elseif num < CurPoint then 
+         set ID = ID - 1;
+         select gt.TypeName , gt.PointPercent into AccountType , Percent
+		 from Guess_Type as gt
+		 where gt.TypeID = ID;
+         set ID = ID + MaxId;
+         
+
+        end if;
+
+    end while;
+    
+    select *, AccountType, Percent
+    from Account as Ac
+    where Ac.AccountID = AccID;
+    
+    
+END //
+
+DELIMITER ;
 
