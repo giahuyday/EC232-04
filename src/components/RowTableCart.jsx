@@ -2,6 +2,8 @@ import { useState } from "react";
 import { MdCancel } from "react-icons/md"
 import { formatNumber } from "../helper/dataHelper";
 import axios from "axios";
+import { Link } from 'react-router-dom'
+
 const RowTableCart = ({ props, reset }) => {
 
     const [amount, setAmount] = useState(props.Quantity);
@@ -26,7 +28,7 @@ const RowTableCart = ({ props, reset }) => {
         await axios.post('http://localhost:3001/cartpost/update', quantity)
         reset()
     }
-   
+
     const [hovered, setHovered] = useState(false);
 
     const handleHover = () => {
@@ -77,17 +79,22 @@ const RowTableCart = ({ props, reset }) => {
                 </div>
 
                 <div>
-      
+
 
                     <div className="absolute top-[calc(50%_-_40px)] left-[calc(50%_-_545px)] w-[80px] h-[75px] overflow-hidden">
+
                         <img
                             className="absolute h-[80%] w-[95%] top-[14.81%] right-[3.7%] bottom-[12.96%] left-[3.7%] overflow-hidden"
                             alt=""
                             src={props.Content}
                         />
+
                     </div>
-                    <div className="absolute top-[39px] left-[130px] font-[600]  leading-[24px]">
-                        LCD Monitor
+                    <div className="absolute top-[39px] left-[130px] font-[600]  leading-[24px] overflow-hidden text-[#db4444] hover:text-[#d07777]">
+                        <Link to={`/detail/${props.itemID}`} >
+                            {props.Name}
+                        </Link>
+
                     </div>
                     {
                         hovered && (

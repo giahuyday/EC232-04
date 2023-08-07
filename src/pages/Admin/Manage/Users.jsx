@@ -13,7 +13,7 @@ const UsersManage = () => {
     setCurrentPage(currentPage+move)
   }
   const getUsers = () => {
-    Axios.get('http://localhost:3001/users').then((response) => {
+    Axios.get('http://localhost:3001/admin/users').then((response) => {
       SetUsers(response.data)
     })
   }
@@ -54,7 +54,7 @@ const UsersManage = () => {
                   <th scope="col" className="px-4 py-3">
                     AccountID
                   </th>
-                  <th scope="col" className="px-4 py-3 w-[300px]">
+                  <th scope="col" className="px-4 py-3 w-[150px]">
                     UserName
                   </th>
                   <th scope="col" className="px-4 py-3">

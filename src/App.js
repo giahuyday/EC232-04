@@ -17,6 +17,8 @@ import AddUser from './components/Admin/AddUser.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import ChartManage from './pages/Chart/Chart.jsx'
 import Search from './components/Search/Search.jsx'
+import Discount from './pages/Admin/Discount.jsx'
+import PointsManage from './pages/Admin/Manage/Points.jsx'
 
 function App() {
   return (
@@ -67,11 +69,13 @@ function AdminLayout() {
       <HeaderAdmin>
         <Routes>
           <Route path="/products" element={<ProductsManage/>} />
+          <Route path="/discounts" element={<Discount/>} />
           <Route path="/edit/products/:ItemID" element={<EditProduct />} />
           <Route path="/products/addnew" element={<AddProducts/>}/>
           <Route path="/users" element={<UsersManage/>} />
           <Route path="/edit/users/:AccountID" element={<EditUser/>} />
           <Route path="/users/addnew" element={<AddUser/>}/>
+          <Route path="/point" element={<PointsManage/>}/>
         </Routes>
     </HeaderAdmin>
     </div>

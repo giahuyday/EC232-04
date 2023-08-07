@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import RowTableProductsManage from '../../../components/Admin/RowTableProductsManage'
+import RowTableProductsManage from '../../components/Admin/RowTableProductsManage'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
 
-const Vochers = () => {
+const Discount = () => {
   const [products, SetProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   useEffect(() => {
@@ -169,4 +169,4 @@ const Vochers = () => {
   )
 }
 
-export default Vochers;
+export default Discount;

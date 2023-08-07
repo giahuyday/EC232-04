@@ -14,7 +14,7 @@ const ProductsManage = () => {
     setCurrentPage(currentPage+move)
   }
   const getProducts = () => {
-    Axios.get('http://localhost:3001/product').then((response) => {
+    Axios.get('http://localhost:3001/admin/products').then((response) => {
       SetProducts(response.data)
       console.log(response.data)
     })

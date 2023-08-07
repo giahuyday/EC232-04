@@ -5,6 +5,7 @@ const cors = require('cors')
 const IndexPageController = require('./controllers/IndexPageController')
 const CartController = require('./controllers/CartController')
 const ChartController = require('./controllers/ChartController')
+const UserController = require('./controllers/Admin/UserController')
 
 app.use(cors())
 app.use(express.json())
@@ -26,29 +27,8 @@ connection.connect((error) => {
   console.log('Đã kết nối thành công đến cơ sở dữ liệu MySQL');
 });
 
-app.get('/product', (req, res) => {
-  connection.query('SELECT * FROM Item', (err, result) => {
-    if (err) {
-      console.log('Fetch Failed !')
-    } else {
-      // console.log(rows[0])
-      console.log(result)
-      res.send(result)
-    }
-  })
-})
 
-app.get('/users', (req, res) => {
-  connection.query('SELECT * FROM Account', (err, result) => {
-    if (err) {
-      console.log('Fetch Failed !')
-    } else {
-      // console.log(rows[0])
-      console.log(result)
-      res.send(result)
-    }
-  })
-})
+
 
 app.post('/auth/login', (req, res) => {
   console.log(req.body)
@@ -219,10 +199,31 @@ app.get('/cart/loading/:ID', CartController.loading)
 app.post('/cartpost/update', CartController.updateQuantity)
 
 app.get('/chart/loading', ChartController.loading)
+app.get('/admin/points/getType', UserController.getType)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
-
-
+app.get('/admin/products', (req, res) => {
+  connection.query('SELECT * FROM Item', (err, result) => {
+    if (err) {
+      console.log('Fetch Failed !')
+    } else {
+      // console.log(rows[0])
+      console.log(result)
+      res.send(result)
+    }
+  })
+})
+app.get('/admin/users', (req, res) => {
+  connection.query('SELECT * FROM Account', (err, result) => {
+    if (err) {
+      console.log('Fetch Failed !')
+    } else {
+      // console.log(rows[0])
+      console.log(result)
+      res.send(result)
+    }
+  })
+})
 app.listen(3001, () => {
   console.log('Your server is run on 3001')
 })

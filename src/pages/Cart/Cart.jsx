@@ -2,26 +2,28 @@ import { Link } from "react-router-dom";
 import RowTableCart from "../../components/RowTableCart";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { formatNumber } from "../../helper/dataHelper";
+import { formatNumber, formatPoints } from "../../helper/dataHelper";
 import LoadingEffect from "../../components/Loading";
+import Modal from "../../components/Modal";
 const Cart = () => {
     const backButton = () => {
         window.history.back();
     }
     const [dataCart, setDataCart] = useState([])
     const [resetData, setResetData] = useState(false);
+    const [typeGuest, setTypeGuest] = useState();
     const reset = () => {
         setResetData(!resetData)
     }
     const totalPrice = dataCart.reduce((total, item) => total + item.Price * item.Quantity, 0);
-  
+
     useEffect(() => {
         axios.get('http://localhost:3001/cart/loading/acc1').then((result) => {
             setDataCart(() => result.data)
 
         })
     }, [resetData])
-
+    axios.get(`http://localhost:3001/admin/points/getType?id=Acc1`).then((result) => setTypeGuest(result.data[0][0].Type))
     return (
         <div className="my-[50px] ">
 
@@ -43,50 +45,68 @@ const Cart = () => {
                                     <RowTableCart props={item} key={item.id} reset={reset} />
                                 ))
                             ) : (
-                               <LoadingEffect/>
+                                <LoadingEffect />
                             )}
 
                         </div>
-                        <button onClick={backButton} className="flex flex-row items-start justify-start gap-[757px]">
-                            <div className="rounded flex flex-row py-4 px-12 items-center justify-center border-[1px] border-solid border-gray-400">
-                                <div className="relative leading-[24px] font-medium">
-                                    Return To Shop
-                                </div>
-                            </div>
-
-                        </button>
-                    </div>
-                    <div className="flex flex-row items-start justify-start gap-[173px]">
-                        <div className="flex flex-row items-end justify-start gap-[16px]">
-                            <div className="relative rounded box-border w-[300px] h-14 overflow-hidden shrink-0 border-text2">
-                                <input type='text' className=" relative rounded box-border w-[300px] h-14 overflow-hidden shrink-0 border-[1px] border-solid border-[gray]" />
-
-                            </div>
-                            <button className="rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text bg-[#db4444]">
-                                <div className="relative leading-[24px] font-medium ">
-                                    Apply Coupon
+                        <div className="flex justify-between w-[100%]">
+                            <button onClick={backButton} className="flex flex-row items-start justify-start gap-[757px]">
+                                <div className="rounded flex flex-row py-4 px-12 items-center justify-center border-[1px] border-solid border-gray-400">
+                                    <div className="relative leading-[24px] font-medium">
+                                        Return To Shop
+                                    </div>
                                 </div>
                             </button>
+                            <div className="">
+                                <div className="relative leading-[24px] font-medium">
+                                    <Modal></Modal>
+                                </div>
+                            </div>
                         </div>
-                        <div className="relative rounded box-border w-[470px] h-[324px] overflow-hidden shrink-0 border-[1.5px] border-solid border-text2">
+                    </div>
+
+                    <div className="flex justify-between w-[100%] ">
+                        <div className="flex flex-row items-end justify-start gap-[16px]">
+                            <div className="relative rounded box-border w-[400px] h-[324px] p-[20px] overflow-hidden shrink-0 border-text2 border-black border-[1px]">
+
+                                <div>Bạn đang là : <span className="text-[#db4444] font-[700]">Thành viên {typeGuest}</span> </div>
+                                <div>Bạn được tặng : <span className="text-[#db4444] font-[700]">{formatPoints(10000)}</span>  </div>
+                                <div>Bạn được thêm : <span className="text-[#db4444] font-[700]">1000</span> điểm cho đơn hàng này </div>
+                            </div>
+
+                        </div>
+                        <div className="relative rounded box-border w-[470px] h-[500px] overflow-hidden shrink-0 border-[1.5px] border-solid border-text2">
                             <div className="absolute top-[32px] left-[24px] text-xl leading-[28px] font-medium">
                                 Cart Total
                             </div>
-                            <div className="absolute top-[84px] left-[24px] flex flex-row items-start justify-start gap-[250px]">
-                                <div className="relative leading-[24px]">Subtotal:</div>
-                                <div className="relative leading-[24px]">{formatNumber(totalPrice)}</div>
+                            <div className="h-[500px] p-[40px] pt-[80px] gap-[30px] flex flex-col">
+                                <div className=" flex flex-row items-start justify-start gap-[250px]">
+                                    <div className="relative leading-[24px]">Subtotal:</div>
+                                    <div className="relative leading-[24px]">{formatNumber(totalPrice)}</div>
+                                </div>
+                                <div className="  flex flex-row items-start justify-start gap-[250px]">
+                                    <div className="relative leading-[24px]">Shipping:</div>
+                                    <div className="relative leading-[24px]">{formatNumber(20000)}</div>
+                                </div>
+                                <div className=" flex flex-row items-start justify-start gap-[275px]">
+                                    <div className="relative leading-[24px]">Total:</div>
+                                    <div className="relative leading-[24px] text-[#db4444] font-[700]">{formatNumber(totalPrice + 20000)}</div>
+                                </div>
                             </div>
-                            <div className="absolute top-[140px] left-[24px] flex flex-row items-start justify-start gap-[250px]">
-                                <div className="relative leading-[24px]">Shipping:</div>
-                                <div className="relative leading-[24px]">{formatNumber(20000)}</div>
+                            <div className="absolute top-[310px] left-[50px] flex flex-row items-start justify-start gap-[275px]">
+                                <div>Coin</div>
+                                <label class="relative ml-[10px] inline-flex items-center mb-5 cursor-pointer">
+                                    <input type="checkbox" value="" class="sr-only peer" />
+                                    <div class="w-9 h-5 bg-gray-200  peer-focus:ring-4  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#db4444]"></div>
+                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                </label>
                             </div>
-                            <div className="absolute top-[196px] left-[24px] flex flex-row items-start justify-start gap-[275px]">
-                                <div className="relative leading-[24px]">Total:</div>
-                                <div className="relative leading-[24px] text-[#db4444] font-[700]">{formatNumber(totalPrice + 20000)}</div>
-                            </div>
-                            <div className="absolute top-[236px] bg-[#db4444] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
-                                <div className="relative leading-[24px] font-medium">
-                                    Procees to checkout
+                            <div className="absolute top-[400px] flex items-end justify-center w-[100%] ">
+
+                                <div className="top-[300px] bg-[#db4444] h-[70px] mb-[20px] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
+                                    <div className="leading-[24px] font-medium">
+                                        Procees to checkout
+                                    </div>
                                 </div>
                             </div>
                             <img

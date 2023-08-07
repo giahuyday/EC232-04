@@ -78,9 +78,7 @@ create table Item_Picture(
 	PictureID varchar(50),
     Name nvarchar(50),
     Content varchar(500),
-    
     ItemID varchar(50),
-    
     primary key(PictureID)
 );
 
@@ -199,7 +197,6 @@ create table BuyNumber(
 	NumberID varchar(50),
     TypeName varchar(50),
     PointAdd  int,
-    
 	primary key(NumberID)
 );
 
