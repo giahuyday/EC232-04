@@ -9,7 +9,7 @@ import axios from "axios";
 
 const RowTablePointsManage = ({ item }) => {
     const [typeClient,setType]= useState()
-    axios.get(`http://localhost:3001/admin/points/getType?id=${item.AccountID}`).then((result)=>setType(result.data[0] [0]. Type))
+    axios.get(`http://localhost:3001/admin/points/getType/${item.AccountID}`).then((result)=>setType(result.data[0] [0]. Type))
     return (
         <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">
             <td className="w-4 px-4 py-3"></td>

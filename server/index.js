@@ -199,9 +199,13 @@ app.get('/cart/loading/:ID', CartController.loading)
 app.post('/cartpost/update', CartController.updateQuantity)
 
 app.get('/chart/loading', ChartController.loading)
-app.get('/admin/points/getType', UserController.getType)
+app.get('/admin/points/getInfo/:ID',UserController.getInfo)
+app.get('/admin/points/getType/:ID', UserController.getType)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
+
+
+app.get('/admin/users',UserController.loading)
 app.get('/admin/products', (req, res) => {
   connection.query('SELECT * FROM Item', (err, result) => {
     if (err) {
@@ -213,17 +217,7 @@ app.get('/admin/products', (req, res) => {
     }
   })
 })
-app.get('/admin/users', (req, res) => {
-  connection.query('SELECT * FROM Account', (err, result) => {
-    if (err) {
-      console.log('Fetch Failed !')
-    } else {
-      // console.log(rows[0])
-      console.log(result)
-      res.send(result)
-    }
-  })
-})
+
 app.listen(3001, () => {
   console.log('Your server is run on 3001')
 })

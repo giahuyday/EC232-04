@@ -200,7 +200,6 @@ create table BuyNumber(
 	NumberID varchar(50),
     TypeName varchar(50),
     PointAdd  int,
-    
 	primary key(NumberID)
 );
 

@@ -54,7 +54,7 @@ const PointsManage = () => {
                                             <th scope="col" className="px-4 py-3">
                                                 AccountID
                                             </th>
-                                            <th scope="col" className="px-4 py-3 w-[150px]">
+                                            <th scope="col" className="px-4 py-3">
                                                 UserName
                                             </th>
                                             <th scope="col" className="px-4 py-3">

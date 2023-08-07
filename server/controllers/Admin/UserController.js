@@ -3,10 +3,15 @@ const connection = require('../../Database/connecting.js');
 module.exports = UserController = {
   loading: async (req, res) => {
     try {
-      const categories = await queryCategories();
-      const items = await queryItems();
-
-      res.send({ categories, items });
+      connection.query('SELECT * FROM Account', (err, result) => {
+        if (err) {
+          console.log('Fetch Failed !')
+          res.status(500).send('Fetch Failed!');
+        } else {
+          console.log(result)
+          res.send(result)
+        }
+      })
     } catch (err) {
       console.error('Fetch Failed!', err);
       res.status(500).send('Fetch Failed!');
@@ -14,7 +19,7 @@ module.exports = UserController = {
   },
   getType:async (req,res) =>{
     try{
-        const id = req.param.id
+        const id = req.params.ID
         const type = await queryType(id);
         res.send(type);
     }
@@ -22,7 +27,19 @@ module.exports = UserController = {
         console.log(err);
         res.status(500).send('Fetch Failed!');
     }
+  },
+  getInfo:async (req,res) =>{
+    try{
+        const ID = req.params.ID
+        const type = await queryInfo(ID);
+        res.send(type);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send('Fetch Failed!');
+    }
   }
+  
 };
 
 function queryType(AccountID) {
@@ -36,4 +53,14 @@ function queryType(AccountID) {
     });
   });
 }
-
+function queryInfo(AccountID) {
+  return new Promise((resolve, reject) => {
+    connection.query('CALL GetAccountInfo(?)',[AccountID], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}

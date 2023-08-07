@@ -19,15 +19,15 @@ import ChartManage from './pages/Chart/Chart.jsx'
 import Search from './components/Search/Search.jsx'
 import Discount from './pages/Admin/Discount.jsx'
 import PointsManage from './pages/Admin/Manage/Points.jsx'
-
+import Page404 from './components/404/error404.jsx'
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<MainLayout />} />
         <Route path="/auth/*" element={<AuthLayout />} />
         <Route path="/auth/*" element={<AuthLayout />} />
         <Route path="/admin/*" element={<AdminLayout />} />
+        <Route path='/*'element={<MainLayout />} />
       </Routes>
     </BrowserRouter>
   )
@@ -39,12 +39,13 @@ function MainLayout() {
       <Header />
       <div className="main-content">
         <Routes>
-          <Route path="/" element={<IndexPage />} />
           <Route path="/detail/:ItemID" element={<Detail />} />
           <Route path="/cart/:ID" element={<Cart />} />
           <Route path="/chart" element={<ChartManage />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<IndexPage />} />
+          <Route path="*" element={<Page404 />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
           <Route path="/manage/users" element={<UsersManage />} /> */}
         </Routes>
@@ -59,6 +60,7 @@ function AuthLayout() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="*" element={<Page404 />} />
     </Routes>
   )
 }
@@ -75,7 +77,8 @@ function AdminLayout() {
           <Route path="/users" element={<UsersManage/>} />
           <Route path="/edit/users/:AccountID" element={<EditUser/>} />
           <Route path="/users/addnew" element={<AddUser/>}/>
-          <Route path="/point" element={<PointsManage/>}/>
+          <Route path="/points" element={<PointsManage/>}/>
+          <Route path="*" element={<Page404 />} />
         </Routes>
     </HeaderAdmin>
     </div>
