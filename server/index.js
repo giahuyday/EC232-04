@@ -196,6 +196,7 @@ app.get('/home/loading', IndexPageController.loading)
 app.post('/cartpost/add', CartController.addCart)
 app.post('/cartpost/remove', CartController.removeCart)
 app.get('/cart/loading/:ID', CartController.loading)
+app.get('/cart/discounts', CartController.loading)
 app.post('/cartpost/update', CartController.updateQuantity)
 
 app.get('/chart/loading', ChartController.loading)
@@ -205,6 +206,7 @@ app.get('/admin/points/getType/:ID', UserController.getType)
 
 
 
+app.get('/admin/users/findUsers/:value',UserController.findUsers)
 app.get('/admin/users',UserController.loading)
 app.get('/admin/products', (req, res) => {
   connection.query('SELECT * FROM Item', (err, result) => {

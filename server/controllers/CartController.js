@@ -81,6 +81,21 @@ module.exports = CartContoller = {
       console.error('Fetch Failed!', err);
       res.status(500).send('Fetch Failed!');
     }
+  },
+  getDiscounts : async(req,res) =>{
+    try {
+      connection.query('select * From Guess_Type',(err, result)=>{
+        if (err) {
+          console.log(err)
+        } else {
+         res.send(result)
+        }
+      })
+    }
+    catch(err){
+      console.error('Fetch Failed!', err);
+      res.status(500).send('Fetch Failed!');
+    }
   }
 };
 

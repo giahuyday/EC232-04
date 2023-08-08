@@ -1,14 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Search from './Search/Search'
 import SearchResultsList from './Search/SearchResultList'
 import { useState } from 'react'
 
 const Header = () => {
-  
-  const [results, setResults] = useState([])
 
+  const [results, setResults] = useState([])
+const Username =  sessionStorage.getItem('UserName')
+  const handleLogout = ()=>{
+    // sessionStorage.clear()
+console.log( sessionStorage.getItem('UserName'))
+    sessionStorage.clear()
+    window.location.href='/ '
+}
   return (
     <header className="px-4 lg:px-12">
       <nav className="px-4 lg:px-6 py-2.5">
@@ -52,7 +58,23 @@ const Header = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </Link>
+            <div className="flex items-center md:order-2">
+                  
+                  {(Username===null||Username===undefined) ? (
+                      <div>
+                      <Link to="auth/login" className="text-gray-800 da:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:hover:bg-gray-700 focus:outline-none da:focus:ring-gray-800 hover:border-[2px] border-[2px] hover:border-blue-500">Login</Link>
+                      <button onClick={handleLogout}  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:bg-blue-600 da:hover:bg-blue-700 focus:outline-none da:focus:ring-blue-800">Sign Up</button>
+                  </div>
+                  ) : (
+                      <div>
+                          <b className="text-gray-800 da:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:hover:bg-gray-700 focus:outline-none da:focus:ring-gray-800">Hi,{Username}</b>
+                          <button onClick={handleLogout} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:bg-blue-600 da:hover:bg-blue-700 focus:outline-none da:focus:ring-blue-800">Logout</button>
+                      </div>
+                  )}
+
+              </div>
           </div>
+          
         </div>
         <SearchResultsList results={results} />
       </nav>

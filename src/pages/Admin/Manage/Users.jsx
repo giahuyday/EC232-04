@@ -12,6 +12,13 @@ const UsersManage = () => {
     if(currentPage===1&&move===-1) return;
     setCurrentPage(currentPage+move)
   }
+  
+  const findUsers = (value) => {
+    Axios.get(`http://localhost:3001/admin/users/findUsers/${value}`).then((response) => {
+      SetUsers(response.data)
+      // console.log(response.data)
+    })
+  }
   const getUsers = () => {
     Axios.get('http://localhost:3001/admin/users').then((response) => {
       SetUsers(response.data)
@@ -43,8 +50,8 @@ const UsersManage = () => {
         <section className="bg-white dbg-gray-900 py-3 sm:py-5">
           <div className="px-4 mx-auto max-w-screen-2xl lg:px-12 mt-[10px]">
             <div className="relative overflow-hidden bg-white shadow-md dbg-gray-800 ">
-              <div className="h-[40px] w-[300px] mb-[20px]">
-                <input type="text" placeholder='Enter Find Item' className='p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]' />
+              <div className="h-[40px] w-[500px] mb-[20px]">
+                <input type="text" placeholder='Enter Find Users By AccountID,Username or Phone' onChange={(e)=>{findUsers(e.target.value)}} className='p-[5px] h-[40px] w-[500px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]' />
               </div>
               <div className="overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 dtext-gray-400">

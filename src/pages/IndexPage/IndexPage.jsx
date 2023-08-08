@@ -4,7 +4,9 @@ import CardProductHome from "../../components/CardProductHome";
 import { AiFillCaretLeft, AiFillCaretRight, AiOutlineCamera } from 'react-icons/ai';
 import { BsPhone, BsSmartwatch } from 'react-icons/bs';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
-import { BiHeadphone } from 'react-icons/bi';
+import { BiHeadphone,BiTimeFive } from 'react-icons/bi';
+import { FaMoneyBillAlt } from 'react-icons/fa';
+import { CiDeliveryTruck } from 'react-icons/ci';
 import { SiYoutubegaming } from 'react-icons/si';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -430,7 +432,7 @@ const IndexPage = () => {
         </div>
         <div className="absolute top-[5161px] left-[249px] flex flex-row items-center justify-center gap-[88px] text-xl text-text2">
           <div className="flex flex-col items-center justify-start gap-[24px]">
-            <img className="relative w-20 h-20" alt="" src="/services.svg" />
+            <CiDeliveryTruck className="relative w-20 h-20" alt="" src="/services.svg" />
             <div className="flex flex-col items-center justify-start gap-[8px]">
               <div className="relative leading-[28px] font-semibold">
                 FREE AND FAST DELIVERY
@@ -441,7 +443,7 @@ const IndexPage = () => {
             </div>
           </div>
           <div className="w-[262px] flex flex-col items-center justify-start gap-[24px]">
-            <img className="relative w-20 h-20" alt="" src="/services1.svg" />
+            <BiTimeFive className="relative w-20 h-20" alt="" src="/services1.svg" />
             <div className="flex flex-col items-center justify-start gap-[8px]">
               <div className="relative leading-[28px] font-semibold">
                 24/7 CUSTOMER SERVICE
@@ -452,7 +454,7 @@ const IndexPage = () => {
             </div>
           </div>
           <div className="flex flex-col items-center justify-start gap-[24px]">
-            <img className="relative w-20 h-20" alt="" src="/services2.svg" />
+            <FaMoneyBillAlt className="relative w-20 h-20" alt="" src="/services2.svg" />
             <div className="flex flex-col items-center justify-start gap-[8px]">
               <div className="relative leading-[28px] font-semibold">
                 MONEY BACK GUARANTEE

@@ -60,13 +60,13 @@ const RowTableCart = ({ props, reset }) => {
                     <div className="absolute top-[6px] left-[12px] flex flex-row items-center justify-start gap-[16px]">
                         <div className="flex flex-col items-start justify-start">
                             <div className="w-[100px]">
-                                <div className="inline-flex items-center px-4 font-semibold text-gray-500  border-[2px] rounded-md  ">
+                                <div className="inline-flex items-center px-4 font-semibold text-gray-500  border-[2px] rounded-md" key={props.ItemID}>
                                     <button className="py-2 hover:text-gray-700 flex justify-center" onClick={handleMinus}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-dash" viewBox="0 0 25 25">
                                             <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"></path>
                                         </svg>
                                     </button>
-                                    <input type="number" className="w-12 h-10 px-2 py-4 text-center border-0 rounded-md bg-gray-100  md:text-right" placeholder="1" value={amount} />
+                                    <input type="number" className="w-[70px] h-10 px-2 py-4 text-center border-0 rounded-md bg-gray-100  md:text-right" placeholder="1" min='0' value={amount} />
                                     <button className="py-2 hover:text-gray-700" onClick={handleAdd} >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-plus" >
                                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>

@@ -65,7 +65,7 @@ const Cart = () => {
                             </div>
                             {dataCart.length > 0 ? (
                                 dataCart.map((item) => (
-                                    <RowTableCart props={item} key={item.id} reset={reset} />
+                                    <RowTableCart props={item} key={item.ItemID} reset={reset} />
                                 ))
                             ) : (
                                 <LoadingEffect />

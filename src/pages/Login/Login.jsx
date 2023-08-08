@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const [userName, setUserName] = useState('')
   const [Password, setPassword] = useState('')
+  const [data,setData] = useState('')
   const Navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -12,10 +13,14 @@ const Login = () => {
       userName: userName,
       Password: Password,
     }).then((response) => {
-      console.log(response)
       if (response.data !== "Failed") {
+      
+        console.log(response.data[0].AccountID)
+        sessionStorage.setItem('AccountID',response.data[0].AccountID)
+        sessionStorage.setItem('UserName',response.data[0].UserName)
+        sessionStorage.setItem('Name',response.data[0].Name)
         Navigate('/')
-        console.log(response.data)
+      return;
       } else {
         alert('Login Failed !')
       }
