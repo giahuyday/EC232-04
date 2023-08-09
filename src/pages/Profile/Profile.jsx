@@ -1,14 +1,22 @@
 import { Radio, Space, Tabs } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const { TabPane } = Tabs
 
-const Profile = () => {
+const Profile = ({users}) => {
+  console.log(users)
   const [tabPosition, setTabPosition] = useState('left')
   const changeTabPosition = (e) => {
     setTabPosition(e.target.value)
   }
 
+  // useEffect(() => {
+  //   Axios.post(`http://localhost:3001/user/${user.AccountID}`, {
+  //     ItemID: ItemID,
+  //   }).then((response) => {
+  //     SetProduct(response.data)
+  //   })
+  // }, [])
   return (
     <div className="h-[100%] flex flex-col ">
       <h1 className="text-3xl font-medium my-8">Billing Details</h1>
@@ -44,13 +52,13 @@ const Profile = () => {
                     <label className="text-base font-semibold text-black" htmlFor="name">
                       First Name
                     </label>
-                    <input type="name" id="name" name="name" placeholder="Enter your name" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                    <input type="name" id="name" name="name" placeholder="Enter your name" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Name} />
                   </div>
                   <div className="mb-[32px] flex-1">
                     <label className="text-base font-semibold text-black" htmlFor="Last Name">
                       Last Name
                     </label>
-                    <input type="text" id="Last Name" name="Last Name" placeholder="Your Last Name" className="w-full p-2  rounded mt-1 bg-[#F5F5F5] outline-none" />
+                    <input type="text" id="Last Name" name="Last Name" placeholder="Your Last Name" className="w-full p-2  rounded mt-1 bg-[#F5F5F5] outline-none" defaultValue={users.Name} />
                   </div>
                 </div>
                 <div className="flex gap-6">
@@ -58,18 +66,18 @@ const Profile = () => {
                     <label className="text-base font-semibold text-black" htmlFor="email">
                       Email
                     </label>
-                    <input type="name" id="email" name="email" placeholder="20123456@fit.hcmus.edu.com" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                    <input type="name" id="email" name="email" placeholder="20123456@fit.hcmus.edu.com" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Email}/>
                   </div>
                   <div className="mb-[32px] flex-1">
                     <label className="text-base font-semibold text-black" htmlFor="address">
                       Address
                     </label>
-                    <input type="text" id="address" name="address" placeholder="224 Nguyễn Văn Cừ, Quận 5, TP HCM" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                    <input type="text" id="address" name="address" placeholder="224 Nguyễn Văn Cừ, Quận 5, TP HCM" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue = {users.Adress}/>
                   </div>
                 </div>
                 <div className="mb-[32px]">
-                  <label className="text-base font-semibold text-black">Password Changes</label>
-                  <input type="password" placeholder="Current Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
+                  <label className="text-base font-semibold text-black">Current Password</label>
+                  <input type="password" placeholder="Current Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Password}/>
                   <input type="password" placeholder="New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
                   <input type="password" placeholder="Confirm New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
                 </div>

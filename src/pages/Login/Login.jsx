@@ -2,30 +2,29 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-const Login = () => {
+const Login = ({SetUser}) => {
   const [userName, setUserName] = useState('')
   const [Password, setPassword] = useState('')
   const [data,setData] = useState('')
   const Navigate = useNavigate()
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     Axios.post('http://localhost:3001/auth/login', {
       userName: userName,
       Password: Password,
     }).then((response) => {
+      console.log(response.data);
       if (response.data !== "Failed") {
-      
-        console.log(response.data[0].AccountID)
-        sessionStorage.setItem('AccountID',response.data[0].AccountID)
-        sessionStorage.setItem('UserName',response.data[0].UserName)
-        sessionStorage.setItem('Name',response.data[0].Name)
-        Navigate('/')
-      return;
+        sessionStorage.setItem('AccountID', response.data[0].AccountID);
+        sessionStorage.setItem('UserName', response.data[0].UserName);
+        sessionStorage.setItem('Name', response.data[0].Name);
+        Navigate('/');
+        SetUser(response.data[0]); // Truyền thông tin người dùng qua hàm SetUser
       } else {
-        alert('Login Failed !')
+        alert('Login Failed !');
       }
-    })
-  }
+    });
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-white">
@@ -57,9 +56,9 @@ const Login = () => {
                     </label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-100 hover:underline dark:text-primary-100">
+                {/* <a href="#" className="text-sm font-medium text-primary-100 hover:underline dark:text-primary-100">
                   Forgot password?
-                </a>
+                </a> */}
               </div>
               <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:bg-red-700" onClick={handleSubmit}>
                 Sign in
