@@ -16,34 +16,35 @@ import EditUser from './components/Admin/EditUser.jsx'
 import AddUser from './components/Admin/AddUser.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import ChartManage from './pages/Chart/Chart.jsx'
-import Search from './components/Search/Search.jsx'
 import Discount from './pages/Admin/Discount.jsx'
 import PointsManage from './pages/Admin/Manage/Points.jsx'
 import Page404 from './components/404/error404.jsx'
+import { useState } from 'react'
+
 function App() {
+  const [users, SetUser] = useState([])
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth/*" element={<AuthLayout />} />
-        <Route path="/auth/*" element={<AuthLayout />} />
+        <Route path="/auth/*" element={<AuthLayout SetUser={SetUser}/>} />
         <Route path="/admin/*" element={<AdminLayout />} />
-        <Route path='/*'element={<MainLayout />} />
+        <Route path='/*'element={<MainLayout users={users}/>} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-function MainLayout() {
+function MainLayout({users}) {
   return (
     <>
       <Header />
       <div className="main-content">
         <Routes>
           <Route path="/detail/:ItemID" element={<Detail />} />
-          <Route path="/cart/:ID" element={<Cart />} />
+          <Route path="/cart/:AccountID" element={<Cart users={users}/>} />
           <Route path="/chart" element={<ChartManage />} />
           <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile users={users}/>} />
           <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
@@ -55,10 +56,10 @@ function MainLayout() {
   )
 }
 
-function AuthLayout() {
+function AuthLayout({SetUser}) {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login SetUser={SetUser} />}/>
       <Route path="/signup" element={<SignUp />} />
       <Route path="*" element={<Page404 />} />
     </Routes>

@@ -35,7 +35,7 @@ const EditUser = () => {
             UserName: User.UserName,
             Password: User.Password,
             Name: User.Name,
-            Birth: User.Birth,
+            Birth: moment(User.Birth).format("YYYY-MM-DD"),
             Money: User.Money,
             Email: User.Email,
             Phone: User.Phone,
@@ -80,7 +80,8 @@ const EditUser = () => {
                                 <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900">
                                     Date of Birth
                                 </label>
-                                <input type="date" name="date" id="date" placeholder={"Date of Birth" || User[0]?.Birth} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value={moment(User.Birth).format("YYYY-MM-DD")} onChange={(e) =>  setUser({...User, Birth: e.target.value})}  />
+                                <input type="date" name="date" id="date" placeholder={"Date of Birth" || User[0]?.Birth} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block 
+                                w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value={moment(User.Birth).format("YYYY-MM-DD")} onChange={(e) =>  setUser({...User, Birth: e.target.value})}  />
                             </div>
                             <div>
                                 <label htmlFor="Money" className="block mb-2 text-sm font-medium text-gray-900">

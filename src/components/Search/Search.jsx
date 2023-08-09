@@ -1,10 +1,9 @@
 import Axios from 'axios'
 import React from 'react'
 import { useState} from 'react'
-
 const SearchBar = ({setResults}) => {
     const [search, setSearch] = useState("")
-    const fetchDate = (value) => {
+    const fetchData = (value) => {
         Axios.get(`http://localhost:3001/product`)
         // .then((response)) 
             // console.log(products.filter(response.data))
@@ -20,7 +19,7 @@ const SearchBar = ({setResults}) => {
         // setImgMain(Product[0]?.Content)
     const handleSearch = (value) => {
         setSearch(value)
-        fetchDate(value)
+        fetchData(value)
         setResults(value)
     }
     return(

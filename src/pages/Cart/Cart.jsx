@@ -7,7 +7,8 @@ import { formatNumber, formatPoints, calBeDiscount, formatNum } from "../../help
 import LoadingEffect from "../../components/Loading";
 import { BsCoin } from 'react-icons/bs'
 import Modal from "../../components/Modal";
-const Cart = () => {
+const Cart = ({users}) => {
+    // console.log(users)
     const backButton = () => {
         window.history.back();
     }
@@ -24,9 +25,9 @@ const Cart = () => {
     const endPrice = totalPrice + ship - coin
 
     useEffect(() => {
-        axios.get('http://localhost:3001/cart/loading/acc1').then((result) => {
+        axios.get(`http://localhost:3001/cart/loading/` + users.AccountID).then((result) => {
             setDataCart(() => result.data)
-
+            console.log(result.data)
         })
         axios.get(`http://localhost:3001/admin/points/getInfo/Acc1`).then((result) => setInfoGuest(result.data[0][0]))
     }, [resetData])

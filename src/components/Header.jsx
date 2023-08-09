@@ -8,7 +8,7 @@ import { useState } from 'react'
 const Header = () => {
 
   const [results, setResults] = useState([])
-const Username =  sessionStorage.getItem('UserName')
+  const Username =  sessionStorage.getItem('UserName')
   const handleLogout = ()=>{
     // sessionStorage.clear()
 console.log( sessionStorage.getItem('UserName'))
