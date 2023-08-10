@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ref } from 'react'
 import Axios from 'axios'
 import { redirect, useNavigate, useParams } from 'react-router-dom'
 import { InputNumber } from 'antd'
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { BsArrowRepeat } from 'react-icons/bs'
 import { useSpring, animated } from 'react-spring'
-import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
+import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Stack } from '@chakra-ui/react'
 import { formatNumber } from '../../helper/dataHelper'
 import ModalImage from 'react-modal-image'
-
+import { Radio, RadioGroup } from '@chakra-ui/react'
 const parseProductDetails = (product) => {
   let imagesLinks = []
-  const { Description, Name, Price, ProDucerID, Status } = product?.[0]
+  const { CateID, Color, ItemID, PictureID, Description, Name, Price, ProDucerID, Status } = product?.[0]
   product.map((p, i) => {
     const imgLink = p.Content
     imagesLinks.push(imgLink)
@@ -20,9 +20,13 @@ const parseProductDetails = (product) => {
     Description,
     Name,
     Price,
+    Color,
     ProDucerID,
     Status,
     imagesLinks,
+    CateID,
+    ItemID,
+    PictureID,
   }
 }
 
@@ -32,6 +36,9 @@ const Detail = () => {
   const [amount, setAmount] = useState(1)
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
+  const [color, setColor] = useState('')
+  const [isFlyIn, setIsFlyIn] = useState(false)
+
   const redirect = useNavigate()
   const onAmountChange = (value) => {
     setAmount(value)
@@ -50,6 +57,7 @@ const Detail = () => {
       console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)
+      setColor(product.Color)
       console.log('Fetch successfull', product)
     } catch (error) {
       console.log('error ne`: ', error)
@@ -69,7 +77,6 @@ const Detail = () => {
   function handleShowClickedImage(e) {
     setImgMain(e.target.src)
   }
-  const [isFlyIn, setIsFlyIn] = useState(false)
 
   const handleFlyInClick = () => {
     setIsFlyIn(true)
@@ -132,12 +139,22 @@ const Detail = () => {
           <div className="text-[1.5rem] tracking-[0.045rem] mb-4">$ {product.Price !== 0 ? formatNumber(product.Price) : 100}</div>
           <p className="text-justify">{product.Description && product.Description.length < 20 ? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quas placeat inventore commodi assumenda possimus. Dolor voluptatibus quibusdam, consequatur dicta cumque nam est quos placeat, necessitatibus a autem similique repudiandae ut quaerat error porro sapiente inventore culpa, numquam cum iure! Quae numquam voluptatum accusantium saepe ducimus praesentium, officia' : ''}</p>
           <div className="h-[1px] w-full my-4 bg-black "></div>
-          <div className="flex gap-6">
-            <p className="text-[20px]">Colours: </p>
-            <div className="flex gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-300"></div>
-              <div className="w-6 h-6 rounded-full bg-red-300"></div>
-            </div>
+          <div className="flex gap-4">
+            <p className="text-[20px]">Colors: </p>
+            <RadioGroup onChange={setColor} value={color} className="flex gap-2">
+              <Stack direction="row">
+                {product?.Color ? (
+                  <Radio value={product?.Color?.toLowerCase()}>
+                    <div className={`w-6 h-6 rounded-full bg-${product?.Color?.toLowerCase()}`}></div>
+                  </Radio>
+                ) : (
+                  <>
+                    <div className="w-6 h-6 rounded-full bg-gray-300"></div>
+                    <div className="w-6 h-6 rounded-full bg-red-300"></div>
+                  </>
+                )}
+              </Stack>
+            </RadioGroup>
           </div>
           <div className="flex gap-4 items-center mt-2">
             <div className="text-[20px]">Size: </div>
@@ -181,7 +198,7 @@ const Detail = () => {
               <CiDeliveryTruck size={48} />
               <div className="">
                 <div className="text-[1.5rem] font-semibold">Free shipping</div>
-                <div className="underline">Enter your postal code for Delivery Availability</div>
+                <div className="underline">Enter your postal code for Delivery availability</div>
               </div>
               <div className="">
                 <BsArrowRepeat size={48} />

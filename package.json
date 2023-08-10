@@ -37,7 +37,8 @@
     "scss": "^0.2.4",
     "tailwind-datepicker-react": "^1.4.0",
     "tw-elements": "^1.0.0-beta2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
