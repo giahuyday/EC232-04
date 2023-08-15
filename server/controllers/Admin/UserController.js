@@ -3,7 +3,7 @@ const connection = require('../../Database/connecting.js');
 module.exports = UserController = {
   loading: async (req, res) => {
     try {
-      connection.query('SELECT * FROM Account', (err, result) => {
+      connection.query('select *,GetGuessTypeFunction(AccountID) AS Type from Account;', (err, result) => {
         if (err) {
           console.log('Fetch Failed !')
           res.status(500).send('Fetch Failed!');
@@ -21,7 +21,7 @@ module.exports = UserController = {
     try {
       const result = req.params.value ||''
       const value = '%'+result+'%'
-      connection.query('SELECT * FROM Account where UserName LIKE ? or Phone LIKE ? or AccountID LIKE ?',[value,value,value], (err, result) => {
+      connection.query('SELECT *,GetGuessTypeFunction(AccountID) AS Type FROM Account where UserName LIKE ? or Phone LIKE ? or AccountID LIKE ?',[value,value,value], (err, result) => {
         if (err) {
           console.log('Fetch Failed !')
           res.status(500).send('Fetch Failed!');

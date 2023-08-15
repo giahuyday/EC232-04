@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -8,8 +8,7 @@ import axios from "axios";
 
 
 const RowTablePointsManage = ({ item }) => {
-    const [typeClient,setType]= useState()
-    axios.get(`http://localhost:3001/admin/points/getType/${item.AccountID}`).then((result)=>setType(result.data[0] [0]. Type))
+
     return (
         <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">
             <td className="w-4 px-4 py-3"></td>
@@ -30,18 +29,18 @@ const RowTablePointsManage = ({ item }) => {
             <td className="px-4 py-2 text-[15px] text-[black] font-[500]">
             <div
                   className={`inline-block w-4 h-4 mr-2 ${
-                     typeClient === "Normal"
+                    item.Type === "Normal"
                         ? "bg-green-400"
-                        : typeClient === "Vip"
+                        : item.Type === "Vip"
                         ? "bg-yellow-400"
-                        : typeClient === "Loyal"
+                        : item.Type === "Loyal"
                         ? "bg-pink-600"
                        
                         : "bg-yellow-00"
                   } rounded-full`}
                   
                ></div>
-               {typeClient}
+               {item.Type}
             </td>
 
            
