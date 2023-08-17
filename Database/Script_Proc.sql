@@ -626,3 +626,117 @@ END //
 
 DELIMITER ;
 
+-- ------------------------------------------------------
+-- lấy loại khách nhưng là fuction
+DELIMITER //
+CREATE FUNCTION GetGuessTypeFunction(AccID varchar(50)) RETURNS varchar(50)
+BEGIN
+    DECLARE Num int;
+    DECLARE Price int;
+    DECLARE Id int;
+    DECLARE MaxId int;
+    DECLARE CurPoint int;
+    DECLARE AccountType varchar(50);
+    DECLARE Percent int;
+    DECLARE GuessedType varchar(50);
+
+    SELECT COUNT(Order_.OrderID) INTO Num
+    FROM Order_
+    WHERE (Order_.AccountID = AccID) AND (Order_.Total_Price > 500);
+
+    SELECT COUNT(gt.TypeID) INTO MaxId
+    FROM Guess_Type as gt;
+
+    SET ID = 1;
+    WHILE Id <= MaxId DO
+        SELECT gt.PointUpgrade INTO CurPoint
+        FROM Guess_Type as gt
+        WHERE gt.TypeID = ID;
+
+        IF num = CurPoint THEN
+            SELECT gt.TypeName INTO GuessedType
+            FROM Guess_Type as gt
+            WHERE gt.TypeID = ID;
+            SET ID = ID + MaxId;
+
+        ELSEIF num > CurPoint AND Id + 1 <= MaxId THEN
+            SET ID = ID + 1;
+
+        ELSEIF num > CurPoint AND Id + 1 > MaxId THEN
+            SELECT gt.TypeName INTO GuessedType
+            FROM Guess_Type as gt
+            WHERE gt.TypeID = ID;
+            SET ID = ID + MaxId;
+
+        ELSEIF num < CurPoint THEN
+            SET ID = ID - 1;
+            SELECT gt.TypeName INTO GuessedType
+            FROM Guess_Type as gt
+            WHERE gt.TypeID = ID;
+            SET ID = ID + MaxId;
+
+        END IF;
+
+    END WHILE;
+
+    RETURN GuessedType;
+END //
+DELIMITER ;
+
+
+-- ------------------------------------------------------
+-- Tính điểm tích lũy sau khi thanh toán đơn
+DELIMITER //
+CREATE PROCEDURE CalPoint(IN OrderID varchar(50))
+BEGIN
+	declare Point int;
+    declare AccID varchar(50);
+    declare Guesstype varchar(50);
+    declare PercentType int;
+    declare Bill bigint;
+    declare temp bigint;
+    
+    -- Lấy số bill qui ra điểm 
+    select Order_.AccountID into AccID from Order_ where Order_.OrderID = OrderID;
+    select Order_.Total_Price into Bill from Order_ where Order_.OrderID = OrderID;
+    
+    If AccID is not Null then
+    Set Guesstype = GetGuessTypeFunction(AccID);
+    
+    select gt.PointUpgrade into PercentType
+    from Guess_Type as gt
+    where gt.TypeName = Guesstype;
+    
+    set Bill = Bill * PercentType/100;
+    
+    -- lấy các loại cate qui ra điểm 
+    
+    SELECT sum(ca.PointAdd) into temp
+	FROM Order_Details as od, Item as it, Category as ca
+	WHERE od.OrderID = OrderID and od.ItemID = it.ItemID and it.CateID = ca.CateID;
+    
+    set Bill = Bill + temp;
+    
+    -- lấy số lượng món để ra điểm
+    
+    SELECT sum(od.Quantity) into temp
+	FROM Order_Details as od
+	WHERE od.OrderID =  OrderID; 
+    
+    set Bill = Bill + temp;
+    
+    select Bill as Result;
+    
+    update Account 
+    set Money = Money + Bill
+    where AccountID = AccID;
+    
+    elseif AccID is Null then
+    select 0 as Result;
+    
+    end if;
+    
+
+END //
+
+DELIMITER ;

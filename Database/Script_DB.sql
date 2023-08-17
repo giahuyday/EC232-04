@@ -11,6 +11,7 @@ create table Account(
     Email varchar(50),
     Phone varchar(50),
     Adress nvarchar(100),
+    LockStatus bool DEFAULT false,
     
     primary key(AccountID)
 );
@@ -200,6 +201,7 @@ create table BuyNumber(
 	NumberID varchar(50),
     TypeName varchar(50),
     PointAdd  int,
+    
 	primary key(NumberID)
 );
 

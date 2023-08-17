@@ -1,16 +1,13 @@
 const mysql = require('mysql');
 // connect db bình thường 
-
-
 const connection = mysql.createConnection({
-  host: 'db4free.net',
-  user: 'dangminh_dbms',
-  password: 'dangminh_dbms',
-  database: 'dangminh_dbms',
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'ec_group04'
 });
-;
 
-// 2 hàm này sẽ chạy lần lượt sau khi nhấn nút lưu cart 
+// 2 hàm này sẽ chạy lần lượt sau khi nhấn nút thanh toán 
 const Name = 'Grian';
 const Address = '12 London';
 const Phone = '090855410';
