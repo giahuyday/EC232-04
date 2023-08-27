@@ -1,9 +1,10 @@
 import { Radio, Space, Tabs } from 'antd'
 import React, { useEffect, useState } from 'react'
+import MyOrders from './MyOrders/MyOrders'
 
 const { TabPane } = Tabs
 
-const Profile = ({users}) => {
+const Profile = ({ users }) => {
   console.log(users)
   const [tabPosition, setTabPosition] = useState('left')
   const changeTabPosition = (e) => {
@@ -66,18 +67,18 @@ const Profile = ({users}) => {
                     <label className="text-base font-semibold text-black" htmlFor="email">
                       Email
                     </label>
-                    <input type="name" id="email" name="email" placeholder="20123456@fit.hcmus.edu.com" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Email}/>
+                    <input type="name" id="email" name="email" placeholder="20123456@fit.hcmus.edu.com" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Email} />
                   </div>
                   <div className="mb-[32px] flex-1">
                     <label className="text-base font-semibold text-black" htmlFor="address">
                       Address
                     </label>
-                    <input type="text" id="address" name="address" placeholder="224 Nguyễn Văn Cừ, Quận 5, TP HCM" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue = {users.Adress}/>
+                    <input type="text" id="address" name="address" placeholder="224 Nguyễn Văn Cừ, Quận 5, TP HCM" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Adress} />
                   </div>
                 </div>
                 <div className="mb-[32px]">
                   <label className="text-base font-semibold text-black">Current Password</label>
-                  <input type="password" placeholder="Current Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Password}/>
+                  <input type="password" placeholder="Current Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" defaultValue={users.Password} />
                   <input type="password" placeholder="New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
                   <input type="password" placeholder="Confirm New Password" className="w-full p-2 border outline-none rounded mt-1 bg-[#F5F5F5]" />
                 </div>
@@ -100,7 +101,7 @@ const Profile = ({users}) => {
         <TabPane tab="My Orders" key="2">
           <Tabs tabPosition="top" style={{ marginBottom: 24, height: '100%' }}>
             <TabPane className="min-h-700" tab="My Returns" key="2-1">
-              Content of My Returns
+              <MyOrders />
             </TabPane>
             <TabPane className="min-h-700" tab="My Cancellations" key="2-2">
               Content of My Cancellations

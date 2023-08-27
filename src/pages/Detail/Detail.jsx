@@ -12,7 +12,7 @@ import { Radio, RadioGroup } from '@chakra-ui/react'
 const parseProductDetails = (product) => {
   let imagesLinks = []
   const { CateID, Color, ItemID, PictureID, Description, Name, Price, ProDucerID, Status } = product?.[0]
-  product.map((p, i) => {
+  product.forEach((p, i) => {
     const imgLink = p.Content
     imagesLinks.push(imgLink)
   })
@@ -36,7 +36,7 @@ const Detail = () => {
   const [amount, setAmount] = useState(1)
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
-  const [color, setColor] = useState('')
+  const [color, setColor] = useState('bg-[#000]')
   const [isFlyIn, setIsFlyIn] = useState(false)
 
   const redirect = useNavigate()
@@ -57,7 +57,7 @@ const Detail = () => {
       console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)
-      setColor(product.Color)
+      product.Color && setColor(`bg-[${product.Color}]`)
       console.log('Fetch successfull', product)
     } catch (error) {
       console.log('error ne`: ', error)
@@ -134,7 +134,7 @@ const Detail = () => {
               <div className="pl-2 ">(150 reviews) </div>
             </div>
             <div className="block w-[1px] h-full mx-4 bg-black "></div>
-            <div className="flex items-center space-x-1 text-green-400">{product.Status?.toUpperCase()}</div>
+            <div className={`flex items-center space-x-1 ${product.Status == 'Sold OUt' ? 'text-red-400' : 'text-green-400'}`}>{product.Status?.toUpperCase()}</div>
           </div>
           <div className="text-[1.5rem] tracking-[0.045rem] mb-4">{product.Price !== 0 ? formatNumber(product.Price) : 100}</div>
           <p className="text-justify">{product.Description}</p>
@@ -145,7 +145,12 @@ const Detail = () => {
               <Stack direction="row">
                 {product?.Color ? (
                   <Radio value={product?.Color?.toLowerCase()}>
-                    <div className={`w-6 h-6 rounded-full bg-${`[${product?.Color}]`}`}></div>
+                    <div
+                      className={`w-6 h-6 rounded-full block bg-[${product.Color.toLowerCase()}]`}
+                      style={{
+                        backgroundColor: product?.Color?.toLowerCase(),
+                      }}
+                    ></div>
                   </Radio>
                 ) : (
                   <>
