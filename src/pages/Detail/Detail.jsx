@@ -73,7 +73,7 @@ const Detail = () => {
     setImgMain(product?.imagesLinks?.[0])
     console.log('Product: ', product)
   }, [product])
-  const listImages = ['https://media.gamestop.com/i/gamestop/11108369-a2080ccd?$pdp$', 'https://m.media-amazon.com/images/I/51JCqvlkqVL._AC_UF1000,1000_QL80_.jpg', 'https://media.gamestop.com/i/gamestop/11108369-a2080ccd?$pdp$', 'https://m.media-amazon.com/images/I/51JCqvlkqVL._AC_UF1000,1000_QL80_.jpg']
+
   function handleShowClickedImage(e) {
     setImgMain(e.target.src)
   }
@@ -136,8 +136,8 @@ const Detail = () => {
             <div className="block w-[1px] h-full mx-4 bg-black "></div>
             <div className="flex items-center space-x-1 text-green-400">{product.Status?.toUpperCase()}</div>
           </div>
-          <div className="text-[1.5rem] tracking-[0.045rem] mb-4">$ {product.Price !== 0 ? formatNumber(product.Price) : 100}</div>
-          <p className="text-justify">{product.Description && product.Description.length < 20 ? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quas placeat inventore commodi assumenda possimus. Dolor voluptatibus quibusdam, consequatur dicta cumque nam est quos placeat, necessitatibus a autem similique repudiandae ut quaerat error porro sapiente inventore culpa, numquam cum iure! Quae numquam voluptatum accusantium saepe ducimus praesentium, officia' : ''}</p>
+          <div className="text-[1.5rem] tracking-[0.045rem] mb-4">{product.Price !== 0 ? formatNumber(product.Price) : 100}</div>
+          <p className="text-justify">{product.Description}</p>
           <div className="h-[1px] w-full my-4 bg-black "></div>
           <div className="flex gap-4">
             <p className="text-[20px]">Colors: </p>
@@ -145,7 +145,7 @@ const Detail = () => {
               <Stack direction="row">
                 {product?.Color ? (
                   <Radio value={product?.Color?.toLowerCase()}>
-                    <div className={`w-6 h-6 rounded-full bg-${product?.Color?.toLowerCase()}`}></div>
+                    <div className={`w-6 h-6 rounded-full bg-${`[${product?.Color}]`}`}></div>
                   </Radio>
                 ) : (
                   <>
