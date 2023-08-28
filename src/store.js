@@ -1,7 +1,13 @@
 import { create } from 'zustand'
-export const useLoginStore = create((set) => ({
+import { devtools, persist } from 'zustand/middleware'
+
+export const useUserStore = create((set) => ({
   isLoggedIn: false,
-  userName: '',
+  Account: null,
+  cartItems: [],
+
   setIsLoggedIn: (newState) => set((state) => ({ ...state, isLoggedIn: newState })),
-  setUserNameStore: (newUserName) => set((state) => ({ ...state, userName: newUserName })),
+  setAccount: (Account) => set((state) => ({ ...state, Account: Account })),
+  setCartItems: (newCartItems) => set((state) => ({ cartItems: [newCartItems, ...state.cartItems] })),
+  removeCartItem: (courseId) => set((state) => ({ cartItems: state.cartItems.filter((item) => item.id !== courseId) })),
 }))
