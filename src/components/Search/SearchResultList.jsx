@@ -7,7 +7,7 @@ const SearchResultsList = ({ results }) => {
       }
     
       return (
-        <div className="results-list">
+        <div className="results-list ">
           {results.map(({ Name, ItemID }) => (
             <SearchCard result={[Name, ItemID]} key={ItemID} />
           ))}

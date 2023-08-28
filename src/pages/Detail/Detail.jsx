@@ -86,7 +86,7 @@ const Detail = () => {
   }
   const handleBuyNow = () => {
     handAddCart()
-    redirect(`/cart/${'acc1'}`)
+    redirect(`/cart`)
   }
   const flyInAnimation = useSpring({
     transform: isFlyIn ? 'translate(1500px,0)' : 'translate(300px,200px)',

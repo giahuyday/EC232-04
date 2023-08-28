@@ -20,6 +20,8 @@ import Discount from './pages/Admin/Discount.jsx'
 import PointsManage from './pages/Admin/Manage/Points.jsx'
 import Page404 from './components/404/error404.jsx'
 import { useState } from 'react'
+import OrdersManage from './pages/Admin/Manage/Orders.jsx'
+import OrdersDetail from './pages/Admin/Manage/OrdersDetail.jsx'
 
 function App() {
   const [users, SetUser] = useState([])
@@ -41,10 +43,10 @@ function MainLayout({users}) {
       <div className="main-content">
         <Routes>
           <Route path="/detail/:ItemID" element={<Detail />} />
-          <Route path="/cart/:AccountID" element={<Cart users={users}/>} />
           <Route path="/chart" element={<ChartManage />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/profile" element={<Profile users={users}/>} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />
@@ -75,10 +77,12 @@ function AdminLayout() {
           <Route path="/discounts" element={<Discount/>} />
           <Route path="/edit/products/:ItemID" element={<EditProduct />} />
           <Route path="/products/addnew" element={<AddProducts/>}/>
+          <Route path="/orders/detail/:ID" element={<OrdersDetail/>}/>
           <Route path="/users" element={<UsersManage/>} />
           <Route path="/edit/users/:AccountID" element={<EditUser/>} />
           <Route path="/users/addnew" element={<AddUser/>}/>
           <Route path="/points" element={<PointsManage/>}/>
+          <Route path="/orders" element={<OrdersManage/>}/>
           <Route path="*" element={<Page404 />} />
         </Routes>
     </HeaderAdmin>

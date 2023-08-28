@@ -14,7 +14,10 @@ const RowTableProductsManage = ({ item }) => {
       <td className="px-4 py-2">
         <span className=" text-blue-700 text-sm font-medium px-2 py-0.5 rounded">{item.Name}</span>
       </td>
-      <td className="px-4 py-2 text-[15px] text-[black] font-[500]">{item.Color}</td>
+      <td className="px-4 py-2 text-[15px] flex text-[black] font-[500] h-full ">{item.Color} 
+      <div className={`h-[10px] w-[10px] rounded-full bg-[${item.Color}]`}>
+      </div>
+       </td>
 
       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">{item.CateID}</td>
       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">{item.Price}</td>

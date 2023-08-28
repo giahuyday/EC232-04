@@ -45,11 +45,22 @@ function calDiscount(price, discountPercentage) {
     const discountAmount = (price * discountPercentage) / 100;
     return discountAmount;
   }
+  function formatDate(inputDateString) {
+    const inputDate = new Date(inputDateString);
+    const day = inputDate.getUTCDate().toString().padStart(2, '0');
+    const month = (inputDate.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = inputDate.getUTCFullYear();
+    
+    return `${day}/${month}/${year}`;
+  }
+  
+
   module.exports = {
     calDiscount,
     formatNum,
     formatNumber,
     formatPoints,
     calBeDiscount,
+    formatDate,
   };
   

@@ -9,14 +9,14 @@ export default function Modal() {
 
 
    const getData = async () => {
-      axios.get('http://localhost:3001/cart/discounts').then((result) =>{setDataGuest(result.data)})
+      axios.get('http://localhost:3001/cart/discounts').then((result) => { setDataGuest(result.data) })
    }
    useEffect(() => {
       getData();
    }, []);
 
 
-   
+
    return (
       <>
 
@@ -41,32 +41,33 @@ export default function Modal() {
                               View All Discount
                            </h3>
                            <button
-                              className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                              className="p-1 ml-auto  w-[20px] h-[20px]  border-0 text-[red] float-right text-[20px] leading-none font-semibold"
                               onClick={() => setShowModal(false)}
                            >
-                              <span className="bg-transparent opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none text-[red] bg-[red]">
-                                 <div ></div>
-                              </span>
+
+                              X
+
                            </button>
                         </div>
                         {/*body*/}
                         <div className="relative p-6 flex-auto overflow-auto">
                            <div className="grid grid-cols-1 gap-[20px]">
-                           {dataGuest.map((item)=>(
-                              <>
-                              <div className=" h-[100px] p-[10px] border-[1px] border-[gray] rounded-[5px]" key={item.TypeID}>
-                                 <div className="  h-[100%] w-[100%] flex gap-[10px] ">
-                                    <img src="https://media.istockphoto.com/id/1194972593/vi/vec-to/b%C3%A1n-gi%E1%BA%A3m-gi%C3%A1-nh%C3%A3n-d%C3%A1n-icon-vector-vector-gi%E1%BA%A3m-gi%C3%A1-th%E1%BA%BB-%C4%91%E1%BB%8F-cung-c%E1%BA%A5p-nh%C3%A3n-gi%C3%A1-cho-thi%E1%BA%BFt-k%E1%BA%BF-%C4%91%E1%BB%93.jpg?s=612x612&w=0&k=20&c=xPc1R3Cem457b4KD-JNddDZL3xIg2qmLVrYt2i13VbE=" alt="" className="object-cover h-[100%] w-[90px]" />
-                                    <div className=" w-[500px] font-[400]">
-                                       <div>Discount Name: <span className="text-[#db4444] font-[700]">{item.TypeName}</span></div>
-                                       <div className="w-[500px] ">Discounts Detail: <span className="text-[#db4444] font-[700]">{item.Description}</span></div>
-                                 
+
+                              {dataGuest.map((item) => (
+                                 <>
+                                    <div className=" h-[100px] p-[10px] border-[1px] border-[gray] rounded-[5px] w-[100%] " key={item.TypeID}>
+                                       <div className="  h-[100%] w-[100%] flex gap-[10px] ">
+                                          <img src="https://media.istockphoto.com/id/1194972593/vi/vec-to/b%C3%A1n-gi%E1%BA%A3m-gi%C3%A1-nh%C3%A3n-d%C3%A1n-icon-vector-vector-gi%E1%BA%A3m-gi%C3%A1-th%E1%BA%BB-%C4%91%E1%BB%8F-cung-c%E1%BA%A5p-nh%C3%A3n-gi%C3%A1-cho-thi%E1%BA%BFt-k%E1%BA%BF-%C4%91%E1%BB%93.jpg?s=612x612&w=0&k=20&c=xPc1R3Cem457b4KD-JNddDZL3xIg2qmLVrYt2i13VbE=" alt="" className="object-cover h-[100%] w-[90px]" />
+                                          <div className=" w-[500px] font-[400]">
+                                             <div>Discount Name: <span className="text-[#db4444] font-[700]">{item.TypeName}</span></div>
+                                             <div className="w-[500px] ">Discounts Detail: <span className="text-[#db4444] font-[700]">{item.Description}</span></div>
+
+                                          </div>
+                                       </div>
                                     </div>
-                                 </div>
-                              </div>
-                              </>
-                           ))}
-                            
+                                 </>
+                              ))}
+
 
                            </div>
                         </div>
