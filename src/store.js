@@ -5,6 +5,7 @@ export const useUserStore = create((set) => ({
   isLoggedIn: false,
   Account: null,
   cartItems: [],
+  OrdersHistory: [],
 
   setIsLoggedIn: (newState) => set((state) => ({ ...state, isLoggedIn: newState })),
   setAccount: (Account) => set((state) => ({ ...state, Account: Account })),

@@ -9,7 +9,8 @@ const ProductsController = require('./controllers/ProductsController')
 const UsersController = require("./controllers/UsersController")
 const UserController = require("./controllers/Admin/UserController")
 const OrderController = require('./controllers/Admin/OrderController')
-
+const OrdersController = require('./controllers/OrderController')
+const MyProfileController = require('./controllers/Profile/MyProfileController')
 app.use(cors())
 app.use(express.json())
 
@@ -74,7 +75,12 @@ app.get('/admin/points/getInfo/:ID', UserController.getInfo)
 app.get('/admin/points/getType/:ID', UserController.getType)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
-
+// Orders
+app.get('/orders/:AccountID', OrdersController.OrdersDetail)
+// End Orders
+// Profile
+app.put('/profile/edit/:AccountID', MyProfileController.EditProfile)
+// End Profile
 
 app.get('/admin/users/findUsers/:value',UserController.findUsers)
 app.get('/admin/orders/findOrders/:value',OrderController.findOrders)

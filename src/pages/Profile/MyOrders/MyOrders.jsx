@@ -1,5 +1,7 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import { FaTruckMoving } from 'react-icons/fa'
+import { useUserStore } from '../../../store'
 
 const MyOrders = () => {
   return (
@@ -12,7 +14,7 @@ const MyOrders = () => {
   )
 }
 
-const OrderHistoryItem = () => {
+const OrderHistoryItem = ({ id }) => {
   return (
     <div className="flex justify-between border-b gap-2 py-4">
       <div className="left flex flex-col gap-[2px] ml-auto flex-1">
@@ -71,6 +73,15 @@ function Orders() {
 }
 
 function OrdersHistory() {
+  const Account = useUserStore((state) => state.Account)
+  const getOrdersHistory = async () => {
+    const res = await axios.get(`http://localhost:3001/orders/${Account.AccountID}`)
+    console.log('res.data', res.data)
+  }
+  useEffect(() => {
+    console.log('OrdersHistory')
+    getOrdersHistory()
+  }, [])
   return (
     <div className="left flex-1 max-w-[400px] p-4 border overflow-y-auto">
       <p className="text-xl font-medium">Orders History</p>
