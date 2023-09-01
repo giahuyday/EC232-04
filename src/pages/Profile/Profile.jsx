@@ -7,7 +7,6 @@ import { useUserStore } from '../../store'
 const { TabPane } = Tabs
 
 const Profile = ({ users }) => {
-  console.log(users)
   const [tabPosition, setTabPosition] = useState('left')
   const Account = useUserStore((state) => state.Account)
   const setAccount = useUserStore((state) => state.setAccount)

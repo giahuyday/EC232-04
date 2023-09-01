@@ -76,7 +76,8 @@ app.get('/admin/points/getType/:ID', UserController.getType)
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 // Orders
-app.get('/orders/:AccountID', OrdersController.OrdersDetail)
+app.get('/orders/:AccountID', OrdersController.GetAllOrderIDsOfAccount)
+app.get('/orders/order/:ID', OrdersController.GetOrderDetailByID)
 // End Orders
 // Profile
 app.put('/profile/edit/:AccountID', MyProfileController.EditProfile)

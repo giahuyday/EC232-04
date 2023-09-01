@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaTruckMoving } from 'react-icons/fa'
 import { useUserStore } from '../../../store'
+import OrdersHistory from './OrdersHistory'
 
 const MyOrders = () => {
   return (
@@ -14,24 +15,23 @@ const MyOrders = () => {
   )
 }
 
-const OrderHistoryItem = ({ id }) => {
+function Orders() {
   return (
-    <div className="flex justify-between border-b gap-2 py-4">
-      <div className="left flex flex-col gap-[2px] ml-auto flex-1">
-        <p className="font-bold">#481293</p>
-        <p className="font-bold">USD $11,250.00</p>
-        <p className="font-medium  text-gray-500 mb-2"> 5 Items</p>
-      </div>
-      <div className="right flex flex-col flex-1">
-        <div className="flex gap-2 text-blue-500 items-center">
-          <FaTruckMoving />
-          Inprogress
+    <div className="righ flex-shrink-0 w-[70%] bg-gray-50 p-4">
+      <div className="top">
+        <div className="flex items-center">
+          <p className="text-xl font-medium">Orders #481293 (4)</p>
+          {/* Stars here */}
         </div>
-        <div className="flex gap-2 text-blue-500">0-0-0-0</div>
+        {Array.from({ length: 3 }, (_, i) => (
+          <OrderItem />
+        ))}
       </div>
+      <OrderDetails />
     </div>
   )
 }
+
 const OrderDetails = () => {
   return (
     <div className="rounded-md  bg-gray-50 p-4 -m-4">
@@ -52,42 +52,6 @@ const OrderDetails = () => {
         <div className="">Total</div>
         <div className="">USD $1,788</div>
       </div>
-    </div>
-  )
-}
-function Orders() {
-  return (
-    <div className="righ flex-shrink-0 w-[70%] bg-gray-50 p-4">
-      <div className="top">
-        <div className="flex items-center">
-          <p className="text-xl font-medium">Orders #481293 (4)</p>
-          {/* Stars here */}
-        </div>
-        {Array.from({ length: 3 }, (_, i) => (
-          <OrderItem />
-        ))}
-      </div>
-      <OrderDetails />
-    </div>
-  )
-}
-
-function OrdersHistory() {
-  const Account = useUserStore((state) => state.Account)
-  const getOrdersHistory = async () => {
-    const res = await axios.get(`http://localhost:3001/orders/${Account.AccountID}`)
-    console.log('res.data', res.data)
-  }
-  useEffect(() => {
-    console.log('OrdersHistory')
-    getOrdersHistory()
-  }, [])
-  return (
-    <div className="left flex-1 max-w-[400px] p-4 border overflow-y-auto">
-      <p className="text-xl font-medium">Orders History</p>
-      {Array.from({ length: 6 }, (_, i) => (
-        <OrderHistoryItem />
-      ))}
     </div>
   )
 }

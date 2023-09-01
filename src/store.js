@@ -9,6 +9,7 @@ export const useUserStore = create((set) => ({
 
   setIsLoggedIn: (newState) => set((state) => ({ ...state, isLoggedIn: newState })),
   setAccount: (Account) => set((state) => ({ ...state, Account: Account })),
+  setOrdersHistory: (OrdersHistory) => set((state) => ({ ...state, OrdersHistory: OrdersHistory })),
   setCartItems: (newCartItems) => set((state) => ({ cartItems: [newCartItems, ...state.cartItems] })),
   removeCartItem: (courseId) => set((state) => ({ cartItems: state.cartItems.filter((item) => item.id !== courseId) })),
 }))
