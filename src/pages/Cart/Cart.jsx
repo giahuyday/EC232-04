@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import RowTableCart from '../../components/RowTableCart'
 import { useEffect, useState, useRef } from 'react'
-
 import axios from 'axios'
 import { formatNumber, formatPoints, calBeDiscount, formatNum } from '../../helper/dataHelper'
 import LoadingEffect from '../../components/Loading'
 import { BsCoin } from 'react-icons/bs'
 import Modal from '../../components/Modal'
+import CheckOut from '../CheckOut/CheckOut'
 const Cart = ({ users }) => {
     // console.log(users)
     const backButton = () => {
@@ -133,7 +133,11 @@ const Cart = ({ users }) => {
                             </div>
                             <div className="absolute top-[400px] flex items-end justify-center w-[100%] ">
                                 <div className="top-[300px] bg-[#db4444] h-[70px] mb-[20px] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
-                                    <div className="leading-[24px] font-medium">Procees to checkout</div>
+                                    <div className="leading-[24px] font-medium">
+                                    <Link to={'/checkout'} element={CheckOut}>
+                                            <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Process to checkout</div>
+                                        </Link>
+                                    </div>
                                 </div>
                                 <div className="absolute top-[330px] left-[50px] flex flex-row items-start justify-start gap-[200px]">
                                     <div>Coin</div>
@@ -142,10 +146,10 @@ const Cart = ({ users }) => {
                                             <div className="m-[5px]"><BsCoin className="text-[#777738] bg-[yellow]"></BsCoin></div>
                                             {formatNum(InfoGuest?.Money)}
                                         </div>
-                                        <label class="relative ml-[10px] inline-flex items-center mb-5 cursor-pointer">
-                                            <input type="checkbox" onChange={() => { UseCoin() }} class="sr-only peer" />
-                                            <div class="w-9 h-5 bg-gray-200  peer-focus:ring-4  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#db4444]"></div>
-                                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                        <label className="relative ml-[10px] inline-flex items-center mb-5 cursor-pointer">
+                                            <input type="checkbox" onChange={() => { UseCoin() }} className="sr-only peer" />
+                                            <div className="w-9 h-5 bg-gray-200  peer-focus:ring-4  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#db4444]"></div>
+                                            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -153,7 +157,9 @@ const Cart = ({ users }) => {
 
                                     <div className="top-[300px] bg-[#db4444] h-[70px] mb-[20px] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
                                         <div className="leading-[24px] font-medium">
-                                            Procees to checkout
+                                        <Link to={'/checkout'} element={CheckOut}>
+                                            <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Process to checkout</div>
+                                        </Link>
                                         </div>
                                     </div>
                                 </div>

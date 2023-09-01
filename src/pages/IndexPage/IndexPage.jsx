@@ -11,6 +11,8 @@ import { SiYoutubegaming } from 'react-icons/si';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import LoadingEffect from "../../components/Loading";
+import { Link } from "react-router-dom";
+
 const IndexPage = () => {
   const imagesHeader = [
     "https://www.u.com.my/content/dam/u-mobile/personal/devices/iphone/iphone-14-pro/meta/20220922/iPhone14-Pro-Launch_Meta-Image_EN.png",
@@ -74,7 +76,7 @@ const IndexPage = () => {
             Category.length>0 ?(
             Category.map(
               item => (
-                <div className="relative leading-[24px]" key={item.CateID}>{item.Name}</div>
+                <Link to={`/search/${item.CateID}`} className="relative leading-[24px]" key={item.CateID}>{item.Name}</Link>
               )
             )
             ):(

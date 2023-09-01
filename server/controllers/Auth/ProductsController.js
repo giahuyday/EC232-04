@@ -1,4 +1,4 @@
-const connection = require('../Database/connecting.js');
+const connection = require('../../Database/connecting.js');
 
 exports.ProductsDetail = (req, res) => {
     console.log(req.body)

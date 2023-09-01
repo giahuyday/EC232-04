@@ -5,12 +5,15 @@ const cors = require('cors')
 const IndexPageController = require('./controllers/IndexPageController')
 const CartController = require('./controllers/CartController')
 const ChartController = require('./controllers/ChartController')
-const ProductsController = require('./controllers/ProductsController')
-const UsersController = require("./controllers/UsersController")
+
+const ProductsController = require('./controllers/Auth/ProductsController')
+const UsersController = require('./controllers/Auth/UsersController')
+
 const UserController = require("./controllers/Admin/UserController")
 const OrderController = require('./controllers/Admin/OrderController')
 const OrdersController = require('./controllers/OrderController')
 const MyProfileController = require('./controllers/Profile/MyProfileController')
+
 app.use(cors())
 app.use(express.json())
 
@@ -57,13 +60,14 @@ app.post('/auth/login', UsersController.Login)
 app.post('/auth/signup', UsersController.CreateAccount)
 app.post('/manage/users/detail/:AccountID', UsersController.GetUserList)
 app.post('/admin/users/edit/:AccountID', UsersController.EditUserDetail)
+app.post('/auth/order', UsersController.PlaceOrder)
+
 app.get('/detail/:ItemID', ProductsController.ProductsDetail)
 app.post('/manage/products/edit/:ItemID', ProductsController.EditProductDetail)
 app.post('/manage/products/add', ProductsController.AddProduct)
 
-
 app.get('/home/loading', IndexPageController.loading)
-
+app.get('/cate/:CateID', UsersController.UserSearch)
 app.post('/cartpost/add', CartController.addCart)
 app.post('/cartpost/remove', CartController.removeCart)
 app.get('/cart/loading/:ID', CartController.loading)
