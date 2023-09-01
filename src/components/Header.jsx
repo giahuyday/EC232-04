@@ -6,14 +6,13 @@ import SearchResultsList from './Search/SearchResultList'
 import { useState } from 'react'
 
 const Header = () => {
-
   const [results, setResults] = useState([])
   const Username =  sessionStorage.getItem('UserName')
   const handleLogout = ()=>{
     // sessionStorage.clear()
-console.log( sessionStorage.getItem('UserName'))
+    console.log( sessionStorage.getItem('UserName'))
     sessionStorage.clear()
-    window.location.href='/ '
+    window.location.href='/'
 }
   return (
     <header className="px-4 lg:px-12">
@@ -63,7 +62,7 @@ console.log( sessionStorage.getItem('UserName'))
                   {(Username===null||Username===undefined) ? (
                       <div>
                       <Link to="auth/login" className="text-gray-800 da:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:hover:bg-gray-700 focus:outline-none da:focus:ring-gray-800 hover:border-[2px] border-[2px] hover:border-blue-500">Login</Link>
-                      <button onClick={handleLogout}  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:bg-blue-600 da:hover:bg-blue-700 focus:outline-none da:focus:ring-blue-800">Sign Up</button>
+                      <Link to="auth/signup"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 da:bg-blue-600 da:hover:bg-blue-700 focus:outline-none da:focus:ring-blue-800">Sign Up</Link>
                   </div>
                   ) : (
                       <div>
