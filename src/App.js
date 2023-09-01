@@ -22,6 +22,7 @@ import Page404 from './components/404/error404.jsx'
 import { useState } from 'react'
 import OrdersManage from './pages/Admin/Manage/Orders.jsx'
 import OrdersDetail from './pages/Admin/Manage/OrdersDetail.jsx'
+import SearchByCate from './components/Search/SearchByCate.jsx'
 
 function App() {
   const [users, SetUser] = useState([])
@@ -47,6 +48,8 @@ function MainLayout({users}) {
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/profile" element={<Profile users={users}/>} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/search/:CateID" element={<SearchByCate />} />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />
           {/* <Route path="/manage/products" element={<ProductsManage />} />

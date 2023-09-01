@@ -1,4 +1,4 @@
-const connection = require('../Database/connecting.js');
+const connection = require('../../Database/connecting');
 
 exports.Login =  (req, res) => {
     console.log(req.body)
@@ -63,3 +63,63 @@ exports.GetUserList = (req, res) => {
         }
     })
 }
+
+exports.UserSearch = (req, res) => {
+  const CateID =  req.params.CateID
+  connection.query('SELECT Item.*, GROUP_CONCAT(Item_Picture.Content SEPARATOR ", ") AS Content ' +
+                  'FROM Item ' +
+                  'LEFT JOIN Item_Picture ON Item.ItemID = Item_Picture.ItemID ' +
+                  'WHERE Item.CateID = ? ' +
+                  'GROUP BY Item.ItemID, Item.Name', [CateID], (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      // console.log(rows[0])
+      console.log(result)
+      res.send(result)
+    }
+  })
+}
+
+exports.PlaceOrder = (req,res) => {
+  const Order_table = req.body.Order_table
+  const Day = Date.now()
+  const GuessName = req.body.GuessName
+  const Delivery_Address = req.body.Delivery_Address
+  const Total_Price = req.body.Total_Price
+  const Phone = req.body.Phone
+  const Status = req.body.Status
+  const AccountID = req.body.AccountID
+  const Note = req.body.Note
+  const ShipFee = req.body.ShipFee
+  const Point_Used = req.body.Point_Used
+  connection.query("CALL AddOrder(?,?,?,?,?,?,?)", [GuessName, Delivery_Address, Phone, Note, Total_Price, Status, AccountID], (error, results) => {
+    if (error) {
+        console.error('Error executing query:', error);
+        return;
+    }else{
+      res.send("Success")
+    }
+    // const result = Object.values(results[0][0])[0];
+    // NewOrderID  = result ;
+    // let queryCount = 0;
+    // const totalQueries = Order_table.length;
+
+    // for (const row of Order_table) {
+    //   const callProcedure2 = `CALL AddOrderDetail('${ NewOrderID  }', '${row.itemid}', ${row.Quantity})`;
+    //   connection.query(callProcedure2, (error, results, fields) => {
+    //   if (error) {
+    //       console.error('Error executing query:', error);
+    //       return;
+    //   }else{
+    //     res.send("Success")
+    //   }
+        
+    //   queryCount++;
+    //   if (queryCount === totalQueries) {
+    //       connection.end();
+    //   }
+    // });
+  })}
+//   console.log('Done save.')
+// })}
