@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate,useNavigate } from 'react-router-dom'
 import RowTableCart from '../../components/RowTableCart'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
@@ -23,12 +23,15 @@ const Cart = ({ users }) => {
     }
     const totalPrice = dataCart.reduce((total, item) => total + item.Price * item.Quantity, 0) + ship
     const endPrice = totalPrice + ship - coin
+    const navigate = useNavigate()
+    const handleCheckout = () => {
+        sessionStorage.setItem('totalPrice', totalPrice)
+        sessionStorage.setItem('endPrice', endPrice)
+        sessionStorage.setItem('ship', ship)
+        sessionStorage.setItem('usedCoin', coin)
+        navigate('/checkout')
+    }
 
-    sessionStorage.setItem('totalPrice', totalPrice)
-    sessionStorage.setItem('endPrice', endPrice)
-    sessionStorage.setItem('ship', ship)
-    sessionStorage.setItem('usedCoin', coin)
-    
     useEffect(() => {
         axios.get(`http://localhost:3001/cart/loading/` + sessionStorage.getItem('AccountID')).then((result) => {
             setDataCart(() => result.data)
@@ -50,6 +53,7 @@ const Cart = ({ users }) => {
             setCoin(0)
         }
     }
+  
     return (
         <div className="my-[50px] ">
             <div className="relative bg-bg w-full min-h-[2000px]  overflow-hidden text-left text-base text-text2 font-title-14px-regular">
@@ -139,9 +143,9 @@ const Cart = ({ users }) => {
                             <div className="absolute top-[400px] flex items-end justify-center w-[100%] ">
                                 <div className="top-[300px] bg-[#db4444] h-[70px] mb-[20px] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
                                     <div className="leading-[24px] font-medium">
-                                    <Link to={'/checkout'} element={CheckOut}>
+                                        <button onClick={handleCheckout} >
                                             <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Process to checkout</div>
-                                        </Link>
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="absolute top-[330px] left-[50px] flex flex-row items-start justify-start gap-[200px]">
@@ -162,9 +166,9 @@ const Cart = ({ users }) => {
 
                                     <div className="top-[300px] bg-[#db4444] h-[70px] mb-[20px] left-[120px] rounded bg-button2 flex flex-row py-4 px-12 items-center justify-center text-text">
                                         <div className="leading-[24px] font-medium">
-                                        <Link to={'/checkout'} element={CheckOut}>
-                                            <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Process to checkout</div>
-                                        </Link>
+                                            <Link to={'/checkout'} element={CheckOut}>
+                                                <div className="relative leading-[21px] opacity-[0.5] color-[gray] font-[700] text-[21px]">Process to checkout</div>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
