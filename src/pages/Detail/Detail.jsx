@@ -45,7 +45,7 @@ const Detail = () => {
   }
   const handAddCart = async () => {
     await Axios.post('http://localhost:3001/cartpost/add', {
-      Account: 'Acc1',
+      Account: sessionStorage.getItem('AccountID'),
       itemId: ItemID,
       Quantity: amount,
     })

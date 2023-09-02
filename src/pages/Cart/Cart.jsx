@@ -52,7 +52,7 @@ const Cart = ({ users }) => {
     }
     return (
         <div className="my-[50px] ">
-            <div className="relative bg-bg w-full h-[1518px] overflow-hidden text-left text-base text-text2 font-title-14px-regular">
+            <div className="relative bg-bg w-full min-h-[2000px]  overflow-hidden text-left text-base text-text2 font-title-14px-regular">
                 <div className="absolute top-[150px] left-[135px] flex flex-col items-start justify-start gap-[80px]">
                     <div className="flex flex-col items-start justify-start gap-[24px]">
                         <div className="flex flex-col items-start justify-start gap-[40px]">
@@ -86,7 +86,7 @@ const Cart = ({ users }) => {
                         <div className="flex flex-row  justify-start gap-[16px]">
                             <div className="relative rounded box-border w-[400px] h-[100px] p-[20px] overflow-hidden shrink-0 border-text2 border-black border-[1px]">
                                 <div>
-                                    Bạn được tặng : <span className="text-[#db4444] font-[700]">{formatNum(calBeDiscount(totalPrice, InfoGuest?.Percent))}</span> <span className="font-[600]">( {InfoGuest?.Percent}%)</span> cho đơn hàng này{' '}
+                                    Bạn được tặng : <span className="text-[#db4444] font-[700]">{formatNum(calBeDiscount(totalPrice, InfoGuest?.Percent))} Coin</span> <span className="font-[600]">( {InfoGuest?.Percent}%) </span>  cho đơn hàng này{' '}
                                 </div>
                             </div>
                         </div>
