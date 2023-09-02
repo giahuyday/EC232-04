@@ -82,7 +82,8 @@ exports.UserSearch = (req, res) => {
 }
 
 exports.PlaceOrder = (req,res) => {
-  const Order_table = req.body.Order_table
+  const data_Cart = req.body.data_Cart
+  console.log(data_Cart)
   const Day = Date.now()
   const GuessName = req.body.GuessName
   const Delivery_Address = req.body.Delivery_Address
@@ -93,33 +94,35 @@ exports.PlaceOrder = (req,res) => {
   const Note = req.body.Note
   const ShipFee = req.body.ShipFee
   const Point_Used = req.body.Point_Used
+
+  var NewOrderID = '';
+
   connection.query("CALL AddOrder(?,?,?,?,?,?,?)", [GuessName, Delivery_Address, Phone, Note, Total_Price, Status, AccountID], (error, results) => {
     if (error) {
         console.error('Error executing query:', error);
         return;
-    }else{
-      res.send("Success")
-    }
-    // const result = Object.values(results[0][0])[0];
-    // NewOrderID  = result ;
-    // let queryCount = 0;
-    // const totalQueries = Order_table.length;
+    } // trả về ID đơn hàng mới nhất 
+    // !!!! lưu cái này lại sẽ dùng cho phía dưới
+    const result = Object.values(results[0][0])[0];
+    NewOrderID  = result ;
+    let queryCount = 0;
+    const totalQueries = data_Cart.length;
 
-    // for (const row of Order_table) {
-    //   const callProcedure2 = `CALL AddOrderDetail('${ NewOrderID  }', '${row.itemid}', ${row.Quantity})`;
-    //   connection.query(callProcedure2, (error, results, fields) => {
-    //   if (error) {
-    //       console.error('Error executing query:', error);
-    //       return;
-    //   }else{
-    //     res.send("Success")
-    //   }
+    // paste cái orther mới nhất vào NewOrderID
+    for (const row of data_Cart) {
+      const callProcedure2 = `CALL AddOrderDetail('${ NewOrderID  }', '${row.ItemID}', ${row.Quantity})`;
+      connection.query(callProcedure2, (error, results, fields) => {
+      if (error) {
+          console.error('Error executing query:', error);
+          return;
+      }
         
-    //   queryCount++;
-    //   if (queryCount === totalQueries) {
-    //       connection.end();
-    //   }
-    // });
-  })}
-//   console.log('Done save.')
-// })}
+      queryCount++;
+      if (queryCount === totalQueries) {
+          connection.end();
+      }
+      results.send("Success")
+    });
+  }
+  console.log('Done save.')
+})};

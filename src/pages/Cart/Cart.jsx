@@ -24,6 +24,11 @@ const Cart = ({ users }) => {
     const totalPrice = dataCart.reduce((total, item) => total + item.Price * item.Quantity, 0) + ship
     const endPrice = totalPrice + ship - coin
 
+    sessionStorage.setItem('totalPrice', totalPrice)
+    sessionStorage.setItem('endPrice', endPrice)
+    sessionStorage.setItem('ship', ship)
+    sessionStorage.setItem('usedCoin', coin)
+    
     useEffect(() => {
         axios.get(`http://localhost:3001/cart/loading/` + sessionStorage.getItem('AccountID')).then((result) => {
             setDataCart(() => result.data)

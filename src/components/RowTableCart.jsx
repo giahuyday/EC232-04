@@ -12,7 +12,7 @@ const RowTableCart = ({ props, reset }) => {
         setAmount(amount => (amount - 1));
         const quantity = {
             Quantity: amount - 1,
-            itemId: props.itemID,
+            ItemID: props.ItemID,
             CartID: props.CartID
         };
         await axios.post('http://localhost:3001/cartpost/update', quantity)
@@ -22,7 +22,7 @@ const RowTableCart = ({ props, reset }) => {
         setAmount(amount => amount + 1);
         const quantity = {
             Quantity: amount + 1,
-            itemId: props.itemID,
+            ItemID: props.ItemID,
             CartID: props.CartID
         };
         await axios.post('http://localhost:3001/cartpost/update', quantity)
@@ -41,7 +41,7 @@ const RowTableCart = ({ props, reset }) => {
     const handleButtuonRemove = async () => {
         await axios.post('http://localhost:3001/cartpost/remove', {
             CartID: props.CartID,
-            ItemID: props.itemID
+            ItemID: props.ItemID
         })
         reset()
     }
@@ -66,7 +66,7 @@ const RowTableCart = ({ props, reset }) => {
                                             <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"></path>
                                         </svg>
                                     </button>
-                                    <input type="number" className="w-[50px] h-10 px-2 py-4 text-center border-0 rounded-md bg-gray-100  md:text-right" placeholder="1" min='0' value={amount} />
+                                    <input type="number" className="w-[50px] h-10 px-2 py-4 text-center border-0 rounded-md bg-gray-100  md:text-right" placeholder="1" min='0' value={amount} onChange={(e) => e.target.value}/>
                                     <button className="py-2 hover:text-gray-700" onClick={handleAdd} >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-plus" >
                                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
@@ -91,7 +91,7 @@ const RowTableCart = ({ props, reset }) => {
 
                     </div>
                     <div className="absolute top-[39px] left-[130px] font-[600] w-[300px]  leading-[24px] text-[#db4444] overflow-hidden hover:text-[#d07777] whitespace-nowrap text-ellipsis">
-                        <Link to={`/detail/${props.itemID}`} >
+                        <Link to={`/detail/${props.ItemID}`} >
                             {props.Name}
                         </Link>
 
