@@ -9,6 +9,7 @@ import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepp
 import { formatNumber } from '../../helper/dataHelper'
 import ModalImage from 'react-modal-image'
 import { Radio, RadioGroup } from '@chakra-ui/react'
+import { useUserStore } from '../../store'
 const parseProductDetails = (product) => {
   let imagesLinks = []
   const { CateID, Color, ItemID, PictureID, Description, Name, Price, ProDucerID, Status } = product?.[0]
@@ -38,6 +39,7 @@ const Detail = () => {
   const [loading, setLoading] = useState(true)
   const [color, setColor] = useState('bg-[#000]')
   const [isFlyIn, setIsFlyIn] = useState(false)
+  const increaseCartCount = useUserStore((state) => state.increaseCartCount)
 
   const redirect = useNavigate()
   const onAmountChange = (value) => {
@@ -50,6 +52,7 @@ const Detail = () => {
       Quantity: amount,
     })
     handleFlyInClick()
+    increaseCartCount()
   }
   const fetchProductDetail = async () => {
     try {
