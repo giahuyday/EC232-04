@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useUserStore } from '../../../store'
 import axios from 'axios'
-import { OrderHistoryItem } from './OrderHistoryItem'
+import OrderHistoryItem from './OrderHistoryItem'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 export default function OrdersHistory() {
   const Account = useUserStore((state) => state.Account)
   const OrdersHistoryStore = useUserStore((state) => state.OrdersHistory)
   const setOrdersHistoryStore = useUserStore((state) => state.setOrdersHistory)
+  const setCurrentSelectedOrder = useUserStore((state) => state.setCurrentSelectedOrder)
 
   const [ordersID, setOrdersID] = useState([])
   const [orderDetails, setOrderDetails] = useState([])
@@ -21,6 +22,7 @@ export default function OrdersHistory() {
   }
   const handleClickOrderHistory = (orderID) => {
     console.log('orderID', orderID)
+    setCurrentSelectedOrder(orderID)
   }
   useEffect(() => {
     getAllOrdersHistoryID()
@@ -41,7 +43,7 @@ export default function OrdersHistory() {
     <div className="left flex-1 max-w-[400px] p-4 border overflow-y-auto">
       <p className="text-xl font-medium">Orders History</p>
       {loading && <Skeleton count={5} />}
-      {!loading && OrdersHistoryStore.map((order, index) => <OrderHistoryItem order={order} details={orderDetails} key={index} onClick={handleClickOrderHistory} />)}
+      {!loading && OrdersHistoryStore.map((order, index) => <OrderHistoryItem order={order} details={orderDetails} key={index} onClick={() => handleClickOrderHistory(order)} />)}
     </div>
   )
 }

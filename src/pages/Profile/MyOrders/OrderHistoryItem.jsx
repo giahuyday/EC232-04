@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { FaTruckMoving } from 'react-icons/fa'
+import { useUserStore } from '../../../store'
 
-export const OrderHistoryItem = ({ order }) => {
+const OrderHistoryItem = ({ order, onClick }) => {
   return (
     <>
-      <div className="flex justify-between border-b gap-2 py-4">
+      <div className="flex justify-between border-b gap-2 py-4 hover:bg-[#dad1d1] hover:duration-75 cursor-pointer active:scale-[.98]" onClick={onClick}>
         <div className="left flex flex-col gap-[2px] ml-auto flex-1">
           <p className="font-bold">{order?.OrderID}</p>
           <p className="font-bold">USD {order?.Total_Price}</p>
@@ -21,3 +22,4 @@ export const OrderHistoryItem = ({ order }) => {
     </>
   )
 }
+export default memo(OrderHistoryItem)

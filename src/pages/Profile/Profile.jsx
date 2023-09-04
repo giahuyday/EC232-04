@@ -11,7 +11,7 @@ const Profile = ({ users }) => {
   const Account = useUserStore((state) => state.Account)
   const setAccount = useUserStore((state) => state.setAccount)
   const [state, _setState] = useState({
-    firstName: Account?.Name,
+    firstName: Account?.FirstName,
     lastName: Account?.Name,
     email: Account?.Email || '',
     address: Account?.Adress || '',
@@ -31,7 +31,7 @@ const Profile = ({ users }) => {
     const res = await axios.put(`http://localhost:3001/profile/edit/${Account.AccountID}`, state)
     console.log('🚀 ~ handleSubmit ~ res:', res)
     if (res.status === 200) {
-      setAccount({ ...Account, Name: state.firstName, Email: state.email, Adress: state.address })
+      setAccount({ ...Account, FirstName: state.firstName, Name: state.lastName, Email: state.email, Adress: state.address })
     }
   }
   useEffect(() => {
