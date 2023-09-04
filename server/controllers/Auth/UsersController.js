@@ -99,14 +99,14 @@ exports.PlaceOrder = (req,res) => {
 
   connection.query("CALL AddOrder(?,?,?,?,?,?,?)", [GuessName, Delivery_Address, Phone, Note, Total_Price, Status, AccountID], (error, results) => {
     if (error) {
-        console.error('Error executing query:', error);
-        return;
-    } // trả về ID đơn hàng mới nhất 
+      console.error('Error executing query:', error)
+      return
+    } // trả về ID đơn hàng mới nhất
     // !!!! lưu cái này lại sẽ dùng cho phía dưới
-    const result = Object.values(results[0][0])[0];
-    NewOrderID  = result ;
-    let queryCount = 0;
-    const totalQueries = data_Cart.length;
+    const result = Object.values(results[0][0])[0]
+    NewOrderID = result
+    let queryCount = 0
+    const totalQueries = data_Cart?.length
 
     // paste cái orther mới nhất vào NewOrderID
     for (const row of data_Cart) {
@@ -116,7 +116,7 @@ exports.PlaceOrder = (req,res) => {
           console.error('Error executing query:', error);
           return;
       }
-        
+
       queryCount++;
       if (queryCount === totalQueries) {
           connection.end();
