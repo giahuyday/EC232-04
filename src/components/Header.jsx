@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Search from './Search/Search'
 import SearchResultsList from './Search/SearchResultList'
 import { useState } from 'react'
@@ -10,18 +10,20 @@ const Header = () => {
   const [results, setResults] = useState([])
   const cartItemsCount = useUserStore((state) => state.cartItemsCount)
   const Username = sessionStorage.getItem('UserName')
+  const navigate = useNavigate()
   const handleLogout = () => {
     // sessionStorage.clear()
     console.log(sessionStorage.getItem('UserName'))
     sessionStorage.clear()
-    window.location.href = '/'
+    navigate('/')
   }
-  const handleCart = ()=>{
-    if(Username === null || Username === undefined) {
-      window.location.href = 'auth/login'
-    }
-    else {
-      window.location.href = '/cart'
+  const handleCart = () => {
+    if (Username === null || Username === undefined) {
+      // window.location.href = 'auth/login'
+      navigate('/auth/login')
+    } else {
+      // window.location.href = '/cart'
+      navigate('/cart')
     }
   }
   return (
