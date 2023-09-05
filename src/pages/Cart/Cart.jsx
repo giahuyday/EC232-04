@@ -20,6 +20,7 @@ const Cart = ({ users }) => {
   const [InfoGuest, setInfoGuest] = useState()
   const setCartItems = useUserStore((state) => state.setCartItems)
   const setCartItemsCount = useUserStore((state) => state.setCartItemsCount)
+  const ID = sessionStorage.getItem('AccountID')
   const ship = 15
   const reset = () => {
     setResetData(!resetData)
