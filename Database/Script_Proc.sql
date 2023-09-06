@@ -740,3 +740,74 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- ------------------------------------------------------
+-- Thêm 1 món vào WishList
+DELIMITER //
+CREATE PROCEDURE AddItemWishList(
+	IN AccID varchar(50),
+    ItID varchar(50)
+)
+BEGIN
+	DECLARE AccCount INT;
+    DECLARE ItemCount INT;
+	SELECT COUNT(*) INTO AccCount FROM Account as ac WHERE ac.AccountID = AccID;
+	SELECT COUNT(*) INTO ItemCount FROM Item as It WHERE It.ItemID = ItID;
+    
+	IF AccCount != 0 and ItemCount !=0 THEN
+		insert into WishList (AccountID ,ItemID)
+        values (AccID, ItID);
+        select 1;
+	elseif AccCount = 0 or ItemCount =0 then
+		select 0;
+    end if;
+END //
+
+DELIMITER ;
+-- ------------------------------------------------------
+-- Xóa 1 món khỏi WishList
+DELIMITER //
+CREATE PROCEDURE RemoveItemWishList(
+	IN AccID varchar(50),
+    ItID varchar(50)
+)
+BEGIN
+	DECLARE AccCount INT;
+    DECLARE ItemCount INT;
+	SELECT COUNT(*) INTO AccCount FROM Account as ac WHERE ac.AccountID = AccID;
+	SELECT COUNT(*) INTO ItemCount FROM Item as It WHERE It.ItemID = ItID;
+    
+	IF AccCount != 0 and ItemCount !=0 THEN
+		DELETE FROM WishList
+		WHERE AccountID = AccID and ItemID = ItID;
+        select 1;
+	elseif AccCount = 0 or ItemCount =0 then
+		select 0;
+    end if;
+END //
+
+DELIMITER ;
+-- -----------------------------------------------------------
+-- Lấy thông tin WishList của 1 user 
+DELIMITER //
+CREATE PROCEDURE ViewItemWishList(
+	IN AccID varchar(50)
+)
+BEGIN
+	DECLARE AccCount INT;    
+	SELECT COUNT(*) INTO AccCount FROM Account as ac WHERE ac.AccountID = AccID;
+
+	IF AccCount != 0  THEN
+		SELECT count(It.ItemID) as Quantity
+		FROM WishList as wi, Item as It, Category as Ca, Producer as pro
+		WHERE wi.AccountID = AccID and wi.ItemID = It.ItemID and It.CateID = Ca.CateID and It.ProDucerID = pro.ProducerID;
+    
+		SELECT DISTINCT It.ItemID, It.Name, It.Price, It.Description, It.Status, Ca.Name as Category, pro.Name as Producer,  Ip.Content as Pic
+		FROM WishList as wi, Item as It, Category as Ca, Producer as pro, Item_Picture as Ip
+		WHERE wi.AccountID = AccID and wi.ItemID = It.ItemID and It.CateID = Ca.CateID and It.ProDucerID = pro.ProducerID and Ip.ItemID = wi.ItemID;
+	elseif AccCount = 0  then
+		select 0;
+    end if;
+END //
+
+DELIMITER ;

@@ -205,3 +205,17 @@ create table BuyNumber(
 	primary key(NumberID)
 );
 
+create table WishList(
+	AccountID varchar(50),
+    ItemID varchar(50),
+    
+	primary key(AccountID, ItemID)
+);
+
+ALTER TABLE WishList
+ADD CONSTRAINT fk_WishList_Acc_1
+FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
+
+ALTER TABLE WishList
+ADD CONSTRAINT fk_WishList_Item_1
+FOREIGN KEY (ItemID) REFERENCES Item(ItemID);
