@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import MyOrders from './MyOrders/MyOrders'
 import axios from 'axios'
 import { useUserStore } from '../../store'
+import MyWishList from './MyWishList/MyWishList'
 
 const { TabPane } = Tabs
 
@@ -191,7 +192,7 @@ const Profile = ({ users }) => {
         <TabPane tab="My Wishlist" key="3">
           <Tabs tabPosition="top" style={{ marginBottom: 24, height: '100%' }}>
             <TabPane className="min-h-700" tab="All your wishlist here" key="3-1">
-              Content of Wishlist Item 1
+              <MyWishList />
             </TabPane>
           </Tabs>
         </TabPane>
