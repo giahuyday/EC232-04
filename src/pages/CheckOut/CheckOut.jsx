@@ -105,11 +105,11 @@ const CheckOut = () => {
   useEffect(() => {
     axios.get(`http://localhost:3001/cart/loading/` + state.AccountID).then((result) => {
       setDataCart(() => result.data)
-      // console.log(result.data)  
+      // console.log(result.data)
     })
     axios.get(`http://localhost:3001/admin/points/getInfo/${state.AccountID}`).then((result) => setInfoGuest(result.data[0][0]))
   }, [resetData])
- 
+
   return (
     <>
       <h1 className="text-3xl font-medium my-8">Billing Details</h1>
@@ -153,14 +153,7 @@ const CheckOut = () => {
           </div>
         </form>
         <div className="flex-[50%] max-w-[600px]">
-
-          {dataCart.length > 0 ? (
-            dataCart.map((item) => (
-              <CheckOutCard props={item} key={item.ItemID} />
-            ))
-          ) : (
-            <LoadingEffect />
-          )}
+          {dataCart.length > 0 ? dataCart.map((item) => <CheckOutCard props={item} key={item.ItemID} />) : <LoadingEffect />}
 
           <div className="border-b border-gray-300 my-2"></div>
           <div className="flex items-center justify-between mb-10">
@@ -181,12 +174,10 @@ const CheckOut = () => {
                 </div>
               </>
             ) : (
-              <>
-              
-              </>
+              <></>
             )}
           </>
-        
+
           <div className="border-b border-gray-300 my-2"></div>
           <div className="flex items-center justify-between mb-10">
             <div className="">Total: </div>
@@ -199,7 +190,8 @@ const CheckOut = () => {
                 Bank
               </label>
             </div>
-            <div className="flex gap-2"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
+            <div className="flex gap-2">
+              <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6879be09-4afc-4425-8c60-a9fc98511f80/df36fd1-42e05408-ded1-4e8d-b68b-1ad25876b379.jpg/v1/fill/w_899,h_561,q_75,strp/vissa_by_lukkijurpo_df36fd1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTYxIiwicGF0aCI6IlwvZlwvNjg3OWJlMDktNGFmYy00NDI1LThjNjAtYTlmYzk4NTExZjgwXC9kZjM2ZmQxLTQyZTA1NDA4LWRlZDEtNGU4ZC1iNjhiLTFhZDI1ODc2YjM3OS5qcGciLCJ3aWR0aCI6Ijw9ODk5In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fIFFLgVSITb-yZ2tnozresy6NHu3YDbZI9H0zhINYT4" alt="" className="w-12 h-12 object-contain" />
             </div>
           </div>
           {paymentMethod === 'bank' && (
@@ -234,12 +226,9 @@ const CheckOut = () => {
                 </svg>
               </label>
               <div>
-                {isValidCreditCard && (
-                  <div className="mt-2 text-green-500">Valid Visa Card</div>
-                )}
-                {!isValidCreditCard && creditCardNumber.length > 0 && (
-                  <div className="mt-2 text-red-500">Invalid Visa Card</div>
-                )}</div>
+                {isValidCreditCard && <div className="mt-2 text-green-500">Valid Visa Card</div>}
+                {!isValidCreditCard && creditCardNumber.length > 0 && <div className="mt-2 text-red-500">Invalid Visa Card</div>}
+              </div>
             </form>
           )}
           <div className="flex items-center mb-10 gap-4 ">
@@ -252,7 +241,9 @@ const CheckOut = () => {
             <input type="text" name="" id="" className="flex-1 outline-none border border-blue-200 px-4 py-2" placeholder="Coupon code" />
             <button className="flex-1 px-4 py-2 bg-rose-500 text-white">Apply coupon</button>
           </div>
-          <button className="px-8 py-3 bg-rose-500 w-full text-white" onClick={handlePlaceOrder}>Place Order</button>
+          <button className="px-8 py-3 bg-rose-500 w-full text-white" onClick={handlePlaceOrder}>
+            Place Order
+          </button>
         </div>
       </div>
     </>

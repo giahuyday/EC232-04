@@ -13,7 +13,7 @@ const UserController = require("./controllers/Admin/UserController")
 const OrderController = require('./controllers/Admin/OrderController')
 const OrdersController = require('./controllers/OrderController')
 const MyProfileController = require('./controllers/Profile/MyProfileController')
-
+const WishListController = require('./controllers/Profile/WishlistController')
 app.use(cors())
 app.use(express.json())
 
@@ -86,6 +86,12 @@ app.get('/orders/order/:ID', OrdersController.GetOrderDetailByID)
 // Profile
 app.put('/profile/edit/:AccountID', MyProfileController.EditProfile)
 // End Profile
+
+// Wishlist
+app.get('/wishlist/:AccountID', WishListController.GetWishlist)
+app.post('/wishlist/addToWishlist', WishListController.addToWishlist)
+app.post('/wishlist/removeFromWishlist', WishListController.removeFromWishlist)
+// End Wishlist
 
 app.get('/admin/users/findUsers/:value',UserController.findUsers)
 app.get('/admin/orders/findOrders/:value',OrderController.findOrders)
