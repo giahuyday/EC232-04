@@ -26,7 +26,7 @@ const OrdersDetail = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/admin/orders/findOrders/${ID}`)
+        axios.get(`https://website-8ld0.onrender.com/admin/orders/findOrders/${ID}`)
             .then((result) => {
                 setData(result.data);
                 progress(result.data);

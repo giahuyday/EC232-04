@@ -13,7 +13,7 @@ const ProductsManage = () => {
         setCurrentPage(currentPage + move)
     }
     const getProducts = () => {
-        Axios.get('http://localhost:3001/admin/products').then((response) => {
+        Axios.get('https://website-8ld0.onrender.com/admin/products').then((response) => {
             SetProducts(response.data)
             console.log(response.data)
         })

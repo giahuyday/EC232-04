@@ -46,7 +46,7 @@ const Detail = () => {
     setAmount(value)
   }
   const handAddCart = async () => {
-    await Axios.post('http://localhost:3001/cartpost/add', {
+    await Axios.post('https://website-8ld0.onrender.com/cartpost/add', {
       Account: sessionStorage.getItem('AccountID'),
       itemId: ItemID,
       Quantity: amount,
@@ -56,7 +56,7 @@ const Detail = () => {
   }
   const fetchProductDetail = async () => {
     try {
-      const res = await Axios.get(`http://localhost:3001/detail/${ItemID}`)
+      const res = await Axios.get(`https://website-8ld0.onrender.com/detail/${ItemID}`)
       console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)

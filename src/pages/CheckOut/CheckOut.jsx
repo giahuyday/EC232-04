@@ -78,7 +78,7 @@ const CheckOut = () => {
   };
 
   const handlePlaceOrder = () => {
-    Axios.post('http://localhost:3001/auth/order', {
+    Axios.post('https://website-8ld0.onrender.com/auth/order', {
       // Order_table: [[dataCart.ItemID, dataCart.Quantity]],
       data_Cart: dataCart,
       GuessName: state.Name,
@@ -103,11 +103,11 @@ const CheckOut = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/cart/loading/` + state.AccountID).then((result) => {
+    axios.get(`https://website-8ld0.onrender.com/cart/loading/` + state.AccountID).then((result) => {
       setDataCart(() => result.data)
       // console.log(result.data)  
     })
-    axios.get(`http://localhost:3001/admin/points/getInfo/${state.AccountID}`).then((result) => setInfoGuest(result.data[0][0]))
+    axios.get(`https://website-8ld0.onrender.com/admin/points/getInfo/${state.AccountID}`).then((result) => setInfoGuest(result.data[0][0]))
   }, [resetData])
  
   return (

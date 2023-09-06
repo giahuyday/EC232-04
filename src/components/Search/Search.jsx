@@ -4,7 +4,7 @@ import { useState} from 'react'
 const SearchBar = ({setResults}) => {
     const [search, setSearch] = useState("")
     const fetchData = (value) => {
-        Axios.get(`http://localhost:3001/product`)
+        Axios.get(`https://website-8ld0.onrender.com/product`)
         // .then((response)) 
             // console.log(products.filter(response.data))
         .then((response) => {

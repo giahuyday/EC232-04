@@ -9,7 +9,7 @@ export default function Modal() {
 
 
    const getData = async () => {
-      axios.get('http://localhost:3001/cart/discounts').then((result) => { setDataGuest(result.data) })
+      axios.get('https://website-8ld0.onrender.com/cart/discounts').then((result) => { setDataGuest(result.data) })
    }
    useEffect(() => {
       getData();
