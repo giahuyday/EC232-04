@@ -10,7 +10,7 @@ const ChartManage = () => {
     const [data, setData] = useState(null); // Initialize the state with null
     const [date, setDate] = useState('2023-06-06')
     useEffect(() => {
-        axios.get(`https://website-8ld0.onrender.com/chart/loading?date=${date}`)
+        axios.get(`http://localhost:3001/chart/loading?date=${date}`)
             .then((result) => {
                 const chartDataValueWeek = [];
                 const chartDataPriceWeek = [];

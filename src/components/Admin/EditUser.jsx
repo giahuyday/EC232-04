@@ -20,7 +20,7 @@ const EditUser = () => {
     })
 
     useEffect(() => {
-        Axios.post(`https://website-8ld0.onrender.com/manage/users/detail/${AccountID}`, {
+        Axios.post(`http://localhost:3001/manage/users/detail/${AccountID}`, {
             AccountID: AccountID,
         }).then((response) => {
             console.log(response)
@@ -30,7 +30,7 @@ const EditUser = () => {
     }, [])
     const handleSubmit = (e) => {
         e.preventDefault()
-        Axios.post(`https://website-8ld0.onrender.com/admin/users/edit/${AccountID}`, {
+        Axios.post(`http://localhost:3001/admin/users/edit/${AccountID}`, {
             AccountID: AccountID,
             UserName: User.UserName,
             Password: User.Password,

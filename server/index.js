@@ -11,6 +11,7 @@ const UsersController = require('./controllers/Auth/UsersController')
 
 const UserController = require("./controllers/Admin/UserController")
 const OrderController = require('./controllers/Admin/OrderController')
+const ProController = require('./controllers/Admin/ProductController')
 const OrdersController = require('./controllers/OrderController')
 const MyProfileController = require('./controllers/Profile/MyProfileController')
 
@@ -89,19 +90,14 @@ app.put('/profile/edit/:AccountID', MyProfileController.EditProfile)
 
 app.get('/admin/users/findUsers/:value',UserController.findUsers)
 app.get('/admin/orders/findOrders/:value',OrderController.findOrders)
+app.post('/admin/orders/changeStatus/:value/:status',OrderController.changeStatus)
+app.post('/admin/users/lock/:value',OrderController.lock)
+app.post('/admin/users/unlock/:value',OrderController.unlock)
+app.post('/admin/products/unlock/:value',ProController.unlock)
+app.post('/admin/products/lock/:value',ProController.lock)
 app.get('/admin/users',UserController.loading)
 app.get('/admin/orders',OrderController.loading)
-app.get('/admin/products', (req, res) => {
-  connection.query('SELECT * FROM Item', (err, result) => {
-    if (err) {
-      console.log('Fetch Failed !')
-    } else {
-      // console.log(rows[0])
-      console.log(result)
-      res.send(result)
-    }
-  })
-})
+app.get('/admin/products',ProController.loading)
 
 app.listen(3001, () => {
   console.log('Your server is run on 3001')

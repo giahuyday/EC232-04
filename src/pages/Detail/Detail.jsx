@@ -46,7 +46,7 @@ const Detail = () => {
     setAmount(value)
   }
   const handAddCart = async () => {
-    await Axios.post('https://website-8ld0.onrender.com/cartpost/add', {
+    await Axios.post('http://localhost:3001/cartpost/add', {
       Account: sessionStorage.getItem('AccountID'),
       itemId: ItemID,
       Quantity: amount,

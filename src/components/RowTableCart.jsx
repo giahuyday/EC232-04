@@ -19,7 +19,7 @@ const RowTableCart = ({ props, reset }) => {
       ItemID: props.ItemID,
       CartID: props.CartID,
     }
-    await axios.post('https://website-8ld0.onrender.com/cartpost/update', quantity)
+    await axios.post('http://localhost:3001/cartpost/update', quantity)
     reset()
   }
   const handleAdd = async () => {
@@ -30,7 +30,7 @@ const RowTableCart = ({ props, reset }) => {
       ItemID: props.ItemID,
       CartID: props.CartID,
     }
-    await axios.post('https://website-8ld0.onrender.com/cartpost/update', quantity)
+    await axios.post('http://localhost:3001/cartpost/update', quantity)
 
     reset()
   }
@@ -45,7 +45,7 @@ const RowTableCart = ({ props, reset }) => {
     setHovered(false)
   }
   const handleButtuonRemove = async () => {
-    await axios.post('https://website-8ld0.onrender.com/cartpost/remove', {
+    await axios.post('http://localhost:3001/cartpost/remove', {
       CartID: props.CartID,
       ItemID: props.ItemID,
     })

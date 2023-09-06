@@ -13,7 +13,7 @@ const Header = () => {
   const navigate = useNavigate()
   const handleLogout = () => {
     // sessionStorage.clear()
-    console.log(sessionStorage.getItem('UserName'))
+    // console.log(sessionStorage.getItem('UserName'))
     sessionStorage.clear()
     navigate('/')
   }

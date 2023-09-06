@@ -6,14 +6,18 @@ import Axios from 'axios'
 const ProductsManage = () => {
     const [products, SetProducts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const [reset, SetReset] = useState(1)
+    const resetData = ()=>{
+        SetReset(!reset)
+    }
     useEffect(() => {
         getProducts()
-    }, [])
+    }, [reset])
     const movePage = (move) => {
         setCurrentPage(currentPage + move)
     }
     const getProducts = () => {
-        Axios.get('https://website-8ld0.onrender.com/admin/products').then((response) => {
+        Axios.get('http://localhost:3001/admin/products').then((response) => {
             SetProducts(response.data)
             console.log(response.data)
         })
@@ -81,7 +85,7 @@ const ProductsManage = () => {
                                     </thead>
                                     <tbody>
                                         {products.slice((currentPage - 1) * 5, 5 * currentPage).map((item) => {
-                                            return <RowTableProductsManage item={item} key={item.itemID} />
+                                            return <RowTableProductsManage item={item} key={item.itemID} resetData={resetData} />
                                         })}
                                     </tbody>
                                 </table>

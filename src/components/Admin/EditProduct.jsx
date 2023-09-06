@@ -27,7 +27,7 @@ export default function EditProduct() {
     })
 
     useEffect(() => {
-        Axios.post(`https://website-8ld0.onrender.com/detail/${ItemID}`, {
+        Axios.post(`http://localhost:3001/detail/${ItemID}`, {
             ItemID: ItemID,
         }).then((response) => {
             console.log(response)
@@ -38,7 +38,7 @@ export default function EditProduct() {
 
     const updateProduct = (e) => {
         e.prevenDefault()
-        Axios.post(`https://website-8ld0.onrender.com/manage/products/edit/${ItemID}`, {
+        Axios.post(`http://localhost:3001/manage/products/edit/${ItemID}`, {
             ItemID: ItemID,
             Name: Product.Name,
             Price: Product.Price,

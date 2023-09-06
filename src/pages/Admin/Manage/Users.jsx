@@ -4,23 +4,27 @@ import Axios from 'axios'
 
 const UsersManage = () => {
     const [Users, SetUsers] = useState([])
+    const [reset, SetReset] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
+    const resetData = ()=>{
+        SetReset(!reset)
+    }
     useEffect(() => {
         getUsers()
-    }, [])
+    }, [reset])
     const movePage = (move) => {
         if (currentPage === 1 && move === -1) return
         setCurrentPage(currentPage + move)
     }
 
     const findUsers = (value) => {
-        Axios.get(`https://website-8ld0.onrender.com/admin/users/findUsers/${value}`).then((response) => {
+        Axios.get(`http://localhost:3001/admin/users/findUsers/${value}`).then((response) => {
             SetUsers(response.data)
             // console.log(response.data)
         })
     }
     const getUsers = () => {
-        Axios.get('https://website-8ld0.onrender.com/admin/users').then((response) => {
+        Axios.get('http://localhost:3001/admin/users').then((response) => {
             SetUsers(response.data)
         })
     }
@@ -88,8 +92,9 @@ const UsersManage = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {/* {console.log(Users)} */}
                                         {Users.slice((currentPage - 1) * 5, 5 * currentPage).map((item) => {
-                                            return <RowTableUsersManage item={item} key={item.AccountID} />
+                                            return <RowTableUsersManage item={item} key={item.AccountID} resetData={resetData}  />
                                         })}
                                     </tbody>
                                 </table>

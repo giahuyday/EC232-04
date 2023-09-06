@@ -15,7 +15,7 @@ function AddProduct() {
     const [Product, SetProduct] = useState([])
 
     const AddProduct = (e) => {
-        Axios.post('https://website-8ld0.onrender.com/manage/products/add', {
+        Axios.post('http://localhost:3001/manage/products/add', {
             Name: Name,
             Price: Price,
             Description: Description,
@@ -33,7 +33,7 @@ function AddProduct() {
     // const AddImg = (e) => {
     //     console.log(ItemID)
     //     ItemID = 9
-    //     Axios.post(`https://website-8ld0.onrender.com/manage/products/addImg`, {
+    //     Axios.post(`http://localhost:3001/manage/products/addImg`, {
     //         ItemID: ItemID,
     //         Content: Content
     //     }).then((response) => {
@@ -42,7 +42,7 @@ function AddProduct() {
     //     }).catch(e)
     // }
     // const AddItemImg = () => {
-    //     Axios.post("https://website-8ld0.onrender.com/manage/products/addImg", {
+    //     Axios.post("http://localhost:3001/manage/products/addImg", {
     //         Content: Content
     //     }).then((response) => {
     //         console.log(response)

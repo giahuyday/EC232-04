@@ -14,7 +14,7 @@ const SearchByCate = () => {
     },[])
 
   const getProducts = () => {
-      Axios.get(`https://website-8ld0.onrender.com/cate/${CateID}`).then((response) => {
+      Axios.get(`http://localhost:3001/cate/${CateID}`).then((response) => {
           SetProducts(response.data)
           console.log(response.data)
       })

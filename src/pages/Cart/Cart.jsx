@@ -37,13 +37,13 @@ const Cart = ({ users }) => {
   }
 
   useEffect(() => {
-    axios.get(`https://website-8ld0.onrender.com/cart/loading/` + sessionStorage.getItem('AccountID')).then((result) => {
+    axios.get(`http://localhost:3001/cart/loading/` + sessionStorage.getItem('AccountID')).then((result) => {
       setDataCart(() => result.data)
       setCartItems(result.data)
 
       console.log(result.data)
     })
-    axios.get(`https://website-8ld0.onrender.com/admin/points/getInfo/${sessionStorage.getItem('AccountID')}`).then((result) => setInfoGuest(result.data[0][0]))
+    axios.get(`http://localhost:3001/admin/points/getInfo/${sessionStorage.getItem('AccountID')}`).then((result) => setInfoGuest(result.data[0][0]))
   }, [resetData])
   useEffect(() => {
     setCartItemsCount(dataCart.reduce((total, item) => total + item.Quantity, 0))

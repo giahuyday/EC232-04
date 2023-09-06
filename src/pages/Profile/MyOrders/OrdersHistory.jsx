@@ -14,7 +14,7 @@ export default function OrdersHistory() {
   const [orderDetails, setOrderDetails] = useState([])
   const [loading, setLoading] = useState(true)
   const getAllOrdersHistoryID = async () => {
-    const res = await axios.get(`https://website-8ld0.onrender.com/orders/${Account.AccountID}`)
+    const res = await axios.get(`http://localhost:3001/orders/${Account.AccountID}`)
     const orderIDs = res.data.map((order) => order.OrderID)
     console.log('orderIDs', orderIDs)
     setOrdersID(orderIDs)
@@ -30,7 +30,7 @@ export default function OrdersHistory() {
 
   useEffect(() => {
     const details = ordersID.map(async (orderID) => {
-      const orderDetail = await axios.get(`https://website-8ld0.onrender.com/orders/${orderID}`)
+      const orderDetail = await axios.get(`http://localhost:3001/orders/${orderID}`)
       console.log('orderDetail', orderDetail)
       setOrdersHistoryStore(orderDetail.data)
     })

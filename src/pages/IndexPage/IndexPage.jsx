@@ -54,7 +54,7 @@ const IndexPage = () => {
   }, [])
 
   const getData = () => {
-    axios.get("https://website-8ld0.onrender.com/home/loading").then((result) => {
+    axios.get("http://localhost:3001/home/loading").then((result) => {
       setCategory(result.data.categories);
       SetProducts(result.data.items);
     })

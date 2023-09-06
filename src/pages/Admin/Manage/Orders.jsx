@@ -18,13 +18,13 @@ const OrdersManage = () => {
         getOrders()
         return
     }
-    Axios.get(`https://website-8ld0.onrender.com/admin/orders/findOrders/${value}`).then((response) => {
+    Axios.get(`http://localhost:3001/admin/orders/findOrders/${value}`).then((response) => {
       setOrders(response.data)
       // console.log(response.data)
     })
   }
   const getOrders = () => {
-    Axios.get('https://website-8ld0.onrender.com/admin/orders').then((response) => {
+    Axios.get('http://localhost:3001/admin/orders').then((response) => {
       setOrders(response.data)
     })
   }
@@ -87,7 +87,7 @@ const OrdersManage = () => {
               </thead>
               <tbody>
                 {Users.slice((currentPage-1)*5,5*currentPage).map((item) => {
-                  return <RowTableOrdersManage item={item} key={item.AccountID} />
+                  return <RowTableOrdersManage item={item} key={item.OrderID} />
                 })}
              
               </tbody>

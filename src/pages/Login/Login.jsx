@@ -15,12 +15,12 @@ const Login = ({ SetUser }) => {
   //   End Zustand store
   const handleSubmit = (e) => {
     e.preventDefault()
-    Axios.post('https://website-8ld0.onrender.com/auth/login', {
+    Axios.post('http://localhost:3001/auth/login', {
       userName: userName,
       Password: Password,
     }).then((response) => {
       console.log(response.data)
-      if (response.data !== 'Failed') {
+      if (response.data !== 'Failed' && response.data[0].LockStatus!==1) {
         sessionStorage.setItem('AccountID', response.data[0].AccountID)
         sessionStorage.setItem('UserName', response.data[0].UserName)
         sessionStorage.setItem('Name', response.data[0].Name)
@@ -28,7 +28,12 @@ const Login = ({ SetUser }) => {
         SetUser(response.data[0]) // Truyền thông tin người dùng qua hàm SetUser
         setAccount(response.data[0]) // Truyền thông tin người dùng qua hàm setAccount của Zustand, cứ mỗi lần dùng SetUser thì phải dùng thêm hàm này tương tự
       } else {
-        alert('Login Failed !')
+        if( response.data[0].LockStatus===1){
+          alert('Your Account was locked by admin')
+        }
+        else{
+          alert('Username or Password is incorrect')
+        }
       }
     })
   }
