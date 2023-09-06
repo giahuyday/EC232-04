@@ -1,10 +1,11 @@
 import Axios from 'axios'
 import React from 'react'
-import { useState} from 'react'
+import { useState } from 'react'
+
 const SearchBar = ({setResults}) => {
     const [search, setSearch] = useState("")
     const fetchData = (value) => {
-        Axios.get(`https://website-8ld0.onrender.com/product`)
+        Axios.get(`http://localhost:3001/search`)
         // .then((response)) 
             // console.log(products.filter(response.data))
         .then((response) => {
@@ -14,6 +15,7 @@ const SearchBar = ({setResults}) => {
             })
             console.log(result)
             setResults(result)
+            localStorage.setItem('search-results', JSON.stringify(result));
         })
     }
         // setImgMain(Product[0]?.Content)

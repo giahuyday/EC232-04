@@ -56,7 +56,7 @@ const Detail = () => {
   }
   const fetchProductDetail = async () => {
     try {
-      const res = await Axios.get(`https://website-8ld0.onrender.com/detail/${ItemID}`)
+      const res = await Axios.get(`http://localhost:3001/detail/${ItemID}`)
       console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)

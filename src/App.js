@@ -23,7 +23,7 @@ import { useState } from 'react'
 import OrdersManage from './pages/Admin/Manage/Orders.jsx'
 import OrdersDetail from './pages/Admin/Manage/OrdersDetail.jsx'
 import SearchByCate from './components/Search/SearchByCate.jsx'
-
+import SearchByKey from './components/Search/SearchByKey.jsx'
 function App() {
   const [users, SetUser] = useState([])
   return (
@@ -49,6 +49,7 @@ function MainLayout({users}) {
           <Route path="/profile" element={<Profile users={users}/>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/search/:CateID" element={<SearchByCate />} />
+          <Route path="/search" element={<SearchByKey />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Search from './Search/Search'
 import SearchResultsList from './Search/SearchResultList'
@@ -17,6 +17,14 @@ const Header = () => {
     sessionStorage.clear()
     navigate('/')
   }
+  const [isReloaded, setIsReloaded] = useState(false);
+  const handleReload = () => {
+    if (!isReloaded) {
+      window.location.reload(); // Gọi hàm để làm tải lại trang
+    } else {
+      setIsReloaded(false); // Đánh dấu là đã nhấn lần đầu
+    }
+  };
   const handleCart = () => {
     if (Username === null || Username === undefined) {
       // window.location.href = 'auth/login'
@@ -26,6 +34,7 @@ const Header = () => {
       navigate('/cart')
     }
   }
+
   return (
     <header className="px-4 lg:px-12">
       <nav className="px-4 lg:px-6 py-2.5">
@@ -43,16 +52,25 @@ const Header = () => {
             <Link to="/about" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               About
             </Link>
+            {Username == "admin1" ? (
+              <Link to="/admin" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+              Admin manage
+            </Link>) : 
+            (
             <Link to="/auth/signup" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Sign Up
             </Link>
+            )}
+            
           </div>
           <div className="flex gap-2 items-center justify-between">
             <div className="flex gap-1 items-center relative">
-              <Search setResults={setResults} />
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 absolute right-3 text-[#828282] peer-focus:text-[#2F80ED] peer-focus:scale-[1.1] transition-all duration-200 ease-in-out ">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
+              <Search setResults={setResults}/>
+              <Link to="/search/" onClick={handleReload}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" strokeWidth={2} stroke="currentColor" className="w-6 h-6 absolute top-3 bottom-2 right-3 text-[#828282] peer-focus:text-[#2F80ED] peer-focus:scale-[1.1] transition-all duration-200 ease-in-out cursor-pointer">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+              </Link> 
             </div>
             <div></div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer ml-auto">
@@ -90,7 +108,9 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <SearchResultsList results={results} />
+        <div>
+          <SearchResultsList results={results} />
+        </div>
       </nav>
     </header>
   )
