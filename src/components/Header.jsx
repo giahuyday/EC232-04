@@ -55,12 +55,9 @@ const Header = () => {
             {Username == "admin1" ? (
               <Link to="/admin" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Admin manage
-            </Link>) : 
-            (
-            <Link to="/auth/signup" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
-              Sign Up
-            </Link>
-            )}
+            </Link>) : (<div>
+              
+            </div>)}
             
           </div>
           <div className="flex gap-2 items-center justify-between">

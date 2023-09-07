@@ -25,6 +25,7 @@ exports.CreateAccount =  (req, res) => {
       if (err) {
         console.log(err)
       } else {
+        console.log(res)
         res.send('Register Accepted')
       }
     })
@@ -71,6 +72,21 @@ exports.UserSearch = (req, res) => {
                   'LEFT JOIN Item_Picture ON Item.ItemID = Item_Picture.ItemID ' +
                   'WHERE Item.CateID = ? ' +
                   'GROUP BY Item.ItemID, Item.Name', [CateID], (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      // console.log(rows[0])
+      console.log(result)
+      res.send(result)
+    }
+  })
+}
+
+exports.UserSearchResult = (req, res) => {
+  connection.query('SELECT Item.*, GROUP_CONCAT(Item_Picture.Content SEPARATOR ", ") AS Content ' +
+                  'FROM Item ' +
+                  'LEFT JOIN Item_Picture ON Item.ItemID = Item_Picture.ItemID ' +
+                  'GROUP BY Item.ItemID, Item.Name', (err, result) => {
     if (err) {
       console.log(err)
     } else {

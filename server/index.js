@@ -64,7 +64,28 @@ app.post('/admin/users/edit/:AccountID', UsersController.EditUserDetail)
 app.post('/auth/order', UsersController.PlaceOrder)
 
 app.get('/detail/:ItemID', ProductsController.ProductsDetail)
-app.post('/manage/products/edit/:ItemID', ProductsController.EditProductDetail)
+app.post('/admin/products/edit/:ItemID', (req, res) => {
+  console.log(req.params)
+  console.log(req.body)
+  const ItemID = req.params.ItemID
+  const Name = req.body.Name
+  const Price = req.body.Price
+  const Description = req.body.Description
+  const Color = req.body.Color
+  const Status = req.body.Status
+  const CateID = req.body.CateID
+  const ProDucerID = req.body.ProDucerID
+  console.log(Price)
+  connection.query('UPDATE Item SET Item.Name=?, Item.Price=?, Item.Description=?, Item.Color=?, Item.Status=?, Item.CateID=?, Item.ProDucerID=? WHERE ItemID = ?', [Name, Price, Description, Color, Status, CateID, ProDucerID, ItemID], (err, result) => {
+      if (err) {
+          console.log(err)
+      } else {
+          console.log("Update Succes")
+          res.send(result)
+      }
+  })})
+  
+app.post('/manage/products/edit/addimg/:ItemID', ProductsController.AddImgProd)
 app.post('/manage/products/add', ProductsController.AddProduct)
 
 app.get('/home/loading', IndexPageController.loading)
@@ -78,6 +99,7 @@ app.post('/cartpost/update', CartController.updateQuantity)
 app.get('/chart/loading', ChartController.loading)
 app.get('/admin/points/getInfo/:ID', UserController.getInfo)
 app.get('/admin/points/getType/:ID', UserController.getType)
+
 // app.get('/home/bestseller',IndexPageController.loadingBestSeller)
 
 // Orders

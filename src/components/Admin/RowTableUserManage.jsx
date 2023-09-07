@@ -42,7 +42,7 @@ const RowTableUsersManage = ({ item,resetData }) => {
             </td>
             <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dtext-white">
                 <div className="flex">
-                    <Link to={`/edit/${item.AccountID}`} className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-yellow-200" >
+                    <Link to={`/admin/edit/users/${item.AccountID}`} className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-yellow-200" >
                         <div className="w-[80px] h-[40px] rounded-[10px] mr-2 bg-[#d0d74a] hover:bg-[#e7eba5] flex justify-center items-center">
                             Edit
                         </div>

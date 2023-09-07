@@ -19,7 +19,7 @@ exports.ProductsDetail = (req, res) => {
     })
 }
 exports.EditProductDetail = (req, res) => {
-    console.log(req.body)
+    console.log(req.params)
     const ItemID = req.params.ItemID
     const Name = req.body.Name
     const Price = req.body.Price
@@ -33,7 +33,7 @@ exports.EditProductDetail = (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(result)
+            console.log("Update Succes")
             res.send('Update Product Accepted')
         }
     })
@@ -68,6 +68,20 @@ exports.AddProduct = (req, res) => {
                     res.send('Update Product Accepted')
                 }
             })
+        }
+    })
+}
+
+exports.AddImgProd = (req, res) => {
+    console.log(req.body)
+    const ItemID = req.params.ItemID
+    const Content = req.body.Content
+    connection.query('CALL Add_ItemPicture(?,?)', [ItemID, Content], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send('Update Product Accepted')
+            console.log(result)
         }
     })
 }
