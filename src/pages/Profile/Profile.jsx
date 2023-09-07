@@ -182,9 +182,9 @@ const Profile = ({ users }) => {
             <TabPane className="min-h-700" tab="My Returns" key="2-1">
               <MyOrders />
             </TabPane>
-            <TabPane className="min-h-700" tab="My Cancellations" key="2-2">
+            {/* <TabPane className="min-h-700" tab="My Cancellations" key="2-2">
               Content of My Cancellations
-            </TabPane>
+            </TabPane> */}
           </Tabs>
         </TabPane>
 

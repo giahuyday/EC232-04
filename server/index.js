@@ -84,7 +84,7 @@ app.post('/admin/products/edit/:ItemID', (req, res) => {
           res.send(result)
       }
   })})
-  
+
 app.post('/manage/products/edit/addimg/:ItemID', ProductsController.AddImgProd)
 app.post('/manage/products/add', ProductsController.AddProduct)
 
@@ -105,6 +105,8 @@ app.get('/admin/points/getType/:ID', UserController.getType)
 // Orders
 app.get('/orders/:AccountID', OrdersController.GetAllOrderIDsOfAccount)
 app.get('/orders/order/:ID', OrdersController.GetOrderDetailByID)
+app.get('/GetAllItemIDByOrderID/:ID', OrdersController.GetAllItemIDByOrderID)
+app.get('/GetAllDetailsOfItemByItemID/:ID', OrdersController.GetAllDetailsOfItemByItemID)
 // End Orders
 // Profile
 app.put('/profile/edit/:AccountID', MyProfileController.EditProfile)

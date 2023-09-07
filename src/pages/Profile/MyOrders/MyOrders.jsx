@@ -19,80 +19,81 @@ function Orders() {
   const currentSelectedOrder = useUserStore((state) => state.currentSelectedOrder)
 
   return (
-    <div className="righ flex-shrink-0 w-[70%] bg-gray-50 p-4">
+    <div className="righ flex-shrink-0 w-[70%] bg-[#F7F2EC] p-4 rounded-t-md">
       <div className="top">
         <div className="flex items-center">
-          <p className="text-xl font-medium">Orders of {currentSelectedOrder?.GuessName}</p>
+          <p className="text-2xl font-medium">Orders of {currentSelectedOrder?.GuessName}</p>
           {/* Stars here */}
         </div>
-        {Array.from({ length: 1 }, (_, i) => (
-          <OrderItem />
-        ))}
+        {currentSelectedOrder?.map((order) => {
+          return <OrderItem order={order} />
+        })}
       </div>
-      <OrderDetails />
+      {/* <OrderDetails /> */}
     </div>
   )
 }
 
 const OrderDetails = () => {
+  const currentSelectedOrder = useUserStore((state) => state.currentSelectedOrder)
+  const { OrderID, GuessName, Delivery_Address, Day, Phone, note, Total_Price, Status, AccountID, ShipFee, PointUsed } = currentSelectedOrder || {}
+  const totals = currentSelectedOrder?.reduce((acc, cur) => acc + cur.Price, 0)
   return (
-    <div className="rounded-md  bg-gray-50 p-4 -m-4">
-      <p className="text-xl font-medium">Orders Details</p>
-      <div className="grid lg:grid-cols-[4fr_2fr] grid-cols-1">
-        <div className="">Phone number:</div>
-        <div className="">+84 123 456 789</div>
+    <div className="font-serif rounded-b-md  bg-[#F7F2EC] p-4 -m-4">
+      <p className="font-serif text-xl font-medium">Orders Details</p>
+      <div className="font-serif grid lg:grid-cols-[2fr_2fr] grid-cols-1">
+        {/* <div className="font-serif ">Phone number:  </div>
+        <div className="font-mono text-[20px]">{Phone}</div>
 
-        <div className="">Delivery Address</div>
-        <div className="">USA,127 E 21st ST, New York, NY 10010</div>
+        <div className="font-serif ">Delivery Address</div>
+        <div className="font-mono text-[20px]">{Delivery_Address}</div>
 
-        <div className="">Payment Method</div>
-        <div className="">Credit Card</div>
+        <div className="font-serif ">Point Used: </div>
+        <div className="font-mono text-[20px]">{PointUsed}</div>
 
-        <hr className="border-gray-400 my-2 " />
-        <hr className="border-gray-400 my-2 " />
+        <hr className="font-serif border-gray-400 my-2 " />
+        <hr className="font-serif border-gray-400 my-2 " /> */}
 
-        <div className="">Total</div>
-        <div className="">USD $1,788</div>
+        <div className="font-serif ">Total</div>
+        <div className="font-mono text-[20px] text-right ">USD ${totals}</div>
       </div>
     </div>
   )
 }
 
-function OrderItem() {
+function OrderItem({ order }) {
   const currentSelectedOrder = useUserStore((state) => state.currentSelectedOrder)
-  const { OrderID, GuessName, Delivery_Address, Day, Phone, note, Total_Price, Status, AccountID, ShipFee, PointUsed } = currentSelectedOrder || {}
+  const { OrderID, GuessName, Delivery_Address, Day, Phone, note, Total_Price, Status: currentStatus, AccountID, ShipFee, PointUsed } = currentSelectedOrder || {}
+
+  const { Category, Description, ItemID, Name, Pic, Price, Producer, Status } = order || {}
   useEffect(() => {
     console.log('currentSelectedOrder', currentSelectedOrder)
   }, [])
   return (
     <div className="flex gap-8 items-center">
       <div className="rounded-3xl overflow-hidden">
-        <img src="https://cdn.ttgtmedia.com/rms/onlineimages/hp_elitebook_mobile.jpg" alt="" className="w-[10rem] h-[10rem] object-contain overflow-hidden" />
+        <img src={Pic} alt="" className="w-[10rem] h-[10rem] object-contain overflow-hidden rounded-md" />
       </div>
       <div className="flex flex-col w-full">
         <div className="flex justify-between w-full gap-2 border-b">
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <p className="">{GuessName}</p>
-              <span>#{OrderID}</span>
+              <span>#{ItemID}</span>
             </div>
-            <div className="p">Boat-neck sleeveless middi dress</div>
-            <div className="">Phone: {Phone}</div>
-            <div className="">1 Item</div>
+            <p className="p">{Name}</p>
+            <div className="">Category:</div>
           </div>
           <div className="flex flex-col justify-center text-right">
-            <p>{dayjs(Day).format('DD/MM/YYYY hh:mm')}</p>
-            <p>
-              ${Total_Price} (Shipping fee : {ShipFee})
-            </p>
-            <p>VAT included</p>
+            <p>{Description}</p>
+            <p>${Price}</p>
+            <p>{Category}</p>
           </div>
         </div>
         <div className="grid grid-cols-[1fr_1fr] w-full">
-          <div className="">Note*: {note}</div>
-          <div className="text-right">Shipping to: {Delivery_Address}</div>
-          <div className="">Status: {Status}</div>
-          <div className="text-right">PointUsed: {PointUsed}</div>
+          <div className="">Manufature: </div>
+          <div className="text-right">{Producer}</div>
+          <div className="">Status: </div>
+          <div className="text-right">{Status}</div>
         </div>
       </div>
     </div>
