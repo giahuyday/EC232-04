@@ -802,9 +802,11 @@ BEGIN
 		FROM WishList as wi, Item as It, Category as Ca, Producer as pro
 		WHERE wi.AccountID = AccID and wi.ItemID = It.ItemID and It.CateID = Ca.CateID and It.ProDucerID = pro.ProducerID;
     
-		SELECT DISTINCT It.ItemID, It.Name, It.Price, It.Description, It.Status, Ca.Name as Category, pro.Name as Producer,  Ip.Content as Pic
+		SELECT  It.ItemID, It.Name, It.Price, It.Description, It.Status, Ca.Name as Category, pro.Name as Producer,  Ip.Content as Pic
 		FROM WishList as wi, Item as It, Category as Ca, Producer as pro, Item_Picture as Ip
-		WHERE wi.AccountID = AccID and wi.ItemID = It.ItemID and It.CateID = Ca.CateID and It.ProDucerID = pro.ProducerID and Ip.ItemID = wi.ItemID;
+		WHERE wi.AccountID = AccID and wi.ItemID = It.ItemID and It.CateID = Ca.CateID and It.ProDucerID = pro.ProducerID and Ip.Content = (Select MAX(Ip.Content)
+		from Item_Picture as Ip	
+where Ip.ItemID = wi.ItemID);
 	elseif AccCount = 0  then
 		select 0;
     end if;
