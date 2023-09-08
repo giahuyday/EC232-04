@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-
+import moment from 'moment'
 const SignUp = () => {
   const navigate = useNavigate()
   const [userName, setUsername] = useState('')
@@ -18,8 +18,8 @@ const SignUp = () => {
       userName: userName,
       Password: Password,
       Name: Name,
-      Birth: Birth || '',
-      Money: Money || '',
+      Birth: moment(Birth).format("YYYY-MM-DD"),
+      Money: Money || 0,
       Email: Email,
       Phone: Phone || '',
       Adress: Adress || '',
@@ -66,13 +66,7 @@ const SignUp = () => {
                 <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900">
                   Date of Birth
                 </label>
-                <input type="date" name="date" id="date" placeholder="Date of Birth" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value={Birth} onChange={(e) => setBirth(e.target.value)} />
-              </div>
-              <div>
-                <label htmlFor="Money" className="block mb-2 text-sm font-medium text-gray-900">
-                  Money
-                </label>
-                <input type="Money" name="Money" id="Money" placeholder="Money" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value={Money} onChange={(e) => setMoney(e.target.value)} />
+                <input type="date" name="date" id="date" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value={moment(Birth).format("YYYY-MM-DD")} onChange={(e) => setBirth(e.target.value)} />
               </div>
               <div>
                 <label htmlFor="Phone" className="block mb-2 text-sm font-medium text-gray-900">
