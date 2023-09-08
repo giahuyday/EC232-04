@@ -11,10 +11,11 @@ function queryCart(id) {
     });
   });
 }
-function queryUpdareQuantity(qua,cartid,itemid) {
+function queryUpdareQuantity(qua,cartid,ItemID) {
   return new Promise((resolve, reject) => {
     const query = 'UPDATE Cart_Detail SET Quantity = ? WHERE CartID = ? and itemID = ?'
-    connection.query(query,[qua,cartid,itemid], (err, result) => {
+    console.log(qua,cartid,ItemID)
+    connection.query(query,[qua,cartid,ItemID], (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -39,7 +40,7 @@ module.exports = CartContoller = {
     try {
       const quantity = req.body.Quantity;
       const cartID = req.body.CartID;
-      const itemID = req.body.itemId;
+      const itemID = req.body.ItemID;
       const result = await queryUpdareQuantity(quantity,cartID,itemID)
       res.send(result)
     } catch (err) {

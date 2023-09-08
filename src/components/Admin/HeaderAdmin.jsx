@@ -9,7 +9,7 @@ const HeaderAdmin = ({ children }) => {
             <div className="flex justify-center">
                 <div className="h-[100px] w-[1440px] flex items-center">
                     <div className="flex items-center justify-center h-20 w-[300px] shadow-md">
-                        <h1 className="text-3xl uppercase text-indigo-500">Logo</h1>
+                        <h1 className="text-3xl uppercase text-indigo-500">Admin</h1>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@ const HeaderAdmin = ({ children }) => {
                         <div className="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
                             <ul className="flex flex-col py-4">
                                 <li>
-                                    <Link to="/admim" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                    <Link to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                                         <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                                             <AiOutlineHome></AiOutlineHome>
                                         </span>
@@ -44,11 +44,11 @@ const HeaderAdmin = ({ children }) => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/admin/vouchers" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                    <Link to="/admin/chart" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                                         <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                                             <CiDiscount1></CiDiscount1>
                                         </span>
-                                        <span className="text-sm font-medium">Vouchers</span>
+                                        <span className="text-sm font-medium">Chart</span>
                                     </Link>
                                 </li>
                                 <li>
@@ -60,16 +60,9 @@ const HeaderAdmin = ({ children }) => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                                            <i className="bx bx-user"></i>
-                                        </span>
-                                        <span className="text-sm font-medium">Profile</span>
-                                    </Link>
-                                </li>
-                                <li>
+                                    
                                     <Link to="/admin/orders" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i className="bx bx-bell"></i></span>
+                                        <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">    <AiOutlineUser></AiOutlineUser></span>
                                         <span className="text-sm font-medium">Orders</span>
                                         <span className="ml-auto mr-6 text-sm bg-red-100 rounded-full px-3 py-px text-red-500">5</span>
                                     </Link>

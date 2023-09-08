@@ -11,7 +11,9 @@ const RowTableCart = ({ props, reset }) => {
   const increaseCartCount = useUserStore((state) => state.increaseCartCount)
   const decreaseCartCount = useUserStore((state) => state.decreaseCartCount)
   const handleMinus = async () => {
-    if (amount === 1) return
+    if (amount === 1) {
+      handleButtuonRemove()
+    }
     setAmount((amount) => amount - 1)
     decreaseCartCount()
     const quantity = {

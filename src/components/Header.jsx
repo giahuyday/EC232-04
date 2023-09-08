@@ -46,11 +46,11 @@ const Header = () => {
             <Link to="/" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Home
             </Link>
-            <Link to="/contact" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+            <Link to="https://www.facebook.com/NDMinh712/" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
               Contact
             </Link>
-            <Link to="/about" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
-              About
+            <Link to="/profile" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
+              Profile
             </Link>
             {Username == "admin1" ? (
               <Link to="/admin" className="font-medium px-4 lg:px-5 py-2 lg:py-2.5 mr-2">

@@ -42,7 +42,7 @@ const ChartLine = ({ labels, data, date,typeChart }) => {
   }, [labels, data,date]);
 
   return (
-    <div className="mx-auto w-4/5 overflow-hidden">
+    <div className="mx-auto w-2/5 overflow-hidden">
       <canvas ref={canvasRef} key={date} id="chart"
        ></canvas>
     </div>

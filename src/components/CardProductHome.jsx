@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber,calDiscount } from '../helper/dataHelper.js';
+import { formatNumber, calDiscount } from '../helper/dataHelper.js';
 import { Link } from 'react-router-dom'
 import { AiFillStar } from 'react-icons/ai';
 const CardProductHome = ({ props }) => {
@@ -21,27 +21,46 @@ const CardProductHome = ({ props }) => {
                 </div>
                 <div className="flex flex-col items-start justify-start gap-[8px] text-base text-text2 p-[5px] drop-shadow-sm">
                     <div className="relative leading-[24px] font-medium w overflow-hidden w-[270px] text-[20px] whitespace-nowrap text-ellipsis ">
-                   {data.Name}
+                        {data.Name}
                     </div>
 
                     <div className="flex flex-row items-start justify-start gap-[12px] text-secondary-2">
-                        <div className="relative leading-[24px] font-medium text-[#DB4444]">   {formatNumber(calDiscount(data.Price,30))}</div>
+                        <div className="relative leading-[24px] font-medium text-[#DB4444]">   {formatNumber(calDiscount(data.Price, 30))}</div>
                         <div className="relative [text-decoration:line-through] leading-[24px] font-medium text-text2 opacity-[0.5]">
-                        {formatNumber(data.Price)}
+                            {formatNumber(data.Price)}
                         </div>
                     </div>
-                    <div className="flex flex-row items-start justify-start gap-[8px] text-sm">
-                        Rating : 
-                        5
-                        <div className="flex flex-row items-start justify-start">
+                    {data.rating != 0 ?(
+                        <>
+                            <div className="flex flex-row items-start justify-start gap-[8px] text-sm">
+                                Rating : {data.rating}
+                                <div className="flex flex-row items-start justify-start">
 
-                            <AiFillStar className='text-[#d6d654]'/>
+                                    <AiFillStar className='text-[#d6d654]' />
 
-                        </div>
-                        <div className="relative leading-[21px] font-semibold inline-block w-8 h-5 shrink-0 opacity-[0.5]">
-                            (88)
-                        </div>
-                    </div>
+                                </div>
+                                <div className="relative leading-[21px] font-semibold inline-block w-8 h-5 shrink-0 opacity-[0.5]">
+                                    ({data.couting})
+                                </div>
+                            </div>
+                        </>
+                    ) :(
+                        <>
+                         <div className="flex flex-row items-start justify-start gap-[8px] text-sm">
+                            
+                                <div className="flex flex-row items-start justify-start">
+
+                             
+
+                                </div>
+                                <div className="relative leading-[21px] font-semibold inline-block w-8 h-5 shrink-0 opacity-[0.5]">
+                                 
+                                </div>
+                            </div>
+                        </>
+                    )
+                    }
+
                 </div>
             </div>
         </Link>

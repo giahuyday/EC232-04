@@ -48,10 +48,10 @@ const ChartManage = () => {
     return (
         <div className="my-[50px]">
 
-            <div className="relative w-[1350px] bg-bg min-h-screen h-[1500px] overflow-hidden text-left text-base text-text2 font-title-14px-regular m-auto">
+            <div className="relative w-[100%] bg-bg min-h-screen h-[1500px] overflow-hidden text-left text-base text-text2 font-title-14px-regular m-auto">
                 <div className="absolute top-[150px]  flex flex-col items-start justify-start gap-[80px] w-[1350px] mt-[50px]">
-                    <div className="w-[1350px] flex justify-center">
-                        <div className="w-[1000px]">
+                    <div className="w-[100%] flex justify-center">
+                        <div className="w-[50%]">
                             <input type="date" onChange={(e) => {
                                 setDate(() => e.target.value)
                             }} value={date} className="bg-gray-500 rounded-sm h-[40px] w-[100%] m-auto text-center" />

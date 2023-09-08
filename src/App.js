@@ -29,24 +29,23 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth/*" element={<AuthLayout SetUser={SetUser}/>} />
+        <Route path="/auth/*" element={<AuthLayout SetUser={SetUser} />} />
         <Route path="/admin/*" element={<AdminLayout />} />
-        <Route path='/*'element={<MainLayout users={users}/>} />
+        <Route path='/*' element={<MainLayout users={users} />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-function MainLayout({users}) {
+function MainLayout({ users }) {
   return (
     <>
       <Header />
       <div className="main-content">
         <Routes>
           <Route path="/detail/:ItemID" element={<Detail />} />
-          <Route path="/chart" element={<ChartManage />} />
           <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/profile" element={<Profile users={users}/>} />
+          <Route path="/profile" element={<Profile users={users} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/search/:CateID" element={<SearchByCate />} />
           <Route path="/search" element={<SearchByKey />} />
@@ -62,10 +61,10 @@ function MainLayout({users}) {
   )
 }
 
-function AuthLayout({SetUser}) {
+function AuthLayout({ SetUser }) {
   return (
     <Routes>
-      <Route path="/login" element={<Login SetUser={SetUser} />}/>
+      <Route path="/login" element={<Login SetUser={SetUser} />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
@@ -74,23 +73,24 @@ function AuthLayout({SetUser}) {
 function AdminLayout() {
   return (
     <>
-    <div className="">
-      <HeaderAdmin>
-        <Routes>
-          <Route path="/products" element={<ProductsManage/>} />
-          <Route path="/discounts" element={<Discount/>} />
-          <Route path="/edit/products/:ItemID" element={<EditProduct />} />
-          <Route path="/products/addnew" element={<AddProducts/>}/>
-          <Route path="/orders/detail/:ID" element={<OrdersDetail/>}/>
-          <Route path="/users" element={<UsersManage/>} />
-          <Route path="/edit/users/:AccountID" element={<EditUser/>} />
-          <Route path="/users/addnew" element={<AddUser/>}/>
-          <Route path="/points" element={<PointsManage/>}/>
-          <Route path="/orders" element={<OrdersManage/>}/>
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-    </HeaderAdmin>
-    </div>
+      <div className="">
+        <HeaderAdmin>
+          <Routes>
+            <Route path="/products" element={<ProductsManage />} />
+            <Route path="/discounts" element={<Discount />} />
+            <Route path="/chart" element={<ChartManage />} />
+            <Route path="/edit/products/:ItemID" element={<EditProduct />} />
+            <Route path="/products/addnew" element={<AddProducts />} />
+            <Route path="/orders/detail/:ID" element={<OrdersDetail />} />
+            <Route path="/users" element={<UsersManage />} />
+            <Route path="/edit/users/:AccountID" element={<EditUser />} />
+            <Route path="/users/addnew" element={<AddUser />} />
+            <Route path="/points" element={<PointsManage />} />
+            <Route path="/orders" element={<OrdersManage />} />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </HeaderAdmin>
+      </div>
     </>
   )
 }
