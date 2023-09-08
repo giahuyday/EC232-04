@@ -258,8 +258,26 @@ BEGIN
 END //
 -- call GetAveragePoint('Item1')
 DELIMITER ;
--- -------------------------------------
+-- ---------------------------------------------------------------------------------
+-- lấy điểm trung bình nhưng là fucntion
+DELIMITER //
 
+CREATE FUNCTION GetAveragePoint_F(p_ItemID VARCHAR(50)) RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE avgPoint DECIMAL(10,2);
+
+    SELECT AVG(point) INTO avgPoint
+    FROM Rate
+    WHERE ItemID = p_ItemID;
+
+    RETURN avgPoint;
+END //
+
+DELIMITER ;
+
+
+
+-- -------------------------------------
 -- thêm 1 ảnh mới vào 
 DELIMITER //
 CREATE PROCEDURE Add_ItemPicture(
