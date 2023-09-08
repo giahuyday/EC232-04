@@ -14,7 +14,7 @@ const SignUp = () => {
   const [Phone, setPhone] = useState('')
   const [Adress, setAddress] = useState('')
   const handleSubmit = () => {
-    Axios.post('http://localhost:3001/auth/signup', {
+    Axios.post('https://website-8ld0.onrender.com/auth/signup', {
       userName: userName,
       Password: Password,
       Name: Name,

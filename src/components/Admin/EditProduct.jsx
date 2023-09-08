@@ -18,7 +18,7 @@ export default function EditProduct() {
     })
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/detail/${ItemID}`, {
+        Axios.get(`https://website-8ld0.onrender.com/detail/${ItemID}`, {
             ItemID: ItemID,
         }).then((response) => {
             console.log(response)
@@ -29,7 +29,7 @@ export default function EditProduct() {
     }, [])
 
     const handleAddImg = () => {
-        Axios.post(`http://localhost:3001/manage/products/edit/addimg/${ItemID}`, {
+        Axios.post(`https://website-8ld0.onrender.com/manage/products/edit/addimg/${ItemID}`, {
             ItemID: ItemID,
             Content: Product.Content
         }).then((response) => {
@@ -38,7 +38,7 @@ export default function EditProduct() {
     }
 
     const updateProduct = () => {
-        Axios.post(`http://localhost:3001/admin/products/edit/${ItemID}`, {
+        Axios.post(`https://website-8ld0.onrender.com/admin/products/edit/${ItemID}`, {
             ItemID: ItemID,
             Name: Product.Name,
             Price: Product.Price,

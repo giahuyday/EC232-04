@@ -8,10 +8,10 @@ import axios from "axios";
 
 const RowTableUsersManage = ({ item,resetData }) => {
     const handleDetele = () =>{
-        axios.post(`http://localhost:3001/admin/users/lock/${item.AccountID}`).then(()=>resetData())
+        axios.post(`https://website-8ld0.onrender.com/admin/users/lock/${item.AccountID}`).then(()=>resetData())
     }
     const handleUnclock = () =>{
-        axios.post(`http://localhost:3001/admin/users/unlock/${item.AccountID}`).then(()=>resetData())
+        axios.post(`https://website-8ld0.onrender.com/admin/users/unlock/${item.AccountID}`).then(()=>resetData())
     }
     return (
         <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">

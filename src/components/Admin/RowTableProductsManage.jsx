@@ -5,10 +5,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
 const RowTableProductsManage = ({ item,resetData }) => {
   const handleDetele = () => {
-    axios.post(`http://localhost:3001/admin/products/lock/${item.ItemID}`).then(() => resetData())
+    axios.post(`https://website-8ld0.onrender.com/admin/products/lock/${item.ItemID}`).then(() => resetData())
   }
   const handleUnclock = () => {
-    axios.post(`http://localhost:3001/admin/products/unlock/${item.ItemID}`).then(() => resetData())
+    axios.post(`https://website-8ld0.onrender.com/admin/products/unlock/${item.ItemID}`).then(() => resetData())
   }
   return (
     <tr className="border-b dborder-gray-600 hover:bg-gray-100 dhover:bg-gray-700">
