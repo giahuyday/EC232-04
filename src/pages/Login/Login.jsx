@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useUserStore } from '../../store'
+import './Login.css'
 const Login = ({ SetUser }) => {
   const [userName, setUserName] = useState('john_doe')
   const [Password, setPassword] = useState('password1')
@@ -40,8 +41,17 @@ const Login = ({ SetUser }) => {
   useEffect(() => {
     console.log('This is account', Account)
   }, [Account])
+
+  useEffect(()=> {
+    Axios.post(`http://localhost:3001/manage/users/usertype`, {AccountID: sessionStorage.getItem('AccountID')}).then((response) => {
+    console.log(response.data)  
+    sessionStorage.setItem('UserType',response.data[0])})  
+  },[])
+
+
+
   return (
-    <section className="bg-gray-50 dark:bg-white">
+    <section className="bg-gray-50 dark:bg-white" id="Login">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800 dark:border-gray-700 dark:text-black-800">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -49,7 +59,7 @@ const Login = ({ SetUser }) => {
             <form className="space-y-4 md:space-y-6" action="#">
               <div>
                 <label htmlFor="userName" className="block mb-2 text-sm font-medium text-gray-900">
-                  Your email
+                  userName
                 </label>
                 <input type="userName" name="userName" id="userName" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" value={userName} onChange={(e) => setUserName(e.target.value)} />
               </div>
@@ -70,9 +80,6 @@ const Login = ({ SetUser }) => {
                     </label>
                   </div>
                 </div>
-                {/* <a href="#" className="text-sm font-medium text-primary-100 hover:underline dark:text-primary-100">
-                  Forgot password?
-                </a> */}
               </div>
               <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:bg-red-700" onClick={handleSubmit}>
                 Sign in

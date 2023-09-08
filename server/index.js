@@ -90,6 +90,7 @@ app.post('/manage/products/add', ProductsController.AddProduct)
 
 app.get('/home/loading', IndexPageController.loading)
 app.get('/cate/:CateID', UsersController.UserSearch)
+app.get('/search', UsersController.UserSearchResult)
 app.post('/cartpost/add', CartController.addCart)
 app.post('/cartpost/remove', CartController.removeCart)
 app.get('/cart/loading/:ID', CartController.loading)
