@@ -18,13 +18,13 @@ const UsersManage = () => {
     }
 
     const findUsers = (value) => {
-        Axios.get(`https://website-8ld0.onrender.com/admin/users/findUsers/${value}`).then((response) => {
+        Axios.get(`http://localhost:3001/admin/users/findUsers/${value}`).then((response) => {
             SetUsers(response.data)
             // console.log(response.data)
         })
     }
     const getUsers = () => {
-        Axios.get('https://website-8ld0.onrender.com/admin/users').then((response) => {
+        Axios.get('http://localhost:3001/admin/users').then((response) => {
             SetUsers(response.data)
         })
     }

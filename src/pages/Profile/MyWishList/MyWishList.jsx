@@ -8,7 +8,7 @@ const MyWishList = () => {
   const setWishlist = useUserStore((state) => state.setWishlist)
   const Wishlist = useUserStore((state) => state.Wishlist)
   const fetchWishList = async () => {
-    const res = await axios.get(`https://website-8ld0.onrender.com/wishlist/${AccountID || 'Acc1'}`)
+    const res = await axios.get(`http://localhost:3001/wishlist/${AccountID || 'Acc1'}`)
     setWishlist(res.data.Items)
     console.log(res)
     console.log('🚀 ~ MyWishList ~ wishList', Wishlist)

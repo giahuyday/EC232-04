@@ -12,7 +12,7 @@ export default function OrdersHistory() {
   const currentSelectedOrder = useUserStore((state) => state.currentSelectedOrder)
   const [loading, setLoading] = useState(true)
   const getAllOrdersHistory = async () => {
-    const res = await axios.get(`https://website-8ld0.onrender.com/orders/${Account.AccountID}`)
+    const res = await axios.get(`http://localhost:3001/orders/${Account.AccountID}`)
 
     console.log('🚀 ~ getAllOrdersHistory ~ res:', res)
     setOrdersHistoryStore(res.data)
@@ -24,12 +24,12 @@ export default function OrdersHistory() {
   // const handleClickOrderHistory = (order) => {
   //   console.log('orderID', order)
   //   const getAllItemIDByOrderID = async () => {
-  //     const res = await axios.get(`https://website-8ld0.onrender.com/GetAllItemIDByOrderID/${order.OrderID}`)
+  //     const res = await axios.get(`http://localhost:3001/GetAllItemIDByOrderID/${order.OrderID}`)
   //     console.log('🚀 ~ getAllItemIDByOrderID ~ res:', res)
   //     return res.data
   //   }
   //   const getAllItemDetailOfOrderByItemID = async (ItemID) => {
-  //     const res = await axios.get(`https://website-8ld0.onrender.com/GetAllDetailsOfItemByItemID/${ItemID}`)
+  //     const res = await axios.get(`http://localhost:3001/GetAllDetailsOfItemByItemID/${ItemID}`)
   //     console.log('🚀 ~ getAllItemDetailOfOrderByItemID ~ res:', res)
   //   }
   //   const getAllItemDetailOfOrderByItemIDs = async (ItemIDs) => {
@@ -51,13 +51,13 @@ export default function OrdersHistory() {
       console.log('orderID', order)
 
       const getAllItemIDByOrderID = async () => {
-        const res = await axios.get(`https://website-8ld0.onrender.com/GetAllItemIDByOrderID/${order.OrderID}`)
+        const res = await axios.get(`http://localhost:3001/GetAllItemIDByOrderID/${order.OrderID}`)
         console.log('🚀 ~ getAllItemIDByOrderID ~ res:', res)
         return res.data
       }
 
       const getAllItemDetailOfOrderByItemID = async (ItemID) => {
-        const res = await axios.get(`https://website-8ld0.onrender.com/GetAllDetailsOfItemByItemID/${ItemID}`)
+        const res = await axios.get(`http://localhost:3001/GetAllDetailsOfItemByItemID/${ItemID}`)
         console.log('🚀 ~ getAllItemDetailOfOrderByItemID ~ res:', res)
         return res.data
       }
@@ -80,7 +80,7 @@ export default function OrdersHistory() {
 
   // useEffect(() => {
   //   const details = ordersID.map(async (orderID) => {
-  //     const orderDetail = await axios.get(`https://website-8ld0.onrender.com/orders/${orderID}`)
+  //     const orderDetail = await axios.get(`http://localhost:3001/orders/${orderID}`)
   //     console.log('orderDetail', orderDetail)
   //     setOrdersHistoryStore(orderDetail.data)
   //   })

@@ -13,7 +13,7 @@ const WishListDetail = ({ item }) => {
     e.preventDefault()
     e.stopPropagation()
     removeFromWishlist(ItemID)
-    const res = axios.post('https://website-8ld0.onrender.com/wishlist/removeFromWishlist', { AccountID, ItemID })
+    const res = axios.post('http://localhost:3001/wishlist/removeFromWishlist', { AccountID, ItemID })
   }
   return (
     <Link to={`/detail/${ItemID}`} className="flex gap-8 items-center border-b border-b-blue-300 relative">

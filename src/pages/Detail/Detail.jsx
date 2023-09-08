@@ -46,7 +46,7 @@ const Detail = () => {
     setAmount(value)
   }
   const handAddCart = async () => {
-    await Axios.post('https://website-8ld0.onrender.com/cartpost/add', {
+    await Axios.post('http://localhost:3001/cartpost/add', {
       Account: sessionStorage.getItem('AccountID'),
       itemId: ItemID,
       Quantity: amount,
@@ -55,7 +55,7 @@ const Detail = () => {
     for (let i = 0; i < amount; i++) increaseCartCount()
   }
   const addToFavorite = async () => {
-    const res = await Axios.post('https://website-8ld0.onrender.com/wishlist/addToWishlist', {
+    const res = await Axios.post('http://localhost:3001/wishlist/addToWishlist', {
       AccountID,
       ItemID,
     })
@@ -63,7 +63,7 @@ const Detail = () => {
   }
   const fetchProductDetail = async () => {
     try {
-      const res = await Axios.get(`https://website-8ld0.onrender.com/detail/${ItemID}`)
+      const res = await Axios.get(`http://localhost:3001/detail/${ItemID}`)
       console.log(res)
       const product = parseProductDetails(res.data)
       setProduct(product)
