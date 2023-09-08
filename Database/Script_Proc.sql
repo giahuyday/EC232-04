@@ -274,7 +274,22 @@ BEGIN
 END //
 
 DELIMITER ;
+-- ---------------------------------------------------------------------------------
+-- lấy số lượng rate nhưng là fucntion
+DELIMITER //
 
+CREATE FUNCTION GetNumberRate_F(p_ItemID VARCHAR(50)) RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE Num DECIMAL(10,2);
+
+    SELECT count(RateID) INTO Num
+    FROM Rate
+    WHERE ItemID = p_ItemID;
+
+    RETURN Num;
+END //
+
+DELIMITER ;
 
 
 -- -------------------------------------
