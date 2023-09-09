@@ -19,7 +19,7 @@ const ProductsManage = () => {
     }
     const findItems = (value) => {
         if(value==='') {
-            getOrders()
+            getProducts()
             return
         }
         Axios.get(`http://localhost:3001/admin/users/findItems/${value}`).then((response) => {
