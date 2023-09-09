@@ -100,7 +100,6 @@ exports.UserSearchResult = (req, res) => {
 exports.PlaceOrder = (req,res) => {
   const data_Cart = req.body.data_Cart
   console.log(data_Cart)
-  const Day = Date.now()
   const GuessName = req.body.GuessName
   const Delivery_Address = req.body.Delivery_Address
   const Total_Price = req.body.Total_Price
@@ -137,7 +136,7 @@ exports.PlaceOrder = (req,res) => {
       if (queryCount === totalQueries) {
           connection.end();
       }
-      results.send("Success")
+      res.send("Success")
     });
   }
   console.log('Done save.')

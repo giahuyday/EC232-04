@@ -19,10 +19,10 @@ const Header = () => {
   }
   const [isReloaded, setIsReloaded] = useState(false);
   const handleReload = () => {
-    if (!isReloaded) {
+    if (isReloaded) {
       window.location.reload(); // Gọi hàm để làm tải lại trang
     } else {
-      setIsReloaded(false); // Đánh dấu là đã nhấn lần đầu
+      setIsReloaded(true); // Đánh dấu là đã nhấn lần đầu
     }
   };
   const handleCart = () => {
