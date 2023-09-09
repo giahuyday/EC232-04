@@ -48,7 +48,7 @@ function MainLayout({ users }) {
           <Route path="/profile" element={<Profile users={users} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/search/:CateID" element={<SearchByCate />} />
-          <Route path="/search" element={<SearchByKey />} />
+          <Route path="/search/" element={<SearchByKey />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />
