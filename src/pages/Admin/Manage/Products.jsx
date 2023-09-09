@@ -3,6 +3,7 @@ import RowTableProductsManage from '../../../components/Admin/RowTableProductsMa
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
+
 const ProductsManage = () => {
     const [products, SetProducts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -15,6 +16,16 @@ const ProductsManage = () => {
     }, [reset])
     const movePage = (move) => {
         setCurrentPage(currentPage + move)
+    }
+    const findItems = (value) => {
+        if(value==='') {
+            getOrders()
+            return
+        }
+        Axios.get(`http://localhost:3001/admin/users/findItems/${value}`).then((response) => {
+            SetProducts(response.data)
+            // console.log(response.data)
+        })
     }
     const getProducts = () => {
         Axios.get('http://localhost:3001/admin/products').then((response) => {
@@ -52,7 +63,7 @@ const ProductsManage = () => {
                     <div className="px-4 mx-auto max-w-screen-2xl lg:px-12 mt-[10px]">
                         <div className="relative overflow-hidden bg-white shadow-md dbg-gray-800 ">
                             <div className="h-[40px] w-[300px] mb-[20px]">
-                                <input type="text" placeholder="Enter Find Item" className="p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]" />
+                                <input type="text" placeholder="Enter Find Item" onChange={(e)=>{findItems(e.target.value)}}  className="p-[5px] h-[40px] w-[300px] bg-gray-200 rounded-[10px] border-[1px] border-[gray]" />
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left text-gray-500 dtext-gray-400 ">

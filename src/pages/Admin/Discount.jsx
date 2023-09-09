@@ -13,7 +13,7 @@ const Discount = () => {
         setCurrentPage(currentPage + move)
     }
     const getProducts = () => {
-        Axios.post('https://website-8ld0.onrender.com/product').then((response) => {
+        Axios.post('http://localhost:3001/product').then((response) => {
             SetProducts(response.data)
             console.log(response.data)
         })

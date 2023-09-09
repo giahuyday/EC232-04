@@ -5,7 +5,7 @@ module.exports = ChartController = {
     try {
       const date = req.query.date 
       if(date === typeof(undefined)){
-        date='2023-08-05'
+        date='2023-09-02'
       } 
       console.log(date);
       const week = await queryChartWeek(date);

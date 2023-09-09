@@ -35,6 +35,24 @@ module.exports = ProController = {
       res.status(500).send('Fetch Failed!');
     }
   },
+  findItems: async (req, res) => {
+    try {
+      const result = req.params.value ||''
+      const value = '%'+result+'%'
+      connection.query('SELECT * FROM Item where NAME LIKE ? or ItemID LIKE ?',[value,value], (err, result) => {
+        if (err) {
+          console.log('Fetch Failed !')
+          res.status(500).send('Fetch Failed!');
+        } else {
+          console.log(result)
+          res.send(result)
+        }
+      })
+    } catch (err) {
+      console.error('Fetch Failed!', err);
+      res.status(500).send('Fetch Failed!');
+    }
+  },
   unlock: async (req, res) => {
     try {
       const result = req.params.value ||''

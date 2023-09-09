@@ -120,6 +120,7 @@ app.post('/wishlist/removeFromWishlist', WishListController.removeFromWishlist)
 // End Wishlist
 
 app.get('/admin/users/findUsers/:value',UserController.findUsers)
+app.get('/admin/users/findItems/:value',ProController.findItems)
 app.get('/admin/orders/findOrders/:value',OrderController.findOrders)
 app.post('/admin/orders/changeStatus/:value/:status',OrderController.changeStatus)
 app.post('/admin/users/lock/:value',OrderController.lock)
